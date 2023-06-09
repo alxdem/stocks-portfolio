@@ -1,13 +1,12 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AboutPage, DashboardPage } from './pages';
-import { NavLink } from 'react-router-dom';
-import './App.css';
+import MainLayout from './layouts/MainLayout/MainLayout';
 
 function App() {
     return (
         <Router>
             <div className='app'>
-                <ul>
+                {/* <ul>
                     <li>
                         <NavLink
                             to='/'
@@ -26,11 +25,13 @@ function App() {
                             About
                         </NavLink>
                     </li>
-                </ul>
-                <Routes>
-                    <Route path='/' element={<DashboardPage />} />
-                    <Route path='/about' element={<AboutPage />} />
-                </Routes>
+                </ul> */}
+                <MainLayout>
+                    <Routes>
+                        <Route path='/' element={<DashboardPage />} />
+                        <Route path='/about' element={<AboutPage />} />
+                    </Routes>
+                </MainLayout>
             </div>
         </Router>
     )
