@@ -1,0 +1,38 @@
+.card {
+    display: flex;
+    gap: 6px;
+}
+
+.logo {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    position: relative;
+}
+
+.logo img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.info {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.name {
+    font-size: 14px;
+    line-height: 16px;
+    color: var(--gray-700);
+}
+
+.code {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 20px;
+    color: var(--text);
+}

@@ -5,7 +5,7 @@ import { ISidebar } from './AppSidebar.props';
 const AppSidebar = ({ nav }: ISidebar) => {
     const navElements = nav.map(item => {
         return (
-            <NavLink to={item.link} className={styles.link}>
+            <NavLink key={item.id} to={item.link} className={styles.link}>
                 {item.text}
             </NavLink>
         );

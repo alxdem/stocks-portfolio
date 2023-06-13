@@ -6,29 +6,10 @@ function App() {
     return (
         <Router>
             <div className='app'>
-                {/* <ul>
-                    <li>
-                        <NavLink
-                            to='/'
-                            end
-                            style={({ isActive }) => ({ color: isActive ? 'var(--text)' : '#111' })}
-                        >
-                            Dashboard
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to='/about'
-                            end
-                            style={({ isActive }) => ({ color: isActive ? 'var(--text)' : '#111' })}
-                        >
-                            About
-                        </NavLink>
-                    </li>
-                </ul> */}
                 <MainLayout>
                     <Routes>
                         <Route path='/' element={<DashboardPage />} />
+                        <Route path='/dashboard' element={<DashboardPage />} />
                         <Route path='/about' element={<AboutPage />} />
                     </Routes>
                 </MainLayout>

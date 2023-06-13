@@ -3,6 +3,7 @@ export interface ISidebar {
 }
 
 export interface ISidebarItem {
+    id: string;
     text: string;
     link: string;
 }

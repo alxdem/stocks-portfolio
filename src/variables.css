@@ -39,6 +39,7 @@
     --black: #000000;
     --white: #FFFFFF;
 
+    --gray-50: #FFFFFF;
     --gray-100: #F2F3F7;
     --gray-200: #E2E2EA;
     --gray-300: #C6CBD9;
@@ -73,6 +74,7 @@
 }
 
 .dark {
+    --gray-50: #000000;
     --gray-100: #0F0F13;
     --gray-200: #262631;
     --gray-300: #2E2E3A;
