@@ -6,6 +6,7 @@ const IndicatorsPane = ({ items }: IIndicatorsPane) => {
     const elements = items.map(item => {
         return (
             <IndicatorTotal
+                key={item.id}
                 value={item.value}
                 percent={item.percent}
                 title={item.title}

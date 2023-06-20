@@ -3,8 +3,6 @@ import styles from './TickerList.module.css';
 import { formatPrice } from '../../utils/utils';
 
 const TickerList = ({ items, tickerData }: ITickerList) => {
-    console.log('tickerData', tickerData);
-
     const elements = items.map(item => {
         const currentTicker = tickerData.filter(ticker => ticker.symbol === item.code)[0] || {};
         const name = currentTicker.name || '';

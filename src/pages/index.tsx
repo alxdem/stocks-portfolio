@@ -1,5 +1,5 @@
-import DashboardPage from './Dashboard';
-import AboutPage from './About';
+import DashboardPage from './Dashboard/Dashboard';
+import AboutPage from './About/About';
 
 export {
     DashboardPage,

@@ -6,7 +6,7 @@ import AppUser from '../AppUser/AppUser';
 import { IAppHeader } from './AppHeader.props';
 
 const AppHeader = ({ user }: IAppHeader) => {
-    const root = document.querySelector(':root');
+    const root = document.querySelector(':root') as HTMLElement;
 
     const themeChange = () => {
         root?.classList.toggle('dark');
