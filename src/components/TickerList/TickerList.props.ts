@@ -5,7 +5,7 @@ export interface ITickerList {
     tickerData: IDataTicker[];
 }
 
-interface IDataTicker {
+export interface IDataTicker {
     symbol: string;
     name: string;
     price: number;

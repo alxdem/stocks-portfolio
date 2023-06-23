@@ -6,7 +6,54 @@ import { IStockShortInfo } from '../../models/common';
 import { tikerListData, totalData } from '../../assets/fixtures/dataUser1';
 import CloudSection from '../../components/CloudSection/CloudSection';
 import IndicatorsPane from '../../components/IndicatorsPane/IndicatorsPane';
+import ChartPie from '../../components/ChartPie/ChartPie';
 import styles from './Dashboard.module.css';
+import { typeValueCount } from '../../utils/utils';
+
+const data = [
+    {
+        "id": "css",
+        "label": "css",
+        "value": 344,
+        "color": "hsl(44, 70%, 50%)"
+    },
+    {
+        "id": "rust",
+        "label": "rust",
+        "value": 169,
+        "color": "hsl(110, 70%, 50%)"
+    },
+    {
+        "id": "c",
+        "label": "c",
+        "value": 64,
+        "color": "var(--black)"
+    },
+    {
+        "id": "d2",
+        "label": "d2",
+        "value": 200,
+        "color": "#d99999"
+    },
+    {
+        "id": "js",
+        "label": "d2",
+        "value": 187,
+        "color": "#33eeee"
+    },
+    {
+        "id": "g22",
+        "label": "d8",
+        "value": 166,
+        "color": "#111"
+    },
+    {
+        "id": "g29",
+        "label": "d8",
+        "value": 124,
+        "color": "#111"
+    },
+];
 
 const DashboardPage = () => {
     const [count, setCount] = useState(0);
@@ -57,6 +104,8 @@ const DashboardPage = () => {
 
     console.log('tickerData', tickerData);
 
+    console.log('!!  ', typeValueCount(tikerListData, tickerData));
+
     return (
         <section className={styles.page}>
             <CloudSection className={styles.total}>
@@ -71,7 +120,7 @@ const DashboardPage = () => {
             </CloudSection>
 
             <CloudSection title='Portfolio'>
-                123
+                <ChartPie data={data} />
             </CloudSection>
 
 
