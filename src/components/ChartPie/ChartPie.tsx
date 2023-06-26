@@ -14,7 +14,7 @@ const ChartPie = ({ data }: IChartPie) => {
                 <ResponsivePie
                     theme={themeInfo}
                     data={data}
-                    margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+                    margin={{ top: 50, right: 20, bottom: 50, left: 20 }}
                     startAngle={0}
                     innerRadius={0.5}
                     padAngle={1}
@@ -43,7 +43,7 @@ const ChartPie = ({ data }: IChartPie) => {
                             direction: 'row',
                             justify: false,
                             translateX: 0,
-                            translateY: 10,
+                            translateY: 30,
                             itemsSpacing: 0,
                             itemWidth: 70,
                             itemHeight: 18,

@@ -9,56 +9,11 @@ import IndicatorsPane from '../../components/IndicatorsPane/IndicatorsPane';
 import ChartPie from '../../components/ChartPie/ChartPie';
 import styles from './Dashboard.module.css';
 import { typeValueCount } from '../../utils/utils';
-
-const data = [
-    {
-        "id": "css",
-        "label": "css",
-        "value": 344,
-        "color": "hsl(44, 70%, 50%)"
-    },
-    {
-        "id": "rust",
-        "label": "rust",
-        "value": 169,
-        "color": "hsl(110, 70%, 50%)"
-    },
-    {
-        "id": "c",
-        "label": "c",
-        "value": 64,
-        "color": "var(--black)"
-    },
-    {
-        "id": "d2",
-        "label": "d2",
-        "value": 200,
-        "color": "#d99999"
-    },
-    {
-        "id": "js",
-        "label": "d2",
-        "value": 187,
-        "color": "#33eeee"
-    },
-    {
-        "id": "g22",
-        "label": "d8",
-        "value": 166,
-        "color": "#111"
-    },
-    {
-        "id": "g29",
-        "label": "d8",
-        "value": 124,
-        "color": "#111"
-    },
-];
+import { IChartPieDataItem } from '../../components/ChartPie/ChartPie.props';
 
 const DashboardPage = () => {
-    const [count, setCount] = useState(0);
     const [tickerData, setTickerData] = useState([]);
-    console.log('tikerList', tikerListData);
+    const [pieData, setPieData] = useState<IChartPieDataItem[]>([]);
 
     const getTickersListData = async () => {
         const stockListLocal = localStorage.getItem('StockList');
@@ -72,7 +27,7 @@ const DashboardPage = () => {
                     return item.exchangeShortName === 'NYSE' || item.exchangeShortName === "NASDAQ";
                 });
 
-                console.log('filteredData', filteredData);
+                // console.log('filteredData', filteredData);
 
                 setTickerData(filteredData);
                 localStorage.setItem('StockList', JSON.stringify(filteredData));
@@ -102,9 +57,18 @@ const DashboardPage = () => {
         // getTickersListExtendedData();
     }, []);
 
+    useEffect(() => {
+        const y = typeValueCount(tikerListData, tickerData);
+        setPieData(y);
+        console.log('pieData', pieData);
+    }, [tikerListData, tickerData]);
+
+    console.log('tikerListData', tikerListData);
     console.log('tickerData', tickerData);
 
-    console.log('!!  ', typeValueCount(tikerListData, tickerData));
+
+
+
 
     return (
         <section className={styles.page}>
@@ -120,20 +84,8 @@ const DashboardPage = () => {
             </CloudSection>
 
             <CloudSection title='Portfolio'>
-                <ChartPie data={data} />
+                <ChartPie data={pieData} />
             </CloudSection>
-
-
-            <div>
-                <a href="https://react.dev" target="_blank">
-                    <img src={reactLogo} className="logo react" alt="React logo" />
-                </a>
-            </div>
-            <div className="card">
-                <button onClick={() => setCount((count) => count + 1)}>
-                    count is {count}
-                </button>
-            </div>
         </section>
     );
 };

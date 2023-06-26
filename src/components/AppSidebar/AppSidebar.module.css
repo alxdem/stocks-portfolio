@@ -24,7 +24,9 @@
     letter-spacing: -0.1px;
 }
 
+.linkActive,
 .link:hover {
-    color: var(--gray-1100);
+    color: var(--logo-hover);
     transition: color var(--timing) var(--ease);
 }
+

@@ -1,4 +1,4 @@
-import { IChartPie } from '../components/ChartPie/ChartPie.props';
+import { IChartPieDataItem } from '../components/ChartPie/ChartPie.props';
 import { ITypeValueCount } from '../models/common';
 
 const formatPrice = (value: number | string) => {
@@ -11,29 +11,29 @@ const formatPrice = (value: number | string) => {
 
 const typeValueCount: ITypeValueCount = (currentList, tickerList) => {
     let obj: { [key: string]: number } = {};
+    const resultArray: IChartPieDataItem[] = [];
 
-    const arr = currentList.map(item => {
+    currentList.forEach(item => {
         const tickerInfo = tickerList.find(ticker => ticker.symbol === item.code);
         const type = tickerInfo ? tickerInfo.type : '';
         const value = tickerInfo ? Math.round(tickerInfo.price * item.value) : 0;
-
-        console.log('value', value);
 
         if (obj.hasOwnProperty.call(obj, type)) {
             obj[type] += value;
         } else {
             obj = { ...obj, [type]: value };
         }
-
-        console.log('tickerInfo', tickerInfo);
-        console.log('obj', obj);
-
-        return '';
     });
 
-    console.log('arr', arr);
+    for (const [key, value] of Object.entries(obj)) {
+        resultArray.push({
+            id: key,
+            label: key,
+            value: value
+        });
+    }
 
-    return 'd';
+    return resultArray;
 };
 
 export {

@@ -1,3 +1,4 @@
+import { IChartPieDataItem } from '../components/ChartPie/ChartPie.props';
 import { IDataTicker } from '../components/TickerList/TickerList.props';
 
 export interface ILayout {
@@ -19,5 +20,5 @@ export interface ITikerListData {
 }
 
 export interface ITypeValueCount {
-    (currentList: ITikerListData[], tickerList: IDataTicker[]): string;
+    (currentList: ITikerListData[], tickerList: IDataTicker[]): IChartPieDataItem[];
 }
