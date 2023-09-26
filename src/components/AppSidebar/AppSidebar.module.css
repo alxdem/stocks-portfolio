@@ -1,0 +1,32 @@
+.aside {
+    width: 288px;
+    flex-shrink: 0;
+    padding: 30px 0;
+    background-color: var(--bg-main);
+    box-shadow: var(--sidebar-shadow);
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.link {
+    text-decoration: none;
+    padding: 6px 26px;
+    display: flex;
+    align-items: center;
+    color: var(--gray-800);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: -0.1px;
+}
+
+.linkActive,
+.link:hover {
+    color: var(--logo-hover);
+    transition: color var(--timing) var(--ease);
+}
+

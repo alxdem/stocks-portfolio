@@ -1,0 +1,41 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.inner {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.header {
+    font-size: 12px;
+    line-height: 14px;
+    padding: 10px;
+    background-color: var(--gray-100);
+    padding: 10px 0;
+    display: flex;
+    gap: 10px;
+    border-radius: 3px;
+}
+
+.hName {
+    width: 50%;
+    flex-shrink: 0;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.hLots {
+    width: 50px;
+    flex-shrink: 0;
+}
+
+.hAmount {
+    flex-shrink: 0;
+    flex-grow: 1;
+    text-align: right;
+    padding-right: 10px;
+}

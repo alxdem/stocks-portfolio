@@ -1,0 +1,12 @@
+.inner {
+    display: flex;
+    flex-grow: 1;
+    gap: 30px;
+}
+
+.main {
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding-right: 30px;
+    padding-top: 30px;
+}

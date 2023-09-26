@@ -1,0 +1,10 @@
+.cloud {
+    padding: 28px 30px;
+    border-radius: 20px;
+    background-color: var(--gray-50);
+}
+
+.title {
+    margin: 0 0 10px;
+    font: var(--h5);
+}

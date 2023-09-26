@@ -1,0 +1,27 @@
+.indicator {
+
+}
+
+.title {
+    font-size: 14px;
+    line-height: 16px;
+    margin: 0 0 12px;
+}
+
+.value {
+    font-size: 24px;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.percent {
+    font-size: 18px;
+    line-height: 1;
+    font-weight: 600;
+    margin-top: 10px;
+    color: var(--verdepom);
+}
+
+.percentDecreased {
+    color: var(--alizarin-red);
+}

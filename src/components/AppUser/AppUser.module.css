@@ -1,0 +1,19 @@
+.user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: -0.1px;
+}
+
+.photo {
+    display: block;
+    overflow: hidden;
+    flex-shrink: 0;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+}
