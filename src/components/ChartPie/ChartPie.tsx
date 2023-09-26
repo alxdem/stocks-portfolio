@@ -21,6 +21,7 @@ const ChartPie = ({ data }: IChartPie) => {
                     cornerRadius={3}
                     sortByValue
                     fit={true}
+                    valueFormat="=$"
                     activeOuterRadiusOffset={8}
                     arcLinkLabelsSkipAngle={100}
                     arcLinkLabelsTextColor="#3333ee"
@@ -44,7 +45,7 @@ const ChartPie = ({ data }: IChartPie) => {
                             justify: false,
                             translateX: 0,
                             translateY: 30,
-                            itemsSpacing: 0,
+                            itemsSpacing: 5,
                             itemWidth: 70,
                             itemHeight: 18,
                             itemTextColor: 'var(--text)',

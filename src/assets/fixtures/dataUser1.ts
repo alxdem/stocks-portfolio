@@ -2,7 +2,17 @@ const tikerListData = [
     { code: 'NKE', value: 15 },
     { code: 'M', value: 18 },
     { code: 'F', value: 16 },
-    { code: 'PSICX', value: 5 },
+    { code: 'CP', value: 3 },
+    { code: 'BCE', value: 6 },
+    { code: 'TIBCX', value: 12 },
+    { code: 'IPG', value: 3 },
+    { code: 'WSO', value: 2 },
+    { code: 'WPC', value: 4 },
+    { code: 'PAA', value: 12 },
+    { code: 'RXDX', value: 1 },
+    { code: 'WAVD', value: 1000 },
+    { code: 'HOOD', value: 16 },
+    { code: 'CSCO', value: 4 },
 ];
 
 const totalData = [

@@ -1,22 +1,25 @@
 import { useState, useEffect } from 'react';
-import reactLogo from './../../assets/react.svg';
 import TickerList from '../../components/TickerList/TickerList';
 import { IStockShortInfo } from '../../models/common';
 
-import { tikerListData, totalData } from '../../assets/fixtures/dataUser1';
+import { tikerListData as userTikersData, totalData } from '../../assets/fixtures/dataUser1';
 import CloudSection from '../../components/CloudSection/CloudSection';
 import IndicatorsPane from '../../components/IndicatorsPane/IndicatorsPane';
 import ChartPie from '../../components/ChartPie/ChartPie';
 import styles from './Dashboard.module.css';
-import { typeValueCount } from '../../utils/utils';
+import { sectorValueCount, typeValueCount } from '../../utils/utils';
 import { IChartPieDataItem } from '../../components/ChartPie/ChartPie.props';
 
 const DashboardPage = () => {
     const [tickerData, setTickerData] = useState([]);
+    const [tickerExtendData, setTickerExtendData] = useState([]);
     const [pieData, setPieData] = useState<IChartPieDataItem[]>([]);
+    const [pieSectorsData, setPieSectorsData] = useState<IChartPieDataItem[]>([]);
+
 
     const getTickersListData = async () => {
         const stockListLocal = localStorage.getItem('StockList');
+        // TODO: replace fetch urls in separate file
 
         if (!stockListLocal) {
             try {
@@ -27,7 +30,7 @@ const DashboardPage = () => {
                     return item.exchangeShortName === 'NYSE' || item.exchangeShortName === "NASDAQ";
                 });
 
-                // console.log('filteredData', filteredData);
+                console.log('filteredData', filteredData);
 
                 setTickerData(filteredData);
                 localStorage.setItem('StockList', JSON.stringify(filteredData));
@@ -42,32 +45,37 @@ const DashboardPage = () => {
     const getTickersListExtendedData = async () => {
         const stockListExtendedLocal = localStorage.getItem('StockListExtended');
 
-        try {
-            const res = await fetch(`https://fmpcloud.io/api/v3/stock-screener?limit=20000&exchange=NYSE,NASDAQ&apikey=${import.meta.env.VITE_FMP_KEY}`);
-            const data = await res.json();
+        if (!stockListExtendedLocal) {
+            try {
+                const res = await fetch(`https://fmpcloud.io/api/v3/stock-screener?limit=20000&exchange=NYSE,NASDAQ&apikey=${import.meta.env.VITE_FMP_KEY}`);
+                const data = await res.json();
 
-            console.log('data', data);
-        } catch (err) {
-            console.log('Something went wrong...', err);
+                setTickerExtendData(data);
+                if (data) {
+                    localStorage.setItem('StockListExtended', JSON.stringify(data));
+                }
+            } catch (err) {
+                console.log('Something went wrong...', err);
+            }
+        } else {
+            setTickerExtendData(JSON.parse(stockListExtendedLocal));
         }
     };
 
     useEffect(() => {
         getTickersListData();
-        // getTickersListExtendedData();
+        getTickersListExtendedData();
     }, []);
 
     useEffect(() => {
-        const y = typeValueCount(tikerListData, tickerData);
-        setPieData(y);
-        console.log('pieData', pieData);
-    }, [tikerListData, tickerData]);
+        const countData = typeValueCount(userTikersData, tickerData);
+        setPieData(countData);
+    }, [tickerData]);
 
-    console.log('tikerListData', tikerListData);
-    console.log('tickerData', tickerData);
-
-
-
+    useEffect(() => {
+        const countSectorData = sectorValueCount(userTikersData, tickerExtendData);
+        setPieSectorsData(countSectorData);
+    }, [tickerExtendData]);
 
 
     return (
@@ -78,13 +86,18 @@ const DashboardPage = () => {
 
             <CloudSection title='Portfolio'>
                 <TickerList
-                    items={tikerListData}
+                    items={userTikersData}
                     tickerData={tickerData}
+                    amount={6}
                 />
             </CloudSection>
 
             <CloudSection title='Portfolio'>
                 <ChartPie data={pieData} />
+            </CloudSection>
+
+            <CloudSection title='Sectors'>
+                <ChartPie data={pieSectorsData} />
             </CloudSection>
         </section>
     );

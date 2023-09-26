@@ -36,7 +36,35 @@ const typeValueCount: ITypeValueCount = (currentList, tickerList) => {
     return resultArray;
 };
 
+const sectorValueCount: ITypeValueCount = (currentList, tickerList) => {
+    let obj: { [key: string]: number } = {};
+    const resultArray: IChartPieDataItem[] = [];
+
+    currentList.forEach(item => {
+        const tickerInfo = tickerList.find(ticker => ticker.symbol === item.code);
+        const sector = (tickerInfo && tickerInfo.sector) ? tickerInfo.sector : 'Other';
+        const value = tickerInfo ? Math.round(tickerInfo.price * item.value) : 0;
+
+        if (obj.hasOwnProperty.call(obj, sector)) {
+            obj[sector] += value;
+        } else {
+            obj = { ...obj, [sector]: value };
+        }
+    });
+
+    for (const [key, value] of Object.entries(obj)) {
+        resultArray.push({
+            id: key,
+            label: key,
+            value: value
+        });
+    }
+
+    return resultArray;
+};
+
 export {
     formatPrice,
     typeValueCount,
+    sectorValueCount,
 };
