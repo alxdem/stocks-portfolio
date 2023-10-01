@@ -30,10 +30,9 @@ const DashboardPage = () => {
                     return item.exchangeShortName === 'NYSE' || item.exchangeShortName === "NASDAQ";
                 });
 
-                console.log('filteredData', filteredData);
-
-                setTickerData(filteredData);
-                localStorage.setItem('StockList', JSON.stringify(filteredData));
+                console.log('-filteredData', filteredData);
+                dispatch(setStocks(filteredData));
+                console.log('stocksData', stocksData);
             } catch (err) {
                 console.log('Something went wrong...', err);
             }
