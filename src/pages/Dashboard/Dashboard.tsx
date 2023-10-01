@@ -9,19 +9,22 @@ import ChartPie from '../../components/ChartPie/ChartPie';
 import styles from './Dashboard.module.css';
 import { sectorValueCount, typeValueCount } from '../../utils/utils';
 import { IChartPieDataItem } from '../../components/ChartPie/ChartPie.props';
+import type { RootState } from '../../store';
+import { useSelector, useDispatch } from 'react-redux';
+import { setStocks, setStocksExtend } from '../../reducers/stocksSlice';
 
 const DashboardPage = () => {
-    const [tickerData, setTickerData] = useState([]);
-    const [tickerExtendData, setTickerExtendData] = useState([]);
     const [pieData, setPieData] = useState<IChartPieDataItem[]>([]);
     const [pieSectorsData, setPieSectorsData] = useState<IChartPieDataItem[]>([]);
 
+    const stocksData = useSelector((state: RootState) => state.stocks.stocks);
+    const stocksExtendData = useSelector((state: RootState) => state.stocks.stocksExtend);
+    const dispatch = useDispatch();
 
     const getTickersListData = async () => {
-        const stockListLocal = localStorage.getItem('StockList');
         // TODO: replace fetch urls in separate file
 
-        if (!stockListLocal) {
+        if (!stocksData.length) {
             try {
                 const res = await fetch(`https://fmpcloud.io/api/v3/stock/list?apikey=${import.meta.env.VITE_FMP_KEY}`);
                 const data = await res.json();
@@ -30,34 +33,23 @@ const DashboardPage = () => {
                     return item.exchangeShortName === 'NYSE' || item.exchangeShortName === "NASDAQ";
                 });
 
-                console.log('-filteredData', filteredData);
                 dispatch(setStocks(filteredData));
-                console.log('stocksData', stocksData);
             } catch (err) {
                 console.log('Something went wrong...', err);
             }
-        } else {
-            setTickerData(JSON.parse(stockListLocal));
         }
     };
 
     const getTickersListExtendedData = async () => {
-        const stockListExtendedLocal = localStorage.getItem('StockListExtended');
-
-        if (!stockListExtendedLocal) {
+        if (!stocksExtendData.length) {
             try {
                 const res = await fetch(`https://fmpcloud.io/api/v3/stock-screener?limit=20000&exchange=NYSE,NASDAQ&apikey=${import.meta.env.VITE_FMP_KEY}`);
                 const data = await res.json();
 
-                setTickerExtendData(data);
-                if (data) {
-                    localStorage.setItem('StockListExtended', JSON.stringify(data));
-                }
+                dispatch(setStocksExtend(data));
             } catch (err) {
                 console.log('Something went wrong...', err);
             }
-        } else {
-            setTickerExtendData(JSON.parse(stockListExtendedLocal));
         }
     };
 
@@ -67,14 +59,14 @@ const DashboardPage = () => {
     }, []);
 
     useEffect(() => {
-        const countData = typeValueCount(userTikersData, tickerData);
+        const countData = typeValueCount(userTikersData, stocksData);
         setPieData(countData);
-    }, [tickerData]);
+    }, [stocksData]);
 
     useEffect(() => {
-        const countSectorData = sectorValueCount(userTikersData, tickerExtendData);
+        const countSectorData = sectorValueCount(userTikersData, stocksExtendData);
         setPieSectorsData(countSectorData);
-    }, [tickerExtendData]);
+    }, [stocksExtendData]);
 
 
     return (
@@ -86,7 +78,7 @@ const DashboardPage = () => {
             <CloudSection title='Portfolio'>
                 <TickerList
                     items={userTikersData}
-                    tickerData={tickerData}
+                    tickerData={stocksData}
                     amount={6}
                 />
             </CloudSection>
