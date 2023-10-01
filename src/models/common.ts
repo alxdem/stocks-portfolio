@@ -19,6 +19,11 @@ export interface ITikerListData {
     value: number;
 }
 
-export interface ITypeValueCount {
-    (currentList: ITikerListData[], tickerList: IDataTicker[]): IChartPieDataItem[];
+export enum ChartPieType {
+    Type = 'type',
+    Sector = 'sector'
+}
+
+export interface IChartPieCount {
+    (currentList: ITikerListData[], tickerList: IDataTicker[], type: ChartPieType): IChartPieDataItem[];
 }

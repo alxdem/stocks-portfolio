@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import TickerList from '../../components/TickerList/TickerList';
-import { IStockShortInfo } from '../../models/common';
+import { IStockShortInfo, ChartPieType } from '../../models/common';
 
 import { tikerListData as userTikersData, totalData } from '../../assets/fixtures/dataUser1';
 import CloudSection from '../../components/CloudSection/CloudSection';
 import IndicatorsPane from '../../components/IndicatorsPane/IndicatorsPane';
 import ChartPie from '../../components/ChartPie/ChartPie';
 import styles from './Dashboard.module.css';
-import { sectorValueCount, typeValueCount } from '../../utils/utils';
+import { chartPieCount } from '../../utils/utils';
 import { IChartPieDataItem } from '../../components/ChartPie/ChartPie.props';
 import type { RootState } from '../../store';
 import { useSelector, useDispatch } from 'react-redux';
@@ -59,12 +59,12 @@ const DashboardPage = () => {
     }, []);
 
     useEffect(() => {
-        const countData = typeValueCount(userTikersData, stocksData);
+        const countData = chartPieCount(userTikersData, stocksData, ChartPieType.Type);
         setPieData(countData);
     }, [stocksData]);
 
     useEffect(() => {
-        const countSectorData = sectorValueCount(userTikersData, stocksExtendData);
+        const countSectorData = chartPieCount(userTikersData, stocksExtendData, ChartPieType.Sector);
         setPieSectorsData(countSectorData);
     }, [stocksExtendData]);
 
