@@ -1,0 +1,9 @@
+.page {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.total {
+    grid-column: 1/3;
+}

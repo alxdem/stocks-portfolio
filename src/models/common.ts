@@ -25,5 +25,32 @@ export enum ChartPieType {
 }
 
 export interface IChartPieCount {
-    (currentList: ITikerListData[], tickerList: IDataTicker[], type: ChartPieType): IChartPieDataItem[];
+    (
+        currentList: ITikerListData[],
+        tickerList: IDataTicker[],
+        type: ChartPieType
+    ): IChartPieDataItem[];
+}
+
+export interface IFormatPrice {
+    (
+        value: number | string | undefined,
+        isRound?: boolean
+    ): string;
+
+}
+
+export interface IGainCount {
+    (
+        averagePrice: number | undefined,
+        currentPrice: number | undefined
+    ): number;
+}
+
+export interface IGainValueCount {
+    (
+        averagePrice: number | undefined,
+        currentPrice: number | undefined,
+        value: number
+    ): number;
 }

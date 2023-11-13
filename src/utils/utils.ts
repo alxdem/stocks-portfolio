@@ -1,11 +1,12 @@
 import { IChartPieDataItem } from '../components/ChartPie/ChartPie.props';
-import { IChartPieCount, ChartPieType } from '../models/common';
+import { IChartPieCount, ChartPieType, IFormatPrice, IGainCount, IGainValueCount } from '../models/common';
 
-const formatPrice = (value: number | string) => {
+const formatPrice: IFormatPrice = (value, isRound = false) => {
     if (typeof value === 'number') {
-        return `$${(Math.round(value).toLocaleString())}`;
+        const localValue = isRound ? Math.round(value) : Number(value.toFixed(2));
+        return `${(localValue.toLocaleString())}`;
     } else {
-        return value;
+        return value || '';
     }
 };
 
@@ -50,7 +51,27 @@ const chartPieCount: IChartPieCount = (currentList, tickerList, type) => {
     return resultArray;
 };
 
+const gainCount: IGainValueCount = (averagePrice, currentPrice, value) => {
+    if (typeof currentPrice !== 'number' || typeof averagePrice !== 'number') {
+        return 0;
+    }
+
+    return (currentPrice - averagePrice) * value;
+};
+
+const gainPercentCount: IGainCount = (averagePrice, currentPrice) => {
+    if (typeof currentPrice !== 'number' || typeof averagePrice !== 'number') {
+        return 0;
+    }
+
+    const difference = currentPrice - averagePrice;
+
+    return difference === 0 ? 0 : difference * 100 / averagePrice;
+};
+
 export {
     formatPrice,
     chartPieCount,
+    gainCount,
+    gainPercentCount,
 };

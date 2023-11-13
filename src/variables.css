@@ -18,11 +18,13 @@
 
     /* colors */
     --azure: #0062FF;
+    --azure-light: #6B8CFF;
     --spring-green: #62F783;
     --amethyst: #A162F7;
     --mango-tango: #FF8743;
     --zink-yellow: #FFF736;
     --persian-blue: #4807EA;
+    --violet: #384CFF;
     --sea-green: #15FFAB;
     --magenta: #E80FE9;
     --strawberry-red: #DB3031;
@@ -59,6 +61,25 @@
     --link: var(--azure);
     --logo: var(--gray-1000);
     --logo-hover: var(--azure);
+
+    --btn-bg-primary: var(--azure);
+    --btn-bg-hover-primary: var(--azure-light);
+    --btn-color-primary: var(--gray-100);
+
+    --btn-bg-secondary: var(--gray-200);
+    --btn-color-secondary: var(--gray-800);
+    --btn-bg-hover-secondary: var(--gray-100);
+    --btn-bg-disabled-secondary: var(--gray-600);
+    --btn-color-disabled-secondary: var(--gray-100);
+
+    --btn-bg-tetriary: transparent;
+    --btn-color-tetriary: var(--gray-800);
+    --btn-border-color-tetriary: var(--gray-200);
+    --btn-border-color-hover-tetriary: var(--gray-500);
+    --btn-color-disabled-tetriary: var(--gray-700);
+    --btn-border-color-disabled-tetriary: var(--gray-700);
+    
+
     --header-shadow: 0px 100px 80px rgba(182, 187, 245, 0.07),
         0px 41.7776px 33.4221px rgba(182, 187, 245, 0.0503198),
         0px 22.3363px 17.869px rgba(182, 187, 245, 0.0417275),
@@ -94,6 +115,24 @@
     --link: var(--crayola);
     --logo: var(--white);
     --logo-hover: var(--amethyst);
+
+    --btn-bg-primary: var(--persian-blue);
+    --btn-bg-hover-primary: var(--violet);
+    --btn-color-primary: var(--gray-1000);
+
+    --btn-bg-secondary: var(--gray-200);
+    --btn-color-secondary: var(--gray-1000);
+    --btn-bg-hover-secondary: var(--gray-300);
+    --btn-bg-disabled-secondary: var(--gray-100);
+    --btn-color-disabled-secondary: var(--gray-1000);
+
+    --btn-bg-tetriary: transparent;
+    --btn-color-tetriary: var(--gray-1000);
+    --btn-border-color-tetriary: var(--gray-200);
+    --btn-border-color-hover-tetriary: var(--gray-400);
+    --btn-color-disabled-tetriary: var(--gray-800);
+    --btn-border-color-disabled-tetriary: var(--gray-200);
+
     --header-shadow: none;
     --sidebar-shadow: none;
 }
