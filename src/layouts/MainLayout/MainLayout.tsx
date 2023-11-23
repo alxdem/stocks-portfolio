@@ -12,11 +12,12 @@ const MainLayout = ({ children }: ILayout) => {
     const dispatch = useDispatch();
     const user = { name: 'Victor Monro', photo: 'uploads/user1.jpg' };
     const asideNav = [
-        { id: 'i1', text: 'Dashboard', link: '/dashboard' },
-        { id: 'i2', text: 'Portfolio', link: '/portfolio' },
-        { id: 'i3', text: 'Operations', link: '/operations' },
-        { id: 'i4', text: 'Analytics', link: '/analytics' },
-        { id: 'i5', text: 'About', link: '/about' },
+        { id: 'dashboard', text: 'Dashboard', link: '/dashboard' },
+        { id: 'portfolio', text: 'Portfolio', link: '/portfolio' },
+        { id: 'operations', text: 'Operations', link: '/operations' },
+        { id: 'analytics', text: 'Analytics', link: '/analytics' },
+        { id: 'stock', text: 'Stock', link: '/stock' },
+        { id: 'about', text: 'About', link: '/about' },
     ];
 
     const [stocksData, isStocksDataLoading, stocksDataError] = useFetch<IStockShortInfo[]>(STOCKS_DATA_URL, []);
@@ -34,6 +35,8 @@ const MainLayout = ({ children }: ILayout) => {
 
     const getTickersListExtendedData = () => {
         if (stocksExtendedData.length) {
+            // TODO: Rewrite raw result into object {tikerName: {...options}}
+            // TODO: Maybe unite two objects (stocksData and ExtendedData) into one
             dispatch(setStocksExtend(stocksExtendedData));
         }
     };

@@ -30,3 +30,11 @@
     transition: color var(--timing) var(--ease);
 }
 
+@media(max-width: 1279px) {
+    .aside {
+        width: 265px;
+        flex-shrink: 0;
+        padding: 20px 0;
+    }
+}
+
