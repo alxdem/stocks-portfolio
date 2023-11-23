@@ -11,3 +11,15 @@
     padding-top: 30px;
     padding-bottom: 30px;
 }
+
+@media(max-width: 1279px) {
+    .inner {
+        gap: 20px;
+    }
+
+    .main {
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}

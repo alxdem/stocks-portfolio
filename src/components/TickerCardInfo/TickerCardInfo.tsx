@@ -1,14 +1,16 @@
 import styles from './TickerCardInfo.module.css';
 import { ITickerCardInfo } from './TickerCardInfo.props';
+import TickerLogo from '../TickerLogo/TickerLogo';
 
 export const TickerCardInfo = ({ logo, code, name }: ITickerCardInfo) => {
-    const Cap = () => <div className={styles.cap}></div>;
-    const logoImage = logo ? <img src={logo} alt="name" /> : <Cap />;
-
     return (
         <div className={styles.info}>
             <div className={styles.logo}>
-                {logoImage}
+                <TickerLogo
+                    imageSrc={logo}
+                    alt={name}
+                    isRounded
+                />
             </div>
             <div className={styles.company}>
                 <span className={styles.code}>{code}</span>

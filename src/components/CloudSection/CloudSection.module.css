@@ -2,9 +2,18 @@
     padding: 28px 30px;
     border-radius: 20px;
     background-color: var(--gray-50);
+    position: relative;
+    overflow: hidden;
 }
 
 .title {
     margin: 0 0 10px;
     font: var(--h5);
+}
+
+@media(max-width: 1279px) {
+    .cloud {
+        padding: 18px 20px;
+        border-radius: 16px;
+    }
 }

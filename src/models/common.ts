@@ -24,6 +24,13 @@ export enum ChartPieType {
     Sector = 'sector'
 }
 
+export enum HugeNumberPower {
+    Thousand = 'K',
+    Million = 'M',
+    Billion = 'B',
+    Trillion = 'T'
+}
+
 export interface IChartPieCount {
     (
         currentList: ITikerListData[],
@@ -37,7 +44,10 @@ export interface IFormatPrice {
         value: number | string | undefined,
         isRound?: boolean
     ): string;
+}
 
+export interface IFormatHugeNumber {
+    (value: number | string | undefined): string;
 }
 
 export interface IGainCount {
@@ -53,4 +63,37 @@ export interface IGainValueCount {
         currentPrice: number | undefined,
         value: number
     ): number;
+}
+
+export interface IGetCompanyApiUrl {
+    (ticker: string): string;
+}
+
+export interface ITickerPage {
+    companyName?: string;
+    address?: string;
+    beta?: number;
+    ceo?: number;
+    changes?: number;
+    city?: string;
+    country?: string;
+    currency?: string;
+    description?: string;
+    exchange?: string;
+    exchangeShortName?: string;
+    fullTimeEmployees?: number;
+    image?: string;
+    industry?: string;
+    ipoDate?: string;
+    isin?: string;
+    lastDiv?: number;
+    mktCap?: number;
+    phone?: string;
+    price?: number;
+    range?: string;
+    sector?: string;
+    symbol?: string;
+    volAvg?: number;
+    website?: string;
+    zip?: string;
 }

@@ -3,6 +3,7 @@ import styles from './TickerExtendedCard.module.css';
 import { ITickerExtendedCard } from './TickerExtendedCard.props';
 import { formatPrice } from '../../utils/utils';
 import cn from 'classnames';
+import { Link } from 'react-router-dom';
 
 // TODO: Придумать как сохранять загруженные картинки
 export const TickerExtendedCard = ({
@@ -38,7 +39,7 @@ export const TickerExtendedCard = ({
     );
 
     return (
-        <div className={styles.card}>
+        <Link to={`/stock/${code}`} className={styles.card}>
             <div className={styles.info}>
                 <TickerCardInfo
                     code={code}
@@ -52,6 +53,6 @@ export const TickerExtendedCard = ({
             <div className={gainClasses}>{formatPrice(gain)}</div>
             <div className={gainPClasses}>{formatPrice(gainPercent, true)}</div>
             <div className={styles.total}>{formatPrice(totalPriceFormated)}</div>
-        </div>
+        </Link>
     );
 }

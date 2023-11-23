@@ -23,7 +23,7 @@ function useFetch<T>(url: string, initialState: T, options?: any): [T, boolean, 
                 setIsLoading(false);
             }
         })();
-    }, [url, options]);
+    }, [url]);
 
     return [data, isLoading, error];
 }
