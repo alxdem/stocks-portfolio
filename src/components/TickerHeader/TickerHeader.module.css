@@ -32,6 +32,7 @@
 
 .price {
     font-size: 2vw;
+    line-height: 1;
 }
 
 .industry {
@@ -45,16 +46,81 @@
     }
 
     .header h1 {
-        font-size: 2.2vw;
-        line-height: 2.4vw;
+        font-size: 26px;
+        line-height: 28px;
     }
 
     .logo {
-        width: 5.5vw;
-        height: 5.5vw;
+        width: 64px;
+        height: 64px;
     }
 
     .price {
-        font-size: 1.8vw;
+        font-size: 22px;
+    }
+
+    .industry {
+        font-size: 16px;
+    }
+}
+
+@media(max-width: 991px) {
+    .header {
+        margin: 0 -2.1vw;
+        padding: 2.7vw 2.1vw;
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 3.3vw;
+        line-height: 3.6vw;
+    }
+
+    .logo {
+        width: 8.8vw;
+        height: 8.8vw;
+    }
+
+    .bottom {
+        margin-top: 1vw;
+    }
+
+    .price {
+        font-size: 2.9vw;
+    }
+
+    .industry {
+        font-size: 2.1vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .header {
+        margin: 0 -5vw;
+        padding: 5vw;
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 6vw;
+        line-height: 1.2;
+    }
+
+    .logo {
+        width: 15vw;
+        height: 15vw;
+    }
+
+    .bottom {
+        margin-top: 3vw;
+        gap: 5vw;
+    }
+
+    .price {
+        font-size: 5.7vw;
+    }
+
+    .industry {
+        font-size: 4.6vw;
     }
 }

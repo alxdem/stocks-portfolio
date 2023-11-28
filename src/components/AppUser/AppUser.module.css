@@ -1,11 +1,11 @@
 .user {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.6vw;
     color: var(--text);
     font-weight: 600;
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 1vw;
+    line-height: 1vw;
     letter-spacing: -0.1px;
 }
 
@@ -14,6 +14,19 @@
     overflow: hidden;
     flex-shrink: 0;
     border-radius: 50%;
-    width: 32px;
-    height: 32px;
+    width: 2.4vw;
+    height: 2.4vw;
+}
+
+@media(max-width: 1279px) {
+    .user {
+        gap: 8px;
+        font-size: 14px;
+        line-height: 14px;
+    }
+
+    .photo {
+        width: 32px;
+        height: 32px;
+    }
 }

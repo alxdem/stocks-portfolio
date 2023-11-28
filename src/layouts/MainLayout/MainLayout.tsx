@@ -3,7 +3,7 @@ import AppHeader from '../../components/AppHeader/AppHeader';
 import styles from './MainLayout.module.css';
 import AppSidebar from '../../components/AppSidebar/AppSidebar';
 import useFetch from '../../hooks/useFetch';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setStocks, setStocksExtend } from '../../reducers/stocksSlice';
 import { STOCKS_DATA_URL, STOCKS_EXTENDED_DATA_URL } from '../../utils/variables';
@@ -19,6 +19,8 @@ const MainLayout = ({ children }: ILayout) => {
         { id: 'stock', text: 'Stock', link: '/stock' },
         { id: 'about', text: 'About', link: '/about' },
     ];
+
+    const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
 
     const [stocksData, isStocksDataLoading, stocksDataError] = useFetch<IStockShortInfo[]>(STOCKS_DATA_URL, []);
     const [stocksExtendedData, isStocksExtendedDataLoading, stocksExtendedDataError] = useFetch<IStockShortInfo[]>(STOCKS_EXTENDED_DATA_URL, []);
@@ -51,9 +53,13 @@ const MainLayout = ({ children }: ILayout) => {
 
     return (
         <>
-            <AppHeader user={user} />
+            <AppHeader
+                user={user}
+                isNavOpen={isNavOpen}
+                navBtnClick={() => setIsNavOpen(!isNavOpen)}
+            />
             <div className={styles.inner}>
-                <AppSidebar nav={asideNav} />
+                <AppSidebar nav={asideNav} isOpen={isNavOpen} />
                 <main className={styles.main}>
                     {children}
                 </main>

@@ -17,3 +17,10 @@
         border-radius: 16px;
     }
 }
+
+@media(max-width: 767px) {
+    .cloud {
+        padding: 5vw;
+        border-radius: 3vw;
+    }
+}
