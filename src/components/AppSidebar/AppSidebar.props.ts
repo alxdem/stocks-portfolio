@@ -1,5 +1,6 @@
 export interface ISidebar {
     nav: ISidebarItem[];
+    isOpen: boolean;
 }
 
 export interface ISidebarItem {

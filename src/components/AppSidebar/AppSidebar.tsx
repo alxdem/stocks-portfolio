@@ -3,7 +3,7 @@ import styles from './AppSidebar.module.css';
 import { ISidebar } from './AppSidebar.props';
 import cn from 'classnames';
 
-const AppSidebar = ({ nav }: ISidebar) => {
+const AppSidebar = ({ nav, isOpen }: ISidebar) => {
     const navElements = nav.map(item => {
         return (
             <NavLink key={item.id} to={item.link} className={({ isActive }) => cn(
@@ -16,7 +16,10 @@ const AppSidebar = ({ nav }: ISidebar) => {
     });
 
     return (
-        <aside className={styles.aside}>
+        <aside className={cn(
+            styles.aside,
+            isOpen ? styles.active : null
+        )}>
             <nav className={styles.nav}>
                 {navElements}
             </nav>

@@ -76,7 +76,7 @@ const TickerPage = () => {
     }
 
     return (
-        <section>
+        <>
             <TickerHeader
                 title={companyName}
                 logo={image}
@@ -110,7 +110,7 @@ const TickerPage = () => {
                 </>
             </CloudSection>
 
-        </section >
+        </>
     );
 };
 
