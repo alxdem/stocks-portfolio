@@ -5,13 +5,12 @@ import TickerLogo from '../TickerLogo/TickerLogo';
 export const TickerCardInfo = ({ logo, code, name }: ITickerCardInfo) => {
     return (
         <div className={styles.info}>
-            <div className={styles.logo}>
-                <TickerLogo
-                    imageSrc={logo}
-                    alt={name}
-                    isRounded
-                />
-            </div>
+            <TickerLogo
+                className={styles.logo}
+                imageSrc={logo}
+                alt={name}
+                isRounded
+            />
             <div className={styles.company}>
                 <span className={styles.code}>{code}</span>
                 <span className={styles.name}>{name}</span>

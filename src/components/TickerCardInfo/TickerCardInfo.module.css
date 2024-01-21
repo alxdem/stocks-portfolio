@@ -1,6 +1,6 @@
 .info {
     display: flex;
-    gap: 10px;
+    gap: 0.7vw;
     width: 100%;
     overflow: hidden;
 }
@@ -9,8 +9,8 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    width: 40px;
-    height: 40px;
+    width: 3vw;
+    height: 3vw;
     overflow: hidden;
     position: relative;
 }
@@ -31,8 +31,8 @@
 }
 
 .name {
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 1vw;
+    line-height: 1.2;
     color: var(--gray-700);
     white-space: nowrap;
     overflow: hidden;
@@ -41,8 +41,8 @@
 
 .code {
     font-weight: 700;
-    font-size: 18px;
-    line-height: 20px;
+    font-size: 1.3vw;
+    line-height: 1.05;
     color: var(--text);
 }
 
@@ -51,4 +51,23 @@
     width: 100%;
     height: 100%;
     background-color: var(--gray-200);
+}
+
+@media(max-width: 1279px) {
+    .info {
+        gap: 8px;
+    }
+
+    .code {
+        font-size: 16px;
+    }
+
+    .name {
+        font-size: 12px;
+    }
+
+    .logo {
+        width: 38px;
+        height: 38px;
+    }
 }

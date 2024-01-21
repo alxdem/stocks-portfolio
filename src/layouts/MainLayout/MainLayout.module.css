@@ -34,13 +34,17 @@
     }
 
     .main {
-       padding: 0 0 2.1vw;
+       padding: 2.1vw 0;
     }
 }
 
 @media(max-width: 767px) {
     .inner {
-        padding: 0 5vw;
+        padding: 0;
         width: 100%;
+    }
+
+    .main {
+        padding: 0;
     }
 }
