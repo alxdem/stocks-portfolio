@@ -4,6 +4,8 @@ import { ITickerExtendedCard } from './TickerExtendedCard.props';
 import { formatPrice } from '../../utils/utils';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
+import { LOGO_API_URL } from '../../utils/variables';
+import useFetch from '../../hooks/useFetch';
 
 // TODO: Придумать как сохранять загруженные картинки
 export const TickerExtendedCard = ({

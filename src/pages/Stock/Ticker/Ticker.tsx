@@ -83,6 +83,7 @@ const TickerPage = () => {
                 price={price}
                 industry={industry}
                 symbol={symbol}
+                className={styles.header}
             />
             <CloudSection className={styles.main}>
                 <>

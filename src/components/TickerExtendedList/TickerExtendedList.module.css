@@ -10,15 +10,14 @@
 }
 
 .header {
-    font-size: 12px;
-    line-height: 14px;
-    padding: 10px;
+    font-size: 1.1vw;
+    line-height: 1.2;
     background-color: var(--gray-100);
-    padding: 10px 0;
+    padding: 0.7vw 0;
     display: flex;
     gap: 10px;
     align-items: center;
-    border-radius: 3px;
+    border-radius: 0.4vw;
     justify-content: space-between;
 }
 
@@ -48,22 +47,57 @@
 
 .hShares,
 .hGaneP {
-    width: 50px;
+    width: 4vw;
     flex-shrink: 0;
 }
 
 .hGane {
-    width: 65px;
+    width: 6vw;
 }
 
 .hAverage,
 .hCurrent {
-    width: 65px;
+    width: 6vw;
     flex-shrink: 0;
 }
 
 .hTotal {
-    width: 100px;
+    width: 6vw;
     box-sizing: border-box;
     padding-right: 10px;
+}
+
+@media(max-width: 1279px) {
+    .header {
+        font-size: 12px;
+        border-radius: 5px;
+        padding: 8px 0;
+    }
+
+    .hShares,
+    .hGaneP {
+        width: 45px;
+        flex-shrink: 0;
+    }
+
+    .hGane {
+        width: 65px;
+        flex-shrink: 0;
+    }
+
+    .hAverage,
+    .hCurrent {
+        width: 60px;
+    }
+
+    .hTotal {
+        width: 70px;
+        flex-shrink: 0;
+    }
+}
+
+@media(max-width: 767px) {
+    .list {
+        margin: -1.4vw -5vw;
+    }
 }
