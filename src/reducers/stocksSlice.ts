@@ -1,14 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IDataTicker } from '../components/TickerList/TickerList.props';
+import { IStocksObject } from '../models/common';
 
 interface IstocksState {
-    stocks: IDataTicker[];
-    stocksExtend: IDataTicker[];
+    stocks: IStocksObject;
 }
 
 const initialState: IstocksState = {
-    stocks: [],
-    stocksExtend: []
+    stocks: {},
 };
 
 export const stocksSlice = createSlice({
@@ -17,13 +15,10 @@ export const stocksSlice = createSlice({
     reducers: {
         setStocks: (state, action) => {
             state.stocks = action.payload;
-        },
-        setStocksExtend: (state, action) => {
-            state.stocksExtend = action.payload;
         }
     }
 });
 
-export const { setStocks, setStocksExtend } = stocksSlice.actions;
+export const { setStocks } = stocksSlice.actions;
 export default stocksSlice.reducer;
 

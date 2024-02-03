@@ -1,4 +1,5 @@
 import { IChartPieDataItem } from '../components/ChartPie/ChartPie.props';
+import { snp500SymbolList } from '../assets/fixtures/snp500list';
 import {
     IChartPieCount,
     ChartPieType,
@@ -7,7 +8,10 @@ import {
     IGainValueCount,
     IGetCompanyApiUrl,
     IFormatHugeNumber,
-    HugeNumberPower
+    HugeNumberPower,
+    IStockShortInfo,
+    IStockExtendedInfo,
+    IStocksObject,
 } from '../models/common';
 import {
     COMPANY_INFO,
@@ -76,12 +80,12 @@ const formatHugeNumber: IFormatHugeNumber = (value) => {
     }
 };
 
-const chartPieCount: IChartPieCount = (currentList, tickerList, type) => {
+const chartPieCount: IChartPieCount = (currentList, stocksData, type) => {
     let obj: { [key: string]: number } = {};
     const resultArray: IChartPieDataItem[] = [];
 
     currentList.forEach(item => {
-        const tickerInfo = tickerList.find(ticker => ticker.symbol === item.code);
+        const tickerInfo = stocksData[item.code] || {};
         let name = '';
 
         switch (type) {
@@ -139,6 +143,47 @@ const getCompanyApiUrl: IGetCompanyApiUrl = (ticker) => {
     return `${COMPANY_INFO}/${ticker}?apikey=${FMP_API_KEY}`;
 };
 
+const isSnP500Include = (symbol: string | undefined): boolean => {
+    return Boolean(symbol && snp500SymbolList.includes(symbol));
+}
+
+const createStocksObject = (stocks: IStockShortInfo[], stocksExtended: IStockExtendedInfo[]) => {
+    if (!stocks.length || !stocksExtended.length) return {};
+
+    const stocksObject: IStocksObject = {};
+
+    const filteredStocks = stocks.filter((item: IStockShortInfo) => isSnP500Include(item.symbol));
+    const filteredStocksExtended = stocksExtended.filter((item: IStockExtendedInfo) => isSnP500Include(item.symbol));
+
+    filteredStocksExtended.forEach((stock: IStockExtendedInfo) => {
+        const symbol = stock.symbol;
+
+        if (typeof symbol !== 'string') return;
+
+        const stockShortElement = filteredStocks.filter(item => item.symbol === symbol)[0];
+        const name = stock.companyName || stockShortElement.name || '-';
+        const type = stockShortElement.type || '-';
+        const price = stock.price || 0;
+        const exchangeShortName = stock.exchangeShortName || '-';
+        const industry = stock.industry || '-';
+        const country = stock.country || '-';
+        const sector = stock.sector || '-';
+
+        stocksObject[symbol] = {
+            symbol,
+            name,
+            price,
+            type,
+            exchangeShortName,
+            country,
+            industry,
+            sector,
+        };
+    });
+
+    return stocksObject;
+}
+
 export {
     formatPrice,
     chartPieCount,
@@ -146,4 +191,6 @@ export {
     gainPercentCount,
     getCompanyApiUrl,
     formatHugeNumber,
+    isSnP500Include,
+    createStocksObject,
 };

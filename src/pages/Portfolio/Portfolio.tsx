@@ -13,7 +13,7 @@ const PortfolioPage = () => {
             <CloudSection className={styles.total}>
                 <TickerExtendedList
                     items={tikerListData}
-                    tickerData={stocksData}
+                    stocksData={stocksData}
                 />
             </CloudSection>
         </section>

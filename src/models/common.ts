@@ -5,13 +5,26 @@ export interface ILayout {
     children: string | JSX.Element | JSX.Element[];
 }
 
-export interface IStockShortInfo {
+export interface IStockBasicInfo {
+    symbol?: string;
     exchange?: string;
     exchangeShortName?: string;
-    name?: string;
     price?: number;
-    symbol?: string;
+}
+
+export interface IStockShortInfo extends IStockBasicInfo {
+    name?: string;
     type?: string;
+}
+
+export interface IStockExtendedInfo extends IStockBasicInfo {
+    beta?: number;
+    companyName?: string;
+    country?: string;
+    industry?: string;
+    sector?: string;
+    marketCap?: number;
+    volume?: number;
 }
 
 export interface ITikerListData {
@@ -34,7 +47,7 @@ export enum HugeNumberPower {
 export interface IChartPieCount {
     (
         currentList: ITikerListData[],
-        tickerList: IDataTicker[],
+        tickerList: IStocksObject,
         type: ChartPieType
     ): IChartPieDataItem[];
 }
@@ -96,4 +109,19 @@ export interface ITickerPage {
     volAvg?: number;
     website?: string;
     zip?: string;
+}
+
+export interface IStockInfo {
+    symbol: string,
+    name: string,
+    price: number,
+    type: string,
+    exchangeShortName: string,
+    country: string,
+    industry: string,
+    sector: string,
+}
+
+export interface IStocksObject {
+    [key: string]: IStockInfo;
 }

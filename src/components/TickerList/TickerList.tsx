@@ -3,10 +3,10 @@ import styles from './TickerList.module.css';
 import { formatPrice } from '../../utils/utils';
 import { TickerCard } from '../TickerCard/TickerCard';
 
-const TickerList = ({ items, tickerData, amount }: ITickerList) => {
+const TickerList = ({ items, stocksData, amount }: ITickerList) => {
     const localItems = amount ? items.slice(0, amount) : items;
     const elements = localItems.map(item => {
-        const currentTicker = tickerData.filter(ticker => ticker.symbol === item.code)[0] || {};
+        const currentTicker = stocksData[item.code] || {};
         const name = currentTicker.name || '';
         const price = currentTicker.price > 0 ? currentTicker.price * item.value : '-';
         const logoSrc = `https://static.fincake.io/logos/stock/nyse/usd/${item.code}.png`;
