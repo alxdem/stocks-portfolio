@@ -6,21 +6,21 @@ import { TickerExtendedCardMob } from '../TickerExtendedCardMob/TickerExtendedCa
 import MediaQuery, { useMediaQuery } from 'react-responsive';
 import { QUERY_MOBILE, RESOLUTION_MOB } from '../../utils/variables';
 
-const TickerExtendedList = ({ items, tickerData }: ITickerExtendedList) => {
+const TickerExtendedList = ({ items, stocksData }: ITickerExtendedList) => {
     const isMobile = useMediaQuery(QUERY_MOBILE);
 
     const elements = items.map(item => {
-        const currentTicker = tickerData.filter(ticker => ticker.symbol === item.code)[0] || {};
-        const name = currentTicker.name || '';
-        const price = currentTicker.price;
+        const currentShare = stocksData[item.code] || {};
+        const name = currentShare.name;
+        const price = currentShare.price;
         const gain = gainCount(item.averagePrice, price, item.value);
         const gainP = gainPercentCount(item.averagePrice, price);
 
         if (isMobile) {
             return (
                 <TickerExtendedCardMob
-                    code={item.code + 'mob'}
-                    key={item.code}
+                    key={item.code + 'mob'}
+                    code={item.code}
                     value={item.value}
                     name={name}
                     totalPrice={price}
@@ -33,8 +33,8 @@ const TickerExtendedList = ({ items, tickerData }: ITickerExtendedList) => {
 
         return (
             <TickerExtendedCard
-                code={item.code}
                 key={item.code}
+                code={item.code}
                 name={name}
                 value={item.value}
                 totalPrice={price}

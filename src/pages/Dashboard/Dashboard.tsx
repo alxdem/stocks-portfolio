@@ -15,17 +15,13 @@ const DashboardPage = () => {
     const [pieData, setPieData] = useState<IChartPieDataItem[]>([]);
     const [pieSectorsData, setPieSectorsData] = useState<IChartPieDataItem[]>([]);
     const stocksData = useSelector((state: RootState) => state.stocks.stocks);
-    const stocksExtendData = useSelector((state: RootState) => state.stocks.stocksExtend);
 
     useEffect(() => {
         const countData = chartPieCount(tikerListData, stocksData, ChartPieType.Type);
+        const countSectorData = chartPieCount(tikerListData, stocksData, ChartPieType.Sector);
+        setPieSectorsData(countSectorData);
         setPieData(countData);
     }, [stocksData]);
-
-    useEffect(() => {
-        const countSectorData = chartPieCount(tikerListData, stocksExtendData, ChartPieType.Sector);
-        setPieSectorsData(countSectorData);
-    }, [stocksExtendData]);
 
 
     return (
@@ -37,7 +33,7 @@ const DashboardPage = () => {
             <CloudSection title='Portfolio'>
                 <TickerList
                     items={tikerListData}
-                    tickerData={stocksData}
+                    stocksData={stocksData}
                     amount={6}
                 />
             </CloudSection>

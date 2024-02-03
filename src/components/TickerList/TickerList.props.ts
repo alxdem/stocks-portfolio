@@ -1,8 +1,9 @@
+import { IStocksObject } from '../../models/common';
 import { ITickerCard } from '../TickerCard/TickerCard.props';
 
 export interface ITickerList {
     items: ITickerCard[];
-    tickerData: IDataTicker[];
+    stocksData: IStocksObject;
     amount?: number;
 }
 
