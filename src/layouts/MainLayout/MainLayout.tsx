@@ -6,8 +6,10 @@ import useFetch from '../../hooks/useFetch';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setStocks } from '../../reducers/stocksSlice';
+import { setOperations } from '../../reducers/userSlice';
 import { STOCKS_DATA_URL, STOCKS_EXTENDED_DATA_URL } from '../../utils/variables';
 import { createStocksObject } from '../../utils/utils';
+import { operations } from '../../assets/fixtures/dataUser1';
 
 const MainLayout = ({ children }: ILayout) => {
     const dispatch = useDispatch();
@@ -35,6 +37,8 @@ const MainLayout = ({ children }: ILayout) => {
         .catch((error: any) => {
             throw new Error(error);
         });
+
+    dispatch(setOperations(operations));
 
     return (
         <>

@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { AboutPage, DashboardPage, PortfolioPage, StockPage, TickerPage } from './pages';
+import { AboutPage, DashboardPage, PortfolioPage, StockPage, TickerPage, OperationsPage } from './pages';
 import MainLayout from './layouts/MainLayout/MainLayout';
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
                         <Route path='/stock/:ticker' element={<TickerPage />} />
                         <Route path='/about' element={<AboutPage />} />
                         <Route path='/portfolio' element={<PortfolioPage />} />
+                        <Route path='/operations' element={<OperationsPage />} />
                     </Routes>
                 </MainLayout>
             </div>

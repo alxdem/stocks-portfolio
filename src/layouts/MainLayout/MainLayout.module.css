@@ -12,6 +12,7 @@
     padding-right: 30px;
     padding-top: 30px;
     padding-bottom: 30px;
+    max-width: 100%;
 }
 
 @media(max-width: 1279px) {

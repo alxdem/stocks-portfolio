@@ -1,3 +1,13 @@
+const operations = [
+    { symbol: 'F', date: 1704031199999, price: 6.9, type: 'purchase', value: 4 },
+    { symbol: 'BA', date: 1704078199000, price: 313.3, type: 'sale', value: 2 },
+    { symbol: 'BAC', date: 1704021199000, price: 24.8, type: 'purchase', value: 5 },
+    { symbol: 'F', date: 1702011193000, price: 6.82, type: 'purchase', value: 5 },
+    { symbol: 'BA', date: 1704178399000, price: 310.1, type: 'purchase', value: 6 },
+    { symbol: 'GE', date: 1704128192000, price: 112, type: 'purchase', value: 4 },
+    { symbol: 'INTC', date: 1701128192000, price: 39.12, type: 'purchase', value: 8 },
+];
+
 const tikerListData = [
     { code: 'A', value: 6, averagePrice: 142 },
     { code: 'MA', value: 2, averagePrice: 410.3 },
@@ -45,4 +55,5 @@ const totalData = [
 export {
     tikerListData,
     totalData,
+    operations,
 }
