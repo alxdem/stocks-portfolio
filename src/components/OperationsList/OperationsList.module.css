@@ -1,0 +1,5 @@
+@media(max-width: 767px) {
+    .list {
+        margin: -1.4vw -5vw;
+    }
+}
