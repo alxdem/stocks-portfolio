@@ -1,5 +1,4 @@
 import { IChartPieDataItem } from '../components/ChartPie/ChartPie.props';
-import { IDataTicker } from '../components/TickerList/TickerList.props';
 
 export interface ILayout {
     children: string | JSX.Element | JSX.Element[];
@@ -28,7 +27,7 @@ export interface IStockExtendedInfo extends IStockBasicInfo {
 }
 
 export interface ITikerListData {
-    code: string;
+    symbol: string;
     value: number;
 }
 

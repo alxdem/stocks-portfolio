@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IStocksObject } from '../models/common';
 
 interface IstocksState {
@@ -15,7 +15,7 @@ export const stocksSlice = createSlice({
     name: 'stocks',
     initialState,
     reducers: {
-        setStocks: (state, action) => {
+        setStocks: (state, action: PayloadAction<IStocksObject>) => {
             state.stocks = action.payload;
             state.isLoading = false;
         }

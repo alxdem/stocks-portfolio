@@ -85,7 +85,7 @@ const chartPieCount: IChartPieCount = (currentList, stocksData, type) => {
     const resultArray: IChartPieDataItem[] = [];
 
     currentList.forEach(item => {
-        const tickerInfo = stocksData[item.code] || {};
+        const tickerInfo = stocksData[item.symbol] || {};
         let name = '';
 
         switch (type) {

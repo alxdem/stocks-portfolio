@@ -6,15 +6,15 @@ import { TickerCard } from '../TickerCard/TickerCard';
 const TickerList = ({ items, stocksData, amount }: ITickerList) => {
     const localItems = amount ? items.slice(0, amount) : items;
     const elements = localItems.map(item => {
-        const currentTicker = stocksData[item.code] || {};
+        const currentTicker = stocksData[item.symbol] || {};
         const name = currentTicker.name || '';
         const price = currentTicker.price > 0 ? currentTicker.price * item.value : '-';
-        const logoSrc = `https://static.fincake.io/logos/stock/nyse/usd/${item.code}.png`;
+        const logoSrc = `https://static.fincake.io/logos/stock/nyse/usd/${item.symbol}.png`;
 
         return (
             <TickerCard
-                key={item.code}
-                code={item.code}
+                key={item.symbol}
+                symbol={item.symbol}
                 name={name}
                 value={item.value}
                 price={formatPrice(price)}

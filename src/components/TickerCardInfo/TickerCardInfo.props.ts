@@ -1,5 +1,5 @@
 export interface ITickerCardInfo extends React.HTMLAttributes<HTMLElement> {
-    code: string;
+    symbol: string;
     name?: string;
     logo?: string;
 }

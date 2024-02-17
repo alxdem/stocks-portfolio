@@ -3,7 +3,7 @@ import { ITickerCardInfo } from './TickerCardInfo.props';
 import TickerLogo from '../TickerLogo/TickerLogo';
 import cn from 'classnames';
 
-export const TickerCardInfo = ({ logo, code, name, className }: ITickerCardInfo) => {
+export const TickerCardInfo = ({ logo, symbol, name, className }: ITickerCardInfo) => {
     return (
         <div className={cn(styles.info, className)}>
             <TickerLogo
@@ -13,7 +13,7 @@ export const TickerCardInfo = ({ logo, code, name, className }: ITickerCardInfo)
                 isRounded
             />
             <div className={styles.company}>
-                <span className={styles.code}>{code}</span>
+                <span className={styles.symbol}>{symbol}</span>
                 <span className={styles.name}>{name}</span>
             </div>
         </div>

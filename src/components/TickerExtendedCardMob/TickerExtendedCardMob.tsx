@@ -9,7 +9,7 @@ import useFetch from '../../hooks/useFetch';
 
 // TODO: Придумать как сохранять загруженные картинки
 export const TickerExtendedCardMob = ({
-    code,
+    symbol,
     name,
     value,
     totalPrice,
@@ -17,7 +17,7 @@ export const TickerExtendedCardMob = ({
     gain,
     gainPercent
 }: ITickerExtendedCard) => {
-    // const [logoInfo] = useFetch(`${LOGO_API_URL + code}`, [{ image: '' }], {
+    // const [logoInfo] = useFetch(`${LOGO_API_URL + symbol}`, [{ image: '' }], {
     //     headers: {
     //         'X-Api-Key': import.meta.env.VITE_NINJAS_KEY
     //     }
@@ -40,7 +40,7 @@ export const TickerExtendedCardMob = ({
     );
 
     return (
-        <Link to={`/stock/${code}`} className={styles.card}>
+        <Link to={`/stock/${symbol}`} className={styles.card}>
             <TickerLogo
                 className={styles.logo}
                 imageSrc={logoSrc}
