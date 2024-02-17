@@ -30,7 +30,7 @@ const MainLayout = ({ children }: ILayout) => {
 
     Promise.all([stocksData, stocksExtendedData])
         .then(([stockData, extendedData]) => {
-            if (stockData.length && extendedData.length) {
+            if (stockData.length && extendedData.length && operations.length) {
                 dispatch(setStocks(createStocksObject(stockData, extendedData)));
             }
         })

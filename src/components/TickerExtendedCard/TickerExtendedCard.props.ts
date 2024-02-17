@@ -1,11 +1,11 @@
 export interface ITickerExtendedCard {
-    code: string;
+    symbol: string;
     value: number;
+    price: number;
     totalPrice?: number;
     name?: string;
     key?: string;
-    averagePrice?: number;
-    currnetPrice?: number;
+    averagePrice: number;
     gain?: number;
     gainPercent?: number;
 }

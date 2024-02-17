@@ -1,4 +1,5 @@
 import { IStocksObject } from '../../models/common';
+import { OperationType } from '../OperationCard/OperationCard.props';
 import { ITickerCard } from '../TickerCard/TickerCard.props';
 
 export interface ITickerList {
@@ -13,7 +14,7 @@ export interface IDataTicker {
     price: number;
     exchange: string;
     exchangeShortName: string;
-    type: string;
+    type: OperationType;
     industry?: string;
     sector?: string;
 }

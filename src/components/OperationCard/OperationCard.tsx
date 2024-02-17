@@ -16,7 +16,7 @@ const OperationCard = ({ name, symbol, logo, date, time, price, type, value, cla
         <div className={cn(styles.card, className, typeClass)}>
             <TickerCardInfo
                 className={styles.info}
-                code={symbol}
+                symbol={symbol}
                 name={name}
                 logo={logo}
             />

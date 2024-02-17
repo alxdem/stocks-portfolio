@@ -2,13 +2,13 @@ import { ITickerCard } from './TickerCard.props';
 import styles from './TickerCard.module.css';
 import { TickerCardInfo } from '../TickerCardInfo/TickerCardInfo';
 
-export const TickerCard = ({ code, value, name, logo, price }: ITickerCard) => {
+export const TickerCard = ({ symbol, value, name, logo, price }: ITickerCard) => {
     // TODO: Make logo empty fill
     return (
         <div className={styles.card}>
             <div className={styles.info}>
                 <TickerCardInfo
-                    code={code}
+                    symbol={symbol}
                     name={name}
                     logo={logo}
                 />

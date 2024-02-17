@@ -1,6 +1,5 @@
 import { ITickerExtendedList } from './TickerExtendedList.props';
 import styles from './TickerExtendedList.module.css';
-import { gainCount, gainPercentCount } from '../../utils/utils';
 import { TickerExtendedCard } from '../TickerExtendedCard/TickerExtendedCard';
 import { TickerExtendedCardMob } from '../TickerExtendedCardMob/TickerExtendedCardMob';
 import MediaQuery, { useMediaQuery } from 'react-responsive';
@@ -10,38 +9,45 @@ const TickerExtendedList = ({ items, stocksData }: ITickerExtendedList) => {
     const isMobile = useMediaQuery(QUERY_MOBILE);
 
     const elements = items.map(item => {
-        const currentShare = stocksData[item.code] || {};
+        const currentShare = stocksData[item.symbol] || {};
         const name = currentShare.name;
-        const price = currentShare.price;
-        const gain = gainCount(item.averagePrice, price, item.value);
-        const gainP = gainPercentCount(item.averagePrice, price);
+        const {
+            symbol,
+            value,
+            price,
+            totalPrice,
+            averagePrice,
+            gain,
+            gainPercent,
+        } = item;
 
         if (isMobile) {
             return (
                 <TickerExtendedCardMob
-                    key={item.code + 'mob'}
-                    code={item.code}
-                    value={item.value}
+                    key={symbol + 'mob'}
+                    symbol={symbol}
+                    value={value}
+                    price={price}
                     name={name}
-                    totalPrice={price}
-                    averagePrice={item.averagePrice}
+                    totalPrice={totalPrice}
+                    averagePrice={averagePrice}
                     gain={gain}
-                    gainPercent={gainP}
+                    gainPercent={gainPercent}
                 />
             );
         }
 
         return (
             <TickerExtendedCard
-                key={item.code}
-                code={item.code}
+                key={symbol}
+                symbol={symbol}
                 name={name}
-                value={item.value}
-                totalPrice={price}
-                averagePrice={item.averagePrice}
-                currnetPrice={price}
+                value={value}
+                price={price}
+                totalPrice={totalPrice}
+                averagePrice={averagePrice}
                 gain={gain}
-                gainPercent={gainP}
+                gainPercent={gainPercent}
             />
         )
     })

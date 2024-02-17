@@ -3,7 +3,7 @@ export enum OperationType {
     Sale = 'sale'
 }
 
-interface IOperationBasic {
+export interface IOperationBasic {
     symbol: string;
     price: number;
     type: OperationType;
