@@ -1,6 +1,7 @@
 export enum OperationType {
     Purchase = 'purchase',
-    Sale = 'sale'
+    Sale = 'sale',
+    Refill = 'refill',
 }
 
 export interface IOperationBasic {

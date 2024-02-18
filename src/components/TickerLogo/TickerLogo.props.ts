@@ -1,5 +1,5 @@
 export interface ITickerLogo extends React.HTMLAttributes<HTMLElement> {
-    imageSrc?: string;
-    alt?: string;
-    isRounded?: boolean;
+    imageSrc: string;
+    alt: string;
+    isRounded: boolean;
 }

@@ -6,8 +6,6 @@ import OperationsList from '../../components/OperationsList/OperationsList';
 const OperationsPage = () => {
     const operations = useSelector((state: RootState) => state.user.operations);
 
-    console.log('operations', operations);
-
     return (
         <section>
             <CloudSection>

@@ -35,6 +35,7 @@ const MainLayout = ({ children }: ILayout) => {
             }
         })
         .catch((error: any) => {
+            console.warn('ER', error);
             throw new Error(error);
         });
 

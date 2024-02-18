@@ -25,7 +25,7 @@ export const TickerExtendedCard = ({
     // });
     // const logoSrc = logoInfo[0] && logoInfo[0].image ? logoInfo[0].image : '';
     const logoSrc = '';
-    const totalPriceFormated = totalPrice && totalPrice > 0 ? totalPrice * value : '-';
+    const totalPriceFormated = totalPrice && totalPrice > 0 ? totalPrice : '-';
     const gainClass = cn(
         gain && gain > 0 ? styles.plus : null,
         gain && gain < 0 ? styles.minus : null

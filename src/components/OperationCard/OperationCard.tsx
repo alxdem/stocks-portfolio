@@ -1,4 +1,6 @@
 import { TickerCardInfo } from '../TickerCardInfo/TickerCardInfo';
+import Badge from '../Badge/Badge';
+import { BadgeColor } from '../Badge/Badge.props';
 import { IOperationCard, OperationType } from './OperationCard.props';
 import styles from './OperationCard.module.css';
 import cn from 'classnames';
@@ -10,7 +12,8 @@ const OperationCard = ({ name, symbol, logo, date, time, price, type, value, cla
     const total = formatPrice(price * value);
     const typeClass = type === OperationType.Sale ? styles.plus : styles.minus;
     const sign = type === OperationType.Sale ? '+' : '-';
-    const icon = type === OperationType.Sale ? <DollarIcon className={styles.icon} /> : <DiamondIcon className={styles.icon} />;
+    const icon = type === OperationType.Sale ? <DollarIcon /> : <DiamondIcon />;
+    const badgeColor = type === OperationType.Sale ? BadgeColor.Red : BadgeColor.Green;
 
     return (
         <div className={cn(styles.card, className, typeClass)}>
@@ -25,8 +28,12 @@ const OperationCard = ({ name, symbol, logo, date, time, price, type, value, cla
                 <span className={styles.time}>{time}</span>
             </span>
             <div className={styles.type}>
-                {icon}
-                {type}
+                <Badge
+                    className={styles.badge}
+                    text={type}
+                    icon={icon}
+                    color={badgeColor}
+                />
             </div>
             <span className={styles.price}>${formatPrice(price)}</span>
             <span className={styles.value}>{value}</span>

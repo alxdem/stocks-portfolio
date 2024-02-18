@@ -12,6 +12,7 @@ import {
     IStockShortInfo,
     IStockExtendedInfo,
     IStocksObject,
+    IGetPercent,
 } from '../models/common';
 import {
     COMPANY_INFO,
@@ -32,6 +33,10 @@ const formatPrice: IFormatPrice = (value, isRound = false) => {
         return value || '';
     }
 };
+
+const getPercent: IGetPercent = (value, total) => {
+    return Math.round(value * 100 / total);
+}
 
 const formatHugeNumber: IFormatHugeNumber = (value) => {
     let numberValue = 0;
@@ -193,4 +198,5 @@ export {
     formatHugeNumber,
     isSnP500Include,
     createStocksObject,
+    getPercent,
 };

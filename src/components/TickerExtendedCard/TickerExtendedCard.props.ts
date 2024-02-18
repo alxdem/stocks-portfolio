@@ -2,7 +2,7 @@ export interface ITickerExtendedCard {
     symbol: string;
     value: number;
     price: number;
-    totalPrice?: number;
+    totalPrice: number;
     name?: string;
     key?: string;
     averagePrice: number;

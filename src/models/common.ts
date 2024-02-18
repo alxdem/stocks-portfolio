@@ -124,3 +124,17 @@ export interface IStockInfo {
 export interface IStocksObject {
     [key: string]: IStockInfo;
 }
+
+export interface IPortfolioElement {
+    symbol: string,
+    value: number,
+    price: number,
+    averagePrice: number,
+}
+
+export interface IGetPercent {
+    (
+        value: number,
+        total: number
+    ): number;
+}
