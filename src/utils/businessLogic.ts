@@ -63,10 +63,11 @@ export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stock
         const gain = gainCount(element.averagePrice, element.price, element.value);
         const gainP = gainPercentCount(element.averagePrice, element.price);
         const totalPriceice = element.price * element.value;
+        const price = element.price.toString();
 
         result.push({
             symbol: key,
-            price: element.price,
+            price: price,
             averagePrice: element.averagePrice,
             value: element.value,
             gain: gain,
