@@ -24,7 +24,7 @@
 .dateTime {
     display: flex;
     flex-direction: column;
-    width: 84px;
+    width: 115px;
     flex-shrink: 0;
 }
 
@@ -47,36 +47,8 @@
 }
 
 .type {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    gap: 4px;
     width: 8vw;
     align-self: center;
-    padding: 0.4vw 0.6vw;
-    border-radius: 6px;
-    box-sizing: border-box;
-}
-
-.type::before {
-    content: '';
-    position: absolute;
-    z-index: 0;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.minus .type::before {
-    background-color: var(--alizarin-red);
-    opacity: 0.2;
-}
-
-.plus .type::before {
-    background-color: var(--verdepom);
-    opacity: 0.2;
 }
 
 .value {
@@ -98,13 +70,6 @@
     color: var(--alizarin-red);
 }
 
-.icon {
-    width: 1.5vw;
-    height: 1.5vw;
-    fill: var(--text);
-    flex-shrink: 0;
-}
-
 @media(max-width: 1279px) {
     .price,
     .value,
@@ -120,13 +85,10 @@
 
     .type {
         width: 9.4vw;
-        padding: 0.5vw 0.7vw;
-        border-radius: 6px;
     }
 
-    .icon {
-        width: 1.6vw;
-        height: 1.6vw;
+    .badge {
+        width: 100%;
     }
 
     .total {
@@ -153,12 +115,6 @@
 
     .type {
         width: 12vw;
-        padding: 0.6vw 0.9vw;
-    }
-
-    .icon {
-        width: 2.4vw;
-        height: 2.4vw;
     }
 
     .total {

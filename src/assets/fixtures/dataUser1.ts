@@ -1,6 +1,7 @@
 import { OperationType } from '../../components/OperationCard/OperationCard.props';
 
 const operations = [
+    { symbol: '-', date: 1700011199999, price: 10000, type: OperationType.Refill, value: 1 },
     { symbol: 'F', date: 1704031199999, price: 12.9, type: OperationType.Purchase, value: 4 },
     { symbol: 'BA', date: 1704078199000, price: 313.3, type: OperationType.Sale, value: 2 },
     { symbol: 'BAC', date: 1704021199000, price: 24.8, type: OperationType.Purchase, value: 5 },

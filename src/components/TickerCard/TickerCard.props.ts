@@ -1,7 +1,7 @@
 export interface ITickerCard {
     symbol: string;
     value: number;
-    price?: number;
+    price?: string;
     name?: string;
     key?: string;
     logo?: string;

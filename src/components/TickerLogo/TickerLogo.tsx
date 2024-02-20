@@ -3,7 +3,7 @@ import styles from './TickerLogo.module.css';
 import { ReactComponent as CapLogo } from '../../assets/svg/jewelry.svg';
 import cn from 'classnames';
 
-const TickerLogo = ({ imageSrc, alt, isRounded = false, className }: ITickerLogo) => {
+const TickerLogo = ({ imageSrc, alt, isRounded = false, className }: Partial<ITickerLogo>) => {
     const classes = cn(
         className,
         isRounded ? styles.isRounded : null

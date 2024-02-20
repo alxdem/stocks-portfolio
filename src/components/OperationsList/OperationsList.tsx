@@ -6,6 +6,8 @@ import { IOperationsList } from './OperationsList.props';
 import OperationCard from '../OperationCard/OperationCard';
 import { useMediaQuery } from 'react-responsive';
 import OperationCardMob from '../OperationCardMob/OperationCardMob';
+import OperationCashCard from '../OperationCashCard/OperationCashCard';
+import { OperationType } from '../OperationCard/OperationCard.props';
 
 const OperationsList = ({ operations }: IOperationsList) => {
     const isMobile = useMediaQuery(QUERY_MOBILE);
@@ -23,10 +25,23 @@ const OperationsList = ({ operations }: IOperationsList) => {
             .sort((a, b) => (b.date - a.date))
             .map(operation => {
                 const logoSrc = '';
-                const name = stocksData[operation.symbol].name;
                 const dateRaw = new Date(operation.date);
                 const date = dateRaw.toLocaleDateString();
                 const time = dateRaw.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+                if (operation.type === OperationType.Refill) {
+                    return (
+                        <OperationCashCard
+                            key={operation.date.toString()}
+                            type={operation.type}
+                            date={date}
+                            time={time}
+                            value={operation.price}
+                        />
+                    );
+                }
+
+                const name = stocksData[operation.symbol].name;
 
                 if (isMobile) {
                     return (

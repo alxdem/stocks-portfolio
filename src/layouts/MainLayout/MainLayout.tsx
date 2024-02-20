@@ -25,8 +25,8 @@ const MainLayout = ({ children }: ILayout) => {
 
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
 
-    const [stocksData, isStocksDataLoading, stocksDataError] = useFetch<IStockShortInfo[]>(STOCKS_DATA_URL, []);
-    const [stocksExtendedData, isStocksExtendedDataLoading, stocksExtendedDataError] = useFetch<IStockShortInfo[]>(STOCKS_EXTENDED_DATA_URL, []);
+    const [stocksData] = useFetch<IStockShortInfo[]>(STOCKS_DATA_URL, []);
+    const [stocksExtendedData] = useFetch<IStockShortInfo[]>(STOCKS_EXTENDED_DATA_URL, []);
 
     Promise.all([stocksData, stocksExtendedData])
         .then(([stockData, extendedData]) => {
@@ -35,6 +35,7 @@ const MainLayout = ({ children }: ILayout) => {
             }
         })
         .catch((error: any) => {
+            console.warn('ER', error);
             throw new Error(error);
         });
 

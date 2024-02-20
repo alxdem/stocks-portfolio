@@ -1,0 +1,233 @@
+.card {
+    display: flex;
+    gap: 10px;
+    padding: 0.7vw 0;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    flex-shrink: 1;
+    overflow: hidden;
+    gap: 0.7vw;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    width: 3vw;
+    height: 3vw;
+    overflow: hidden;
+    position: relative;
+}
+
+.name {
+    font-size: 1vw;
+    line-height: 1.2;
+    color: var(--gray-700);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.type,
+.total {
+    display: flex;
+    flex-shrink: 0;
+    font-size: 1.1vw;
+    line-height: 1.1;
+    align-items: center;
+}
+
+.price {
+    width: 6vw;
+}
+
+.value {
+    width: 3vw;
+}
+
+.dateTime {
+    display: flex;
+    flex-direction: column;
+    width: 115px;
+    flex-shrink: 0;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    font-size: 1.1vw;
+    line-height: 1.1;
+    flex-shrink: 0;
+}
+
+.time {
+    font-size: 1vw;
+    line-height: 1.2;
+    color: var(--gray-700);
+}
+
+.type {
+    width: 8vw;
+}
+
+.total {
+    width: 6.4vw;
+    justify-content: flex-end;
+    text-align: right;
+    font-weight: 500;
+    color: var(--verdepom);
+}
+
+.plus .total {
+    color: var(--verdepom);
+}
+
+.minus .total {
+    color: var(--alizarin-red);
+}
+
+.nameMob {
+    display: none;
+}
+
+@media(max-width: 1279px) {
+    .info {
+        gap: 8px;
+    }
+
+    .logo {
+        width: 38px;
+        height: 38px;
+    }
+
+    .name {
+        font-size: 16px;
+    }
+
+    .type,
+    .date,
+    .total {
+        font-size: 1.3vw;
+    }
+
+    .time {
+        font-size: 1.1vw;
+    }
+
+    .type {
+        width: 9.4vw;
+    }
+
+    .total {
+        width: 8vw;
+    }
+}
+
+@media(max-width: 991px) {
+    .type,
+    .date,
+    .total {
+        font-size: 1.6vw;
+    }
+
+    .name {
+        font-size: 14px;
+    }
+
+    .info {
+        width: 25%;
+    }
+
+    .time {
+        font-size: 1.4vw;
+    }
+
+    .type {
+        width: 12vw;
+    }
+
+    .total {
+        width: 11.6vw;
+    }
+
+    .price {
+        width: 8vw;
+    }
+
+    .value {
+        width: 4.6vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .card {
+        display: flex;
+        align-items: center;
+        gap: 5vw;
+        padding: 3.6vw 5vw;
+        text-decoration: none;
+        position: relative;
+        justify-content: flex-start;
+    }
+
+    .info,
+    .logo {
+        width: 13vw;
+        height: 13vw;
+        flex-shrink: 0;
+    }
+
+    .type,
+    .price,
+    .value {
+        display: none;
+    }
+
+    .dateTime {
+        display: block;
+        width: auto;
+    }
+
+    .dateTime span:nth-child(2):after {
+        content: '';
+        position: relative;
+        display: inline-block;
+        width: 2px;
+        height: 2px;
+        border-radius: 50%;
+        background-color: var(--gray-500);
+        margin: 0 2vw;
+        transform: translateY(-1vw);
+    }
+
+    .date,
+    .time {
+        display: inline;
+        font-size: 3.8vw;
+        color: var(--gray-500);
+    }
+
+    .total {
+        margin-left: auto;
+        font-size: 4.6vw;
+        font-weight: 500;
+        width: auto;
+    }
+
+    .nameMob {
+        display: block;
+        font-size: 4.6vw;
+        line-height: 1.2;
+        font-weight: 600;
+        flex-shrink: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ITikerListData } from '../models/common';
 import { IOperation } from '../components/OperationCard/OperationCard.props';
-import { isTicker, isOperation } from '../utils/businessLogic';
+import { isTicker, isOperation, getBalanceCalculated, getTotalGain, getTotalCash } from '../utils/businessLogic';
 import { setStocks } from './stocksSlice';
 import { getCalculatedPortfolio } from '../utils/businessLogic';
 import { ITickerExtendedCard } from '../components/TickerExtendedCard/TickerExtendedCard.props';
@@ -10,6 +10,10 @@ interface IUserState {
     tickers: ITikerListData[];
     operations: IOperation[];
     portfolio: ITickerExtendedCard[];
+    balance: number;
+    gain: number;
+    gainPercent: number;
+    cash: number;
 
     isOperationsLoading: boolean;
 }
@@ -18,6 +22,10 @@ const initialState: IUserState = {
     tickers: [],
     operations: [],
     portfolio: [],
+    balance: 0,
+    gain: 0,
+    gainPercent: 0,
+    cash: 0,
 
     isOperationsLoading: true,
 };
@@ -49,6 +57,9 @@ export const userSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(setStocks, (state, action) => {
             state.portfolio = getCalculatedPortfolio(state.operations, action.payload);
+            state.balance = getBalanceCalculated(state.portfolio);
+            state.gain = getTotalGain(state.portfolio, state.balance);
+            state.cash = getTotalCash(state.operations);
         });
     },
 });

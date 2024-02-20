@@ -1,5 +1,5 @@
 import { IOperation, OperationType } from '../components/OperationCard/OperationCard.props';
-import { IStocksObject, ITikerListData } from '../models/common';
+import { IPortfolioElement, IStocksObject, ITikerListData } from '../models/common';
 import { IOperationBasic } from '../components/OperationCard/OperationCard.props';
 import { ITickerExtendedCard } from '../components/TickerExtendedCard/TickerExtendedCard.props';
 import { gainCount, gainPercentCount } from './utils';
@@ -28,14 +28,16 @@ export function isOperation(element: unknown): element is IOperation {
 
 export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stocksData) => {
     const result: ITickerExtendedCard[] = [];
-    const portfolio: Record<string, ITickerExtendedCard> = {};
+    const portfolio: Record<string, IPortfolioElement> = {};
 
     operations.forEach(operation => {
+        if (operation.type === OperationType.Refill) return;
+
         const symbol = operation.symbol;
         const price = stocksData[symbol].price || 0;
 
         if (symbol in portfolio) {
-            const stockObject: ITickerExtendedCard = portfolio[symbol];
+            const stockObject: IPortfolioElement = portfolio[symbol];
 
             stockObject.price = price;
 
@@ -60,18 +62,48 @@ export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stock
         const element = portfolio[key];
         const gain = gainCount(element.averagePrice, element.price, element.value);
         const gainP = gainPercentCount(element.averagePrice, element.price);
-        const prtotalPriceice = element.price * element.value;
+        const totalPriceice = element.price * element.value;
+        const price = element.price.toString();
 
         result.push({
             symbol: key,
-            price: element.price,
+            price: price,
             averagePrice: element.averagePrice,
             value: element.value,
             gain: gain,
             gainPercent: gainP,
-            totalPrice: prtotalPriceice,
+            totalPrice: totalPriceice,
         });
     }
+
+    return result;
+}
+
+export const getBalanceCalculated = (portfolio: ITickerExtendedCard[]): number => {
+    const result = portfolio.reduce((accumulator: number, currentValue) => accumulator + currentValue.totalPrice, 0);
+
+    return result;
+};
+
+export const getTotalGain = (portfolio: ITickerExtendedCard[], currentBalance: number): number => {
+    const averageResult = portfolio.reduce((accumulator: number, currentValue) => accumulator + currentValue.averagePrice * currentValue.value, 0);
+
+    return currentBalance - averageResult;
+}
+
+export const getTotalCash = (operations: IOperationBasic[]): number => {
+    const result = operations.reduce((accumulator: number, operation) => {
+        switch (operation.type) {
+            case OperationType.Purchase:
+                return accumulator - operation.price * operation.value;
+            case OperationType.Sale:
+                return accumulator + operation.price * operation.value;
+            case OperationType.Refill:
+                return accumulator + operation.price;
+            default:
+                return 0;
+        }
+    }, 0);
 
     return result;
 }
