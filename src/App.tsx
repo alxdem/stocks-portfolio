@@ -4,7 +4,7 @@ import MainLayout from './layouts/MainLayout/MainLayout';
 
 function App() {
     return (
-        <Router>
+        <Router basename='/stocks-portfolio'>
             <div className='app'>
                 <MainLayout>
                     <Routes>
