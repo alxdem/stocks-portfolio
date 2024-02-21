@@ -2,7 +2,7 @@
     "name": "stocks-portfolio",
     "private": true,
     "version": "0.0.0",
-    "homepage": "https://alxdem.github.io/alxdem/stocks-portfolio",
+    "homepage": "https://alxdem.github.io/stocks-portfolio",
     "type": "module",
     "scripts": {
         "dev": "vite",
