@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { AboutPage, DashboardPage, PortfolioPage, StockPage, TickerPage, OperationsPage } from './pages';
+import { AboutPage, DashboardPage, PortfolioPage, StockPage, TickerPage, OperationsPage, Page404 } from './pages';
 import MainLayout from './layouts/MainLayout/MainLayout';
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
                         <Route path='/about' element={<AboutPage />} />
                         <Route path='/portfolio' element={<PortfolioPage />} />
                         <Route path='/operations' element={<OperationsPage />} />
+                        <Route path='*' element={<Page404 />} />
                     </Routes>
                 </MainLayout>
             </div>

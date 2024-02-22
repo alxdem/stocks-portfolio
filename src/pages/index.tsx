@@ -4,6 +4,7 @@ import PortfolioPage from './Portfolio/Portfolio';
 import StockPage from './Stock/Stock';
 import TickerPage from './Stock/Ticker/Ticker';
 import OperationsPage from './Operations/Operations';
+import Page404 from './Page404/Page404';
 
 export {
     DashboardPage,
@@ -12,4 +13,5 @@ export {
     StockPage,
     TickerPage,
     OperationsPage,
+    Page404,
 }
