@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 // TODO: Correct options: any
-function useFetch<T>(url: string, initialState: T, options?: any): [T, boolean, string] {
+function useFetch<T>(url: string, initialState: T, options: any = {}): [T, boolean, string] {
     const [data, setData] = useState<T>(initialState);
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const { name } = options;
 
     useEffect(() => {
-        const dataCache = localStorage.getItem('stockDataRaw');
+        const dataCache = name ? localStorage.getItem(name) : null;
 
         if (dataCache) {
             setData(JSON.parse(dataCache));
@@ -19,7 +20,9 @@ function useFetch<T>(url: string, initialState: T, options?: any): [T, boolean, 
                 const res = await fetch(url, options);
                 const data = await res.json();
                 setData(data);
-                localStorage.setItem('stockDataRaw', JSON.stringify(data));
+                if (name) {
+                    localStorage.setItem(name, JSON.stringify(data));
+                }
             } catch (error: unknown) {
                 if (typeof error === 'string') {
                     setError(error);

@@ -25,8 +25,8 @@ const MainLayout = ({ children }: ILayout) => {
 
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
 
-    const [stocksData] = useFetch<IStockShortInfo[]>(STOCKS_DATA_URL, []);
-    const [stocksExtendedData] = useFetch<IStockShortInfo[]>(STOCKS_EXTENDED_DATA_URL, []);
+    const [stocksData] = useFetch<IStockShortInfo[]>(STOCKS_DATA_URL, [], { name: 'stockData' });
+    const [stocksExtendedData] = useFetch<IStockShortInfo[]>(STOCKS_EXTENDED_DATA_URL, [], { name: 'stocksExtendedData' });
 
     Promise.all([stocksData, stocksExtendedData])
         .then(([stockData, extendedData]) => {
