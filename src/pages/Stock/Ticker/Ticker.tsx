@@ -1,10 +1,8 @@
 import { useParams } from 'react-router-dom';
-import useFetch from '../../../hooks/useFetch';
-import { getCompanyApiUrl } from '../../../utils/utils';
+import useFetchStockInfo from '../../../hooks/useFetchStockInfo';
 import CloudSection from '../../../components/CloudSection/CloudSection';
 import styles from './Ticker.module.css';
 import TickerHeader from '../../../components/TickerHeader/TickerHeader';
-import { ITickerPage } from '../../../models/common';
 import { formatPrice, formatHugeNumber } from '../../../utils/utils';
 
 const TickerPage = () => {
@@ -48,8 +46,8 @@ const TickerPage = () => {
     //     "isFund": false
     // }
 
-    const { ticker } = useParams();
-    const [data] = useFetch<ITickerPage[]>(getCompanyApiUrl(ticker || ''), []);
+    const { ticker = '' } = useParams();
+    const [data] = useFetchStockInfo(ticker);
     const {
         companyName,
         image,
@@ -69,7 +67,7 @@ const TickerPage = () => {
         volAvg,
         website,
         ceo,
-    } = data[0] || {};
+    } = data || {};
 
     if (!companyName) {
         return <CloudSection>Information not found</CloudSection>

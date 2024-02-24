@@ -82,33 +82,35 @@ export interface IGetCompanyApiUrl {
 }
 
 export interface ITickerPage {
-    companyName?: string;
-    address?: string;
-    beta?: number;
-    ceo?: number;
-    changes?: number;
-    city?: string;
-    country?: string;
-    currency?: string;
-    description?: string;
-    exchange?: string;
-    exchangeShortName?: string;
-    fullTimeEmployees?: number;
-    image?: string;
-    industry?: string;
-    ipoDate?: string;
-    isin?: string;
-    lastDiv?: number;
-    mktCap?: number;
-    phone?: string;
-    price?: number;
-    range?: string;
-    sector?: string;
-    symbol?: string;
-    volAvg?: number;
-    website?: string;
-    zip?: string;
+    companyName: string;
+    address: string;
+    beta: number;
+    ceo: number;
+    changes: number;
+    city: string;
+    country: string;
+    currency: string;
+    description: string;
+    exchange: string;
+    exchangeShortName: string;
+    fullTimeEmployees: number;
+    image: string;
+    industry: string;
+    ipoDate: string;
+    isin: string;
+    lastDiv: number;
+    mktCap: number;
+    phone: string;
+    price: number;
+    range: string;
+    sector: string;
+    symbol: string;
+    volAvg: number;
+    website: string;
+    zip: string;
 }
+
+export type ITickerPagePartial = Partial<ITickerPage>;
 
 export interface IStockInfo {
     symbol: string,
@@ -121,8 +123,13 @@ export interface IStockInfo {
     sector: string,
 }
 
+// TODO: IStocksObject и IStocksExtendedObject объеденить в один с генериком
 export interface IStocksObject {
     [key: string]: IStockInfo;
+}
+
+export interface IStocksExtendedObject {
+    [key: string]: ITickerPagePartial;
 }
 
 export interface IPortfolioElement {

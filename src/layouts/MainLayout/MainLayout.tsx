@@ -1,8 +1,8 @@
-import { ILayout, IStockShortInfo } from '../../models/common';
+import { ILayout, IStockExtendedInfo, IStockShortInfo } from '../../models/common';
 import AppHeader from '../../components/AppHeader/AppHeader';
 import styles from './MainLayout.module.css';
 import AppSidebar from '../../components/AppSidebar/AppSidebar';
-import useFetch from '../../hooks/useFetch';
+import useFetchStocks from '../../hooks/useFetchStocks';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setStocks } from '../../reducers/stocksSlice';
@@ -25,8 +25,8 @@ const MainLayout = ({ children }: ILayout) => {
 
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
 
-    const [stocksData] = useFetch<IStockShortInfo[]>(STOCKS_DATA_URL, [], { name: 'stockData' });
-    const [stocksExtendedData] = useFetch<IStockShortInfo[]>(STOCKS_EXTENDED_DATA_URL, [], { name: 'stocksExtendedData' });
+    const [stocksData] = useFetchStocks<IStockShortInfo[]>(STOCKS_DATA_URL, [], 'stockData');
+    const [stocksExtendedData] = useFetchStocks<IStockExtendedInfo[]>(STOCKS_EXTENDED_DATA_URL, [], 'stocksExtendedData');
 
     Promise.all([stocksData, stocksExtendedData])
         .then(([stockData, extendedData]) => {
