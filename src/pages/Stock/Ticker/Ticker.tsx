@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import useFetchStockInfo from '../../../hooks/useFetchStockInfo';
-import CloudSection from '../../../components/CloudSection/CloudSection';
+import CloudSection from '../../../components/molecules/CloudSection/CloudSection';
 import styles from './Ticker.module.css';
-import TickerHeader from '../../../components/TickerHeader/TickerHeader';
+import TickerHeader from '../../../components/organisms/TickerHeader/TickerHeader';
 import { formatPrice, formatHugeNumber } from '../../../utils/utils';
 
 const TickerPage = () => {

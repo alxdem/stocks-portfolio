@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ITikerListData } from '../models/common';
-import { IOperation } from '../components/OperationCard/OperationCard.props';
+import { IOperation } from '../components/molecules/OperationCard/OperationCard.props';
 import { isTicker, isOperation, getBalanceCalculated, getTotalGain, getTotalCash } from '../utils/businessLogic';
 import { setStocks } from './stocksSlice';
 import { getCalculatedPortfolio } from '../utils/businessLogic';
-import { ITickerExtendedCard } from '../components/TickerExtendedCard/TickerExtendedCard.props';
+import { ITickerExtendedCard } from '../components/molecules/TickerExtendedCard/TickerExtendedCard.props';
 
 interface IUserState {
     tickers: ITikerListData[];

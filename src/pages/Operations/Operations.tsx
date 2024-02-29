@@ -1,7 +1,7 @@
-import CloudSection from '../../components/CloudSection/CloudSection';
+import CloudSection from '../../components/molecules/CloudSection/CloudSection';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import OperationsList from '../../components/OperationsList/OperationsList';
+import OperationsList from '../../components/organisms/OperationsList/OperationsList';
 
 const OperationsPage = () => {
     const operations = useSelector((state: RootState) => state.user.operations);

@@ -1,5 +1,17 @@
 import { IChartPieDataItem } from '../components/ChartPie/ChartPie.props';
 
+export enum OperationColor {
+    Green = 'green',
+    Red = 'red',
+    Gray = 'gray',
+}
+
+export enum OperationType {
+    Purchase = 'purchase',
+    Sale = 'sale',
+    Refill = 'refill',
+}
+
 export interface ILayout {
     children: string | JSX.Element | JSX.Element[];
 }
