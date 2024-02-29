@@ -1,4 +1,4 @@
-import { OperationType } from '../../components/OperationCard/OperationCard.props';
+import { OperationType } from '../../models/common';
 
 const operations = [
     { symbol: '-', date: 1700011199999, price: 10000, type: OperationType.Refill, value: 1 },

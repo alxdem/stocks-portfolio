@@ -1,6 +1,6 @@
-import CloudSection from '../../components/CloudSection/CloudSection';
+import CloudSection from '../../components/molecules/CloudSection/CloudSection';
 import styles from './Portfolio.module.css';
-import TickerExtendedList from '../../components/TickerExtendedList/TickerExtendedList';
+import TickerExtendedList from '../../components/organisms/TickerExtendedList/TickerExtendedList';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 

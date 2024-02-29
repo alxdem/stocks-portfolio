@@ -1,7 +1,7 @@
 import { ILayout, IStockExtendedInfo, IStockShortInfo } from '../../models/common';
-import AppHeader from '../../components/AppHeader/AppHeader';
+import AppHeader from '../../components/organisms/AppHeader/AppHeader';
 import styles from './MainLayout.module.css';
-import AppSidebar from '../../components/AppSidebar/AppSidebar';
+import AppSidebar from '../../components/organisms/AppSidebar/AppSidebar';
 import useFetchStocks from '../../hooks/useFetchStocks';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
