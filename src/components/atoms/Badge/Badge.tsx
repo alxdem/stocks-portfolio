@@ -1,7 +1,7 @@
-import { IBadge } from './Badge.props';
-import { OperationColor } from '../../../models/common';
-import styles from './Badge.module.css';
+import { IBadge } from '@atoms/Badge/Badge.props';
+import styles from '@atoms/Badge/Badge.module.css';
 import cn from 'classnames';
+import { OperationColor } from '@models/common';
 
 const Badge = ({ icon, text, color = OperationColor.Gray, className }: IBadge): JSX.Element => {
     return (

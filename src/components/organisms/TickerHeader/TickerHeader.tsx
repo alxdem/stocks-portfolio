@@ -1,7 +1,7 @@
-import { ITickerHeader } from './TickerHeader.props';
-import styles from './TickerHeader.module.css';
-import TickerLogo from '../../atoms/TickerLogo/TickerLogo';
-import { formatPrice } from '../../../utils/utils';
+import { ITickerHeader } from '@organisms/TickerHeader/TickerHeader.props';
+import styles from '@organisms/TickerHeader/TickerHeader.module.css';
+import TickerLogo from '@atoms/TickerLogo/TickerLogo';
+import { formatPrice } from '@utils/utils';
 import cn from 'classnames';
 
 const TickerHeader = ({ title, logo, price, industry, symbol, className }: ITickerHeader) => {

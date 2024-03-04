@@ -1,4 +1,4 @@
-import { OperationColor } from '../../../models/common';
+import { OperationColor } from '@models/common';
 
 export interface IBadge extends React.HTMLAttributes<HTMLDivElement> {
     text: string;

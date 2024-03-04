@@ -1,5 +1,5 @@
-import { IStocksObject, OperationType } from '../../../models/common';
-import { ITickerCard } from '../../molecules/TickerCard/TickerCard.props';
+import { IStocksObject, OperationType } from '@models/common';
+import { ITickerCard } from '@molecules/TickerCard/TickerCard.props';
 
 export interface ITickerList {
     items: ITickerCard[];

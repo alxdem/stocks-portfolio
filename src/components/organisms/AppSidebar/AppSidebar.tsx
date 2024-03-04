@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import styles from './AppSidebar.module.css';
-import { ISidebar } from './AppSidebar.props';
+import styles from '@organisms/AppSidebar/AppSidebar.module.css';
+import { ISidebar } from '@organisms/AppSidebar/AppSidebar.props';
 import cn from 'classnames';
 
 const AppSidebar = ({ nav, isOpen }: ISidebar) => {

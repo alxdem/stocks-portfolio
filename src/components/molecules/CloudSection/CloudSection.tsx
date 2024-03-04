@@ -1,5 +1,5 @@
-import { ICloudSection } from './CloudSection.props';
-import styles from './CloudSection.module.css';
+import { ICloudSection } from '@molecules/CloudSection/CloudSection.props';
+import styles from '@molecules/CloudSection/CloudSection.module.css';
 import cn from 'classnames';
 
 const CloudSection = ({ children, title, className }: ICloudSection): JSX.Element => {

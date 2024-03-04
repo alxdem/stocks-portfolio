@@ -1,5 +1,5 @@
-import styles from './AppUser.module.css';
-import { IUser } from './AppUser.props';
+import styles from '@atoms/AppUser/AppUser.module.css';
+import { IUser } from '@atoms/AppUser/AppUser.props';
 import cn from 'classnames';
 
 const AppUser = ({ name, photo, className, ...restProps }: IUser) => {

@@ -1,9 +1,9 @@
-import { TickerCardInfo } from '../TickerCardInfo/TickerCardInfo';
-import styles from './TickerExtendedCard.module.css';
-import { ITickerExtendedCard } from './TickerExtendedCard.props';
-import { formatPrice } from '../../../utils/utils';
+import { TickerCardInfo } from '@molecules/TickerCardInfo/TickerCardInfo';
+import styles from '@molecules/TickerExtendedCard/TickerExtendedCard.module.css';
+import { ITickerExtendedCard } from '@molecules/TickerExtendedCard/TickerExtendedCard.props';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
+import { formatPrice } from '@utils/utils';
 // import { LOGO_API_URL } from '../../utils/variables';
 // import useFetch from '../../hooks/useFetch';
 

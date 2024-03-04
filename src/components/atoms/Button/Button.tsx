@@ -1,5 +1,5 @@
-import styles from './Button.module.css';
-import { IButton, ButtonStyle, ButtonSize } from './Button.props';
+import styles from '@atoms/Button/Button.module.css';
+import { IButton, ButtonStyle, ButtonSize } from '@atoms/Button/Button.props';
 import cn from 'classnames';
 
 const Button = ({

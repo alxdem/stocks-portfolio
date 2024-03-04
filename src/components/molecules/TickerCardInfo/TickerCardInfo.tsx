@@ -1,6 +1,6 @@
-import styles from './TickerCardInfo.module.css';
-import { ITickerCardInfo } from './TickerCardInfo.props';
-import TickerLogo from '../../atoms/TickerLogo/TickerLogo';
+import TickerLogo from '@atoms/TickerLogo/TickerLogo';
+import styles from '@molecules/TickerCardInfo/TickerCardInfo.module.css';
+import { ITickerCardInfo } from '@molecules/TickerCardInfo/TickerCardInfo.props';
 import cn from 'classnames';
 
 export const TickerCardInfo = ({ logo, symbol, name, className }: ITickerCardInfo) => {
