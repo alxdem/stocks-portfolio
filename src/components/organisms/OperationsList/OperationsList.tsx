@@ -7,7 +7,7 @@ import OperationCard from '@molecules/OperationCard/OperationCard';
 import OperationCardMob from '@molecules/OperationCardMob/OperationCardMob';
 import OperationCashCard from '@molecules/OperationCashCard/OperationCashCard';
 import { QUERY_MOBILE } from '@utils/variables';
-import { RootState } from 'store';
+import { RootState } from '@store/index';
 
 
 const OperationsList = ({ operations }: IOperationsList) => {

@@ -4,7 +4,7 @@ import { getCompanyApiUrl } from '@utils/utils';
 import { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { RootState } from 'store';
+import { RootState } from '@store/index';
 
 
 function useFetchStockInfo(symbol: string): [ITickerPagePartial, boolean, string] {
