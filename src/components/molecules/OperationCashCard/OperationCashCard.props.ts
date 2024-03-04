@@ -1,4 +1,4 @@
-import { OperationType } from '../../../models/common';
+import { OperationType } from '@models/common';
 
 export interface IOperationCash extends React.HTMLAttributes<HTMLElement> {
     date: string;

@@ -1,4 +1,4 @@
-import { IUser } from '../../atoms/AppUser/AppUser.props';
+import { IUser } from '@atoms/AppUser/AppUser.props';
 
 export interface IAppHeader {
     user: IUser;

@@ -1,13 +1,14 @@
-import { RootState } from '../../../store';
-import styles from './OperationsList.module.css';
+import styles from '@organisms/OperationsList/OperationsList.module.css';
 import { useSelector } from 'react-redux';
-import { QUERY_MOBILE } from '../../../utils/variables';
-import { IOperationsList } from './OperationsList.props';
-import OperationCard from '../../molecules/OperationCard/OperationCard';
+import { IOperationsList } from '@organisms/OperationsList/OperationsList.props';
 import { useMediaQuery } from 'react-responsive';
-import OperationCardMob from '../../molecules/OperationCardMob/OperationCardMob';
-import OperationCashCard from '../../molecules/OperationCashCard/OperationCashCard';
-import { OperationType } from '../../../models/common';
+import { OperationType } from '@models/common';
+import OperationCard from '@molecules/OperationCard/OperationCard';
+import OperationCardMob from '@molecules/OperationCardMob/OperationCardMob';
+import OperationCashCard from '@molecules/OperationCashCard/OperationCashCard';
+import { QUERY_MOBILE } from '@utils/variables';
+import { RootState } from 'store';
+
 
 const OperationsList = ({ operations }: IOperationsList) => {
     const isMobile = useMediaQuery(QUERY_MOBILE);

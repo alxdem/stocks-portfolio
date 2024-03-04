@@ -1,6 +1,6 @@
-import { ITickerCard } from './TickerCard.props';
-import styles from './TickerCard.module.css';
-import { TickerCardInfo } from '../TickerCardInfo/TickerCardInfo';
+import { ITickerCard } from '@molecules/TickerCard/TickerCard.props';
+import styles from '@molecules/TickerCard/TickerCard.module.css';
+import { TickerCardInfo } from '@molecules/TickerCardInfo/TickerCardInfo';
 
 export const TickerCard = ({ symbol, value, name, logo, price }: ITickerCard) => {
     // TODO: Make logo empty fill

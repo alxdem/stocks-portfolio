@@ -1,8 +1,8 @@
-import { IOperation } from '../components/molecules/OperationCard/OperationCard.props';
-import { IPortfolioElement, IStocksObject, ITikerListData, OperationType } from '../models/common';
-import { IOperationBasic } from '../components/molecules/OperationCard/OperationCard.props';
-import { ITickerExtendedCard } from '../components/molecules/TickerExtendedCard/TickerExtendedCard.props';
-import { gainCount, gainPercentCount } from './utils';
+import { IStocksObject, ITikerListData, IPortfolioElement, OperationType } from '@models/common';
+import { IOperation, IOperationBasic } from '@molecules/OperationCard/OperationCard.props';
+import { ITickerExtendedCard } from '@molecules/TickerExtendedCard/TickerExtendedCard.props';
+import { gainCount, gainPercentCount } from '@utils/utils';
+
 
 interface GetCalculatedPortfolio {
     (

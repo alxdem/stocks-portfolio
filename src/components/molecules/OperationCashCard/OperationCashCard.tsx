@@ -1,11 +1,11 @@
-import { IOperationCash } from './OperationCashCard.props';
-import styles from './OperationCashCard.module.css';
+import { IOperationCash } from '@molecules/OperationCashCard/OperationCashCard.props';
+import styles from '@molecules/OperationCashCard/OperationCashCard.module.css';
 import cn from 'classnames';
-import { formatPrice } from '../../../utils/utils';
-import { ReactComponent as DollarIcon } from './../../../assets/svg/dollar-circle.svg';
-import TickerLogo from '../../atoms/TickerLogo/TickerLogo';
-import Badge from '../../atoms/Badge/Badge';
-import { OperationColor } from '../../../models/common';
+import { ReactComponent as DollarIcon } from '@svg/dollar-circle.svg';
+import TickerLogo from '@atoms/TickerLogo/TickerLogo';
+import Badge from '@atoms/Badge/Badge';
+import { OperationColor } from '@models/common';
+import { formatPrice } from '@utils/utils';
 
 const OperationCashCard = ({ date, time, type, value, className }: IOperationCash) => {
     const icon = <DollarIcon className={styles.icon} />;

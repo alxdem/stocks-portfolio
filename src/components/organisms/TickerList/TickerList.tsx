@@ -1,7 +1,7 @@
-import { ITickerList } from './TickerList.props';
-import styles from './TickerList.module.css';
-import { formatPrice } from '../../../utils/utils';
-import { TickerCard } from '../../molecules/TickerCard/TickerCard';
+import { ITickerList } from '@organisms/TickerList/TickerList.props';
+import styles from '@organisms/TickerList/TickerList.module.css';
+import { TickerCard } from '@molecules/TickerCard/TickerCard';
+import { formatPrice } from '@utils/utils';
 
 const TickerList = ({ items, stocksData, amount }: ITickerList) => {
     const localItems = amount ? items.slice(0, amount) : items;

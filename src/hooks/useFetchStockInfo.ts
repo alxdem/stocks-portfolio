@@ -1,10 +1,11 @@
+import { ITickerPagePartial } from '@models/common';
+import { addStockExtended } from '@reducers/stocksSlice';
+import { getCompanyApiUrl } from '@utils/utils';
 import { useState, useEffect, useRef } from 'react';
-import { ITickerPagePartial } from '../models/common';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store';
-import { getCompanyApiUrl } from '../utils/utils';
 import { useDispatch } from 'react-redux';
-import { addStockExtended } from '../reducers/stocksSlice';
+import { RootState } from 'store';
+
 
 function useFetchStockInfo(symbol: string): [ITickerPagePartial, boolean, string] {
     const [data, setData] = useState<ITickerPagePartial>({});

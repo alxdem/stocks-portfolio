@@ -1,6 +1,6 @@
-import { ITickerLogo } from './TickerLogo.props';
-import styles from './TickerLogo.module.css';
-import { ReactComponent as CapLogo } from '../../../assets/svg/jewelry.svg';
+import { ITickerLogo } from '@atoms/TickerLogo/TickerLogo.props';
+import styles from '@atoms/TickerLogo/TickerLogo.module.css';
+import { ReactComponent as CapLogo } from '@svg/jewelry.svg';
 import cn from 'classnames';
 
 const TickerLogo = ({ imageSrc, alt, isRounded = false, className }: Partial<ITickerLogo>) => {

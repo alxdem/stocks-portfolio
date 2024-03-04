@@ -1,6 +1,6 @@
-import { formatPrice } from '../../../utils/utils';
-import styles from './IndicatorTotal.module.css';
-import { IIndicatorTotal } from './IndicatorTotal.props';
+import { formatPrice } from '@utils/utils';
+import styles from '@atoms/IndicatorTotal/IndicatorTotal.module.css';
+import { IIndicatorTotal } from '@atoms/IndicatorTotal/IndicatorTotal.props';
 import cn from 'classnames';
 
 const IndicatorTotal = ({ value, percent, title, type }: IIndicatorTotal) => {

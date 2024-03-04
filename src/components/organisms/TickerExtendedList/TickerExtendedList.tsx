@@ -1,9 +1,9 @@
-import { ITickerExtendedList } from './TickerExtendedList.props';
-import styles from './TickerExtendedList.module.css';
-import { TickerExtendedCard } from '../../molecules/TickerExtendedCard/TickerExtendedCard';
-import { TickerExtendedCardMob } from '../../molecules/TickerExtendedCardMob/TickerExtendedCardMob';
+import { ITickerExtendedList } from '@organisms/TickerExtendedList/TickerExtendedList.props';
+import styles from '@organisms/TickerExtendedList/TickerExtendedList.module.css';
+import { TickerExtendedCard } from '@molecules/TickerExtendedCard/TickerExtendedCard';
+import { TickerExtendedCardMob } from '@molecules/TickerExtendedCardMob/TickerExtendedCardMob';
+import { QUERY_MOBILE, RESOLUTION_MOB } from '@utils/variables';
 import MediaQuery, { useMediaQuery } from 'react-responsive';
-import { QUERY_MOBILE, RESOLUTION_MOB } from '../../../utils/variables';
 
 const TickerExtendedList = ({ items, stocksData }: ITickerExtendedList) => {
     const isMobile = useMediaQuery(QUERY_MOBILE);

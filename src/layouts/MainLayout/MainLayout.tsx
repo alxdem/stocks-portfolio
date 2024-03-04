@@ -1,15 +1,15 @@
-import { ILayout, IStockExtendedInfo, IStockShortInfo } from '../../models/common';
-import AppHeader from '../../components/organisms/AppHeader/AppHeader';
-import styles from './MainLayout.module.css';
-import AppSidebar from '../../components/organisms/AppSidebar/AppSidebar';
-import useFetchStocks from '../../hooks/useFetchStocks';
+import styles from '@layouts/MainLayout/MainLayout.module.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setStocks } from '../../reducers/stocksSlice';
-import { setOperations } from '../../reducers/userSlice';
-import { STOCKS_DATA_URL, STOCKS_EXTENDED_DATA_URL } from '../../utils/variables';
-import { createStocksObject } from '../../utils/utils';
 import { operations } from '../../assets/fixtures/dataUser1';
+import useFetchStocks from '@hooks/useFetchStocks';
+import { ILayout, IStockShortInfo, IStockExtendedInfo } from '@models/common';
+import AppHeader from '@organisms/AppHeader/AppHeader';
+import AppSidebar from '@organisms/AppSidebar/AppSidebar';
+import { setStocks } from '@reducers/stocksSlice';
+import { setOperations } from '@reducers/userSlice';
+import { createStocksObject } from '@utils/utils';
+import { STOCKS_DATA_URL, STOCKS_EXTENDED_DATA_URL } from '@utils/variables';
 
 const MainLayout = ({ children }: ILayout) => {
     const dispatch = useDispatch();

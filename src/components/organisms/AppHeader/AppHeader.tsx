@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router-dom';
-import styles from './AppHeader.module.css';
-import { ReactComponent as LogoIcon } from './../../../assets/svg/logo.svg';
-import { ReactComponent as ModeIcon } from './../../../assets/svg/mode.svg';
-import { ReactComponent as MenuIcon } from './../../../assets/svg/menu.svg';
-import { ReactComponent as CloseIcon } from './../../../assets/svg/close.svg';
-import AppUser from '../../atoms/AppUser/AppUser';
-import { IAppHeader } from './AppHeader.props';
+import styles from '@organisms/AppHeader/AppHeader.module.css';
+import { ReactComponent as LogoIcon } from '@svg/logo.svg';
+import { ReactComponent as ModeIcon } from '@svg/mode.svg';
+import { ReactComponent as MenuIcon } from '@svg/menu.svg';
+import { ReactComponent as CloseIcon } from '@svg/close.svg';
+import { IAppHeader } from '@organisms/AppHeader/AppHeader.props';
 import cn from 'classnames';
+import AppUser from '@atoms/AppUser/AppUser';
 
 const AppHeader = ({ user, isNavOpen, navBtnClick }: IAppHeader) => {
     const root = document.querySelector(':root') as HTMLElement;

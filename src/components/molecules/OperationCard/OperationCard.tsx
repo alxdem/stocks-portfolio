@@ -1,12 +1,12 @@
-import { TickerCardInfo } from '../TickerCardInfo/TickerCardInfo';
-import Badge from '../../atoms/Badge/Badge';
-import { OperationColor, OperationType } from '../../../models/common';
-import { IOperationCard } from './OperationCard.props';
-import styles from './OperationCard.module.css';
+import { IOperationCard } from '@molecules/OperationCard/OperationCard.props';
+import styles from '@molecules/OperationCard/OperationCard.module.css';
+import { ReactComponent as DollarIcon } from '@svg/dollar-circle.svg';
+import { ReactComponent as DiamondIcon } from '@svg/diamond-circle.svg';
+import { TickerCardInfo } from '@molecules/TickerCardInfo/TickerCardInfo';
+import Badge from '@atoms/Badge/Badge';
+import { OperationColor, OperationType } from '@models/common';
+import { formatPrice } from '@utils/utils';
 import cn from 'classnames';
-import { formatPrice } from '../../../utils/utils';
-import { ReactComponent as DollarIcon } from './../../../assets/svg/dollar-circle.svg';
-import { ReactComponent as DiamondIcon } from './../../../assets/svg/diamond-circle.svg';
 
 const OperationCard = ({ name, symbol, logo, date, time, price, type, value, className }: IOperationCard) => {
     const total = formatPrice(price * value);

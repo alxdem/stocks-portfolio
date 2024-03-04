@@ -1,8 +1,8 @@
-import CloudSection from '../../components/molecules/CloudSection/CloudSection';
-import styles from './Portfolio.module.css';
-import TickerExtendedList from '../../components/organisms/TickerExtendedList/TickerExtendedList';
+import { RootState } from '@store/index';
+import styles from '@pages/Portfolio/Portfolio.module.css';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import CloudSection from '@molecules/CloudSection/CloudSection';
+import TickerExtendedList from '@organisms/TickerExtendedList/TickerExtendedList';
 
 const PortfolioPage = () => {
     const stocksData = useSelector((state: RootState) => state.stocks.stocks);

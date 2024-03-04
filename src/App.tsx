@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { AboutPage, DashboardPage, PortfolioPage, StockPage, TickerPage, OperationsPage, Page404 } from './pages';
-import MainLayout from './layouts/MainLayout/MainLayout';
+import { AboutPage, DashboardPage, PortfolioPage, StockPage, TickerPage, OperationsPage, Page404 } from '@pages/index';
+import MainLayout from '@layouts/MainLayout/MainLayout';
 
 function App() {
     return (

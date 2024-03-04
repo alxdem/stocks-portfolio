@@ -1,6 +1,6 @@
+import { IStockShortInfo, IStockExtendedInfo } from '@models/common';
+import { isSnP500Include } from '@utils/utils';
 import { useState, useEffect } from 'react';
-import { isSnP500Include } from '../utils/utils';
-import { IStockExtendedInfo, IStockShortInfo } from '../models/common';
 
 // TODO: Correct options: any
 function useFetchStocks<T>(url: string, initialState: T, name: string): [T, boolean, string] {

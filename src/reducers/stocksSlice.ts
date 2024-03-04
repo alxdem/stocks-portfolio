@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IStocksObject, IStocksExtendedObject, ITickerPagePartial } from '../models/common';
+import { IStocksObject, IStocksExtendedObject, ITickerPagePartial } from '@models/common';
 
 interface IstocksState {
     stocks: IStocksObject;

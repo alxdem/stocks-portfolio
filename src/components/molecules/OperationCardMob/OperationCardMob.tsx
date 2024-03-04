@@ -1,9 +1,10 @@
-import { formatPrice } from '../../../utils/utils';
-import { IOperationCard } from '../OperationCard/OperationCard.props';
-import TickerLogo from '../../atoms/TickerLogo/TickerLogo';
-import styles from './OperationCardMob.module.css';
+import { formatPrice } from '@utils/utils';
+import { IOperationCard } from '@molecules/OperationCard/OperationCard.props';
+import styles from '@molecules/OperationCardMob/OperationCardMob.module.css';
 import cn from 'classnames';
-import { OperationType } from '../../../models/common';
+import { OperationType } from '@models/common';
+import TickerLogo from '@atoms/TickerLogo/TickerLogo';
+
 
 const OperationCardMob = ({ name, logo, date, time, price, type, value, className }: IOperationCard) => {
     const total = formatPrice(price * value);

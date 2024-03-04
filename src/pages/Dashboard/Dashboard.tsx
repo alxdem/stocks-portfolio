@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
-import TickerList from '../../components/organisms/TickerList/TickerList';
-import { ChartPieType } from '../../models/common';
-import { tikerListData } from '../../assets/fixtures/dataUser1';
-import CloudSection from '../../components/molecules/CloudSection/CloudSection';
-import IndicatorsPane from '../../components/molecules/IndicatorsPane/IndicatorsPane';
-import ChartPie from '../../components/ChartPie/ChartPie';
-import styles from './Dashboard.module.css';
-import { chartPieCount, getPercent } from '../../utils/utils';
-import { IChartPieDataItem } from '../../components/ChartPie/ChartPie.props';
-import type { RootState } from '../../store';
+import { tikerListData } from '@assets/fixtures/dataUser1';
+import styles from '@pages/Dashboard/Dashboard.module.css';
 import { useSelector } from 'react-redux';
-import { IIndicatorTotal } from '../../components/atoms/IndicatorTotal/IndicatorTotal.props';
+import { chartPieCount, getPercent } from '@utils/utils';
+import CloudSection from '@molecules/CloudSection/CloudSection';
+import IndicatorsPane from '@molecules/IndicatorsPane/IndicatorsPane';
+import TickerList from '@organisms/TickerList/TickerList';
+import { RootState } from '@store/index';
+import { IIndicatorTotal } from '@atoms/IndicatorTotal/IndicatorTotal.props';
+import { ChartPieType } from '@models/common';
+
+import { IChartPieDataItem } from '../../components/ChartPie/ChartPie.props';
+import ChartPie from '../../components/ChartPie/ChartPie';
+
 
 const DashboardPage = () => {
     const [pieData, setPieData] = useState<IChartPieDataItem[]>([]);
