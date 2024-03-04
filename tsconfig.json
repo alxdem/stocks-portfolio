@@ -21,46 +21,46 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true,
-        "baseUrl": "src",
+        "baseUrl": ".",
         "paths": {
-            "@/*": [
-                "/"
+            "@src/*": [
+                "src/*"
             ],
             "@atoms/*": [
-                "components/atoms/*"
+                "src/components/atoms/*"
             ],
             "@molecules/*": [
-                "components/molecules/*"
+                "src/components/molecules/*"
             ],
             "@organisms/*": [
-                "components/organisms/*"
+                "src/components/organisms/*"
             ],
             "@assets/*": [
-                "assets/*"
+                "src/assets/*"
             ],
             "@hooks/*": [
-                "hooks/*"
+                "src/hooks/*"
             ],
             "@layouts/*": [
-                "layouts/*"
+                "src/layouts/*"
             ],
             "@models/*": [
-                "models/*"
+                "src/models/*"
             ],
             "@pages/*": [
-                "pages/*"
+                "src/pages/*"
             ],
             "@reducers/*": [
-                "reducers/*"
+                "src/reducers/*"
             ],
             "@utils/*": [
-                "utils/*"
+                "src/utils/*"
             ],
             "@store/*": [
-                "store/*"
+                "src/store/*"
             ],
             "@svg/*": [
-                "assets/svg/*"
+                "src/assets/svg/*"
             ]
         }
     },

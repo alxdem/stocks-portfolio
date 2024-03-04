@@ -8,7 +8,7 @@ export default defineConfig({
     base: '/stocks-portfolio/',
     resolve: {
         alias: {
-            '@': '/src',
+            '@src': '/src',
             '@atoms': '/src/components/atoms',
             '@molecules': '/src/components/molecules',
             '@organisms': '/src/components/organisms',
