@@ -34,6 +34,7 @@ export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stock
         if (operation.type === OperationType.Refill) return;
 
         const symbol = operation.symbol;
+        const name = stocksData[symbol].name || '';
         const price = stocksData[symbol].price || 0;
 
         if (symbol in portfolio) {
@@ -51,6 +52,7 @@ export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stock
         } else {
             portfolio[symbol] = {
                 symbol: symbol,
+                name: name,
                 value: operation.value,
                 price: price,
                 averagePrice: operation.price,
@@ -63,10 +65,12 @@ export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stock
         const gain = gainCount(element.averagePrice, element.price, element.value);
         const gainP = gainPercentCount(element.averagePrice, element.price);
         const totalPriceice = element.price * element.value;
-        const price = element.price.toString();
+        const price = element.price;
+        const name = element.name;
 
         result.push({
             symbol: key,
+            name: name,
             price: price,
             averagePrice: element.averagePrice,
             value: element.value,

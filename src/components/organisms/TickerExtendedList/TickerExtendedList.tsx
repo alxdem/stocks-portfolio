@@ -5,14 +5,13 @@ import { TickerExtendedCardMob } from '@molecules/TickerExtendedCardMob/TickerEx
 import { QUERY_MOBILE, RESOLUTION_MOB } from '@utils/variables';
 import MediaQuery, { useMediaQuery } from 'react-responsive';
 
-const TickerExtendedList = ({ items, stocksData }: ITickerExtendedList) => {
+const TickerExtendedList = ({ items }: ITickerExtendedList) => {
     const isMobile = useMediaQuery(QUERY_MOBILE);
 
     const elements = items.map(item => {
-        const currentShare = stocksData[item.symbol] || {};
-        const name = currentShare.name;
         const {
             symbol,
+            name,
             value,
             price,
             totalPrice,
@@ -62,7 +61,7 @@ const TickerExtendedList = ({ items, stocksData }: ITickerExtendedList) => {
                     <div className={styles.hAverage}>Avg. cost</div>
                     <div className={styles.hGane}>Gain $</div>
                     <div className={styles.hGaneP}>Gain %</div>
-                    <div className={styles.hTotal}>Total cost</div>
+                    <div className={styles.hTotal}>Total</div>
                 </div>
             </MediaQuery>
             <div className={styles.inner}>

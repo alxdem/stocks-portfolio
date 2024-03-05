@@ -15,12 +15,15 @@ import ChartPie from '../../components/ChartPie/ChartPie';
 
 
 const DashboardPage = () => {
+    const PORTFOLIO_AMOUNT_VISIBLE = 6;
+
     const [pieData, setPieData] = useState<IChartPieDataItem[]>([]);
     const [pieSectorsData, setPieSectorsData] = useState<IChartPieDataItem[]>([]);
     const stocksData = useSelector((state: RootState) => state.stocks.stocks);
     const balance = useSelector((state: RootState) => state.user.balance);
     const gain = useSelector((state: RootState) => state.user.gain);
     const cash = useSelector((state: RootState) => state.user.cash);
+    const portfolio = useSelector((state: RootState) => state.user.portfolio);
 
     useEffect(() => {
         const countData = chartPieCount(tikerListData, stocksData, ChartPieType.Type);
@@ -28,6 +31,10 @@ const DashboardPage = () => {
         setPieSectorsData(countSectorData);
         setPieData(countData);
     }, [stocksData]);
+
+    const portfolioDecrease = [...portfolio]
+        .sort((a, b) => (b.totalPrice - a.totalPrice))
+        .slice(0, PORTFOLIO_AMOUNT_VISIBLE);
 
     const totalData: IIndicatorTotal[] = [
         {
@@ -56,11 +63,7 @@ const DashboardPage = () => {
             </CloudSection>
 
             <CloudSection title='Portfolio'>
-                <TickerList
-                    items={tikerListData}
-                    stocksData={stocksData}
-                    amount={6}
-                />
+                <TickerList items={portfolioDecrease} />
             </CloudSection>
 
             <CloudSection title='Portfolio'>
