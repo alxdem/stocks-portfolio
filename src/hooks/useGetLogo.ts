@@ -1,5 +1,5 @@
-import useFetch from '@hooks/useFetch';
-import { LOGO_API_URL } from '@src/utils/variables';
+// import useFetch from '@hooks/useFetch';
+// import { LOGO_API_URL } from '@src/utils/variables';
 
 function useGetLogo(symbol: string): string {
     // const [logoInfo] = useFetch(`${LOGO_API_URL + symbol}`, [{ image: '' }], {
@@ -8,7 +8,7 @@ function useGetLogo(symbol: string): string {
     //     }
     // });
     // const logoSrc = logoInfo[0] && logoInfo[0].image ? logoInfo[0].image : '';
-    const logoSrc = '';
+    const logoSrc = symbol ? '' : '';
 
     return logoSrc;
 }
