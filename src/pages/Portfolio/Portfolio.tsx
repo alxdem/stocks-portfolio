@@ -5,7 +5,6 @@ import CloudSection from '@molecules/CloudSection/CloudSection';
 import TickerExtendedList from '@organisms/TickerExtendedList/TickerExtendedList';
 
 const PortfolioPage = () => {
-    const stocksData = useSelector((state: RootState) => state.stocks.stocks);
     const portfolio = useSelector((state: RootState) => state.user.portfolio);
 
     return (
@@ -13,7 +12,6 @@ const PortfolioPage = () => {
             <CloudSection className={styles.total}>
                 <TickerExtendedList
                     items={portfolio}
-                    stocksData={stocksData}
                 />
             </CloudSection>
         </section>

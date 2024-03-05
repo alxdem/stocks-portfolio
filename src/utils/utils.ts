@@ -13,11 +13,12 @@ import {
     IStockExtendedInfo,
     IStocksObject,
     IGetPercent,
-} from '../models/common';
+    IGainClass,
+} from '@models/common';
 import {
     COMPANY_INFO,
-    FMP_API_KEY
-} from './variables';
+    FMP_API_KEY,
+} from '@utils/variables';
 
 const isStringNumber = (value: string | number | undefined) => {
     return typeof value === 'string' && !isNaN(Number(value));
@@ -189,6 +190,12 @@ const createStocksObject = (stocks: IStockShortInfo[], stocksExtended: IStockExt
     return stocksObject;
 }
 
+const gainClass: IGainClass = (value = 0, plusClass, minusClass) => {
+    if (value === 0) return '';
+
+    return value > 0 ? plusClass : minusClass;
+};
+
 export {
     formatPrice,
     chartPieCount,
@@ -199,4 +206,5 @@ export {
     isSnP500Include,
     createStocksObject,
     getPercent,
+    gainClass,
 };

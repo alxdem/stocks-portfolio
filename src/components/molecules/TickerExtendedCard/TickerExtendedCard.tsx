@@ -3,9 +3,8 @@ import styles from '@molecules/TickerExtendedCard/TickerExtendedCard.module.css'
 import { ITickerExtendedCard } from '@molecules/TickerExtendedCard/TickerExtendedCard.props';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
-import { formatPrice } from '@utils/utils';
-// import { LOGO_API_URL } from '../../utils/variables';
-// import useFetch from '../../hooks/useFetch';
+import { formatPrice, gainClass } from '@utils/utils';
+import useGetLogo from '@src/hooks/useGetLogo';
 
 // TODO: Придумать как сохранять загруженные картинки
 export const TickerExtendedCard = ({
@@ -18,26 +17,11 @@ export const TickerExtendedCard = ({
     gain,
     gainPercent
 }: ITickerExtendedCard) => {
-    // const [logoInfo] = useFetch(`${LOGO_API_URL + symbol}`, [{ image: '' }], {
-    //     headers: {
-    //         'X-Api-Key': import.meta.env.VITE_NINJAS_KEY
-    //     }
-    // });
-    // const logoSrc = logoInfo[0] && logoInfo[0].image ? logoInfo[0].image : '';
-    const logoSrc = '';
+    const logoSrc = useGetLogo(symbol);
     const totalPriceFormated = totalPrice && totalPrice > 0 ? totalPrice : '-';
-    const gainClass = cn(
-        gain && gain > 0 ? styles.plus : null,
-        gain && gain < 0 ? styles.minus : null
-    );
     const gainClasses = cn(
         styles.gain,
-        gainClass
-    );
-
-    const gainPClasses = cn(
-        styles.gainP,
-        gainClass
+        gainClass(gain, styles.plus, styles.minus)
     );
 
     return (
@@ -53,7 +37,7 @@ export const TickerExtendedCard = ({
             <div className={styles.currentPrice}>{formatPrice(price)}</div>
             <div className={styles.averagePrice}>{formatPrice(averagePrice)}</div>
             <div className={gainClasses}>{formatPrice(gain)}</div>
-            <div className={gainPClasses}>{formatPrice(gainPercent, true)}</div>
+            <div className={gainClasses}>{formatPrice(gainPercent, true)}</div>
             <div className={styles.total}>{formatPrice(totalPriceFormated)}</div>
         </Link>
     );

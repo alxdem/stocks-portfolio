@@ -146,6 +146,7 @@ export interface IStocksExtendedObject {
 
 export interface IPortfolioElement {
     symbol: string,
+    name: string;
     value: number,
     price: number,
     averagePrice: number,
@@ -156,4 +157,12 @@ export interface IGetPercent {
         value: number,
         total: number
     ): number;
+}
+
+export interface IGainClass {
+    (
+        value: number,
+        plusClass: string,
+        minusClass: string
+    ): string;
 }

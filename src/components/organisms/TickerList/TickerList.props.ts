@@ -1,10 +1,8 @@
-import { IStocksObject, OperationType } from '@models/common';
+import { OperationType } from '@models/common';
 import { ITickerCard } from '@molecules/TickerCard/TickerCard.props';
 
 export interface ITickerList {
     items: ITickerCard[];
-    stocksData: IStocksObject;
-    amount?: number;
 }
 
 export interface IDataTicker {
