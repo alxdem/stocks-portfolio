@@ -17,4 +17,5 @@ export interface IButton extends DetailedHTMLProps<HTMLAttributes<HTMLButtonElem
     view?: ButtonStyle
     disabled?: boolean;
     size?: ButtonSize;
+    href?: string;
 }

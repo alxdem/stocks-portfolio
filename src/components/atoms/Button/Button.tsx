@@ -1,11 +1,13 @@
 import styles from '@atoms/Button/Button.module.css';
 import { IButton, ButtonStyle, ButtonSize } from '@atoms/Button/Button.props';
 import cn from 'classnames';
+import { Link } from 'react-router-dom';
 
 const Button = ({
     text,
     view = ButtonStyle.Primary,
     size = ButtonSize.M,
+    href,
     disabled,
     className,
     ...restProps
@@ -20,6 +22,17 @@ const Button = ({
         size === ButtonSize.M ? styles.medium : null,
         size === ButtonSize.S ? styles.small : null
     );
+
+    if (href) {
+        return (
+            <Link
+                to={href}
+                className={styleClass}
+            >
+                {text}
+            </Link>
+        )
+    }
 
     return (
         <button

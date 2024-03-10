@@ -1,6 +1,7 @@
 import { ITickerList } from '@organisms/TickerList/TickerList.props';
 import styles from '@organisms/TickerList/TickerList.module.css';
 import { TickerCard } from '@molecules/TickerCard/TickerCard';
+import Button from '@src/components/atoms/Button/Button';
 
 const TickerList = ({ items }: ITickerList) => {
     const elements = items.map(item => {
@@ -26,6 +27,7 @@ const TickerList = ({ items }: ITickerList) => {
             <div className={styles.inner}>
                 {elements}
             </div>
+            <Button className={styles.link} text='See all' href='/portfolio/' />
         </div>
     );
 };
