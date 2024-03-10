@@ -6,6 +6,7 @@ import { chartPieCount, getPercent } from '@utils/utils';
 import CloudSection from '@molecules/CloudSection/CloudSection';
 import IndicatorsPane from '@molecules/IndicatorsPane/IndicatorsPane';
 import TickerList from '@organisms/TickerList/TickerList';
+import { ITickerCard } from '@src/components/molecules/TickerCard/TickerCard.props';
 import { RootState } from '@store/index';
 import { IIndicatorTotal } from '@atoms/IndicatorTotal/IndicatorTotal.props';
 import { ChartPieType } from '@models/common';
@@ -32,9 +33,18 @@ const DashboardPage = () => {
         setPieData(countData);
     }, [stocksData]);
 
-    const portfolioDecrease = [...portfolio]
+    const portfolioDecrease: ITickerCard[] = [...portfolio]
         .sort((a, b) => (b.totalPrice - a.totalPrice))
-        .slice(0, PORTFOLIO_AMOUNT_VISIBLE);
+        .slice(0, PORTFOLIO_AMOUNT_VISIBLE)
+        .map(item => {
+            return {
+                symbol: item.symbol,
+                value: item.value,
+                totalPrice: item.totalPrice,
+                name: item.name,
+                gainPercent: item.gainPercent || 0,
+            }
+        });
 
     const totalData: IIndicatorTotal[] = [
         {
