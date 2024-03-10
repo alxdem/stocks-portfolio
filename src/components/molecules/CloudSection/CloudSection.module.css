@@ -4,6 +4,8 @@
     background-color: var(--gray-50);
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .title {

@@ -36,7 +36,7 @@ const formatPrice: IFormatPrice = (value, isRound = false) => {
 };
 
 const getPercent: IGetPercent = (value, total) => {
-    return Math.round(value * 100 / total);
+    return Math.round(value * 100 * 100 / total) / 100;
 }
 
 const formatHugeNumber: IFormatHugeNumber = (value) => {

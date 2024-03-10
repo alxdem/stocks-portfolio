@@ -4,7 +4,9 @@ import { IIndicatorTotal } from '@atoms/IndicatorTotal/IndicatorTotal.props';
 import cn from 'classnames';
 
 const IndicatorTotal = ({ value, percent, title, type }: IIndicatorTotal) => {
-    const formatValue = type === 'percent' ? `${value}%` : formatPrice(value);
+    const removedFirstSymbol = formatPrice(value).slice(1);
+    const formattedPrice = value < 0 ? `-$${removedFirstSymbol}` : `${formatPrice(value)}`;
+    const formatValue = type === 'percent' ? `${value}%` : formattedPrice;
     const percentClass = percent && percent < 0 ? styles.decreased : null;
     const valueClass = value < 0 ? styles.decreased : null;
 
