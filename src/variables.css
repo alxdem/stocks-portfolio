@@ -93,6 +93,24 @@
         0px 12.5216px 10.0172px rgba(174, 174, 190, 0.035),
         0px 6.6501px 5.32008px rgba(174, 174, 190, 0.0282725),
         0px 2.76726px 2.21381px rgba(174, 174, 190, 0.0196802);
+
+    --sidebar-width: 288px;
+    --gap: 30px;
+
+    @media(max-width: 1279px) {
+        --sidebar-width: 265px;
+        --gap: 20px;
+    }
+
+    @media(max-width: 991px) {
+        --sidebar-width: 39vw;
+        --gap: 20px;
+    }
+
+    @media(max-width: 767px) {
+        --sidebar-width: 100%;
+        --gap: 5vw;
+    }
 }
 
 .dark {

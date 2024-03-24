@@ -1,6 +1,6 @@
 .header {
     background-image: var(--ticker-header-bg);
-    padding: 30px;
+    padding: var(--gap);
 }
 
 .header h1 {
@@ -40,7 +40,7 @@
 
 @media(max-width: 1279px) {
     .header {
-        padding: 20px;
+        padding: var(--gap);
     }
 
     .header h1 {
@@ -64,7 +64,7 @@
 
 @media(max-width: 991px) {
     .header {
-        padding: 2.7vw 2.1vw;
+        padding: 2.7vw var(--gap);
     }
 
     .header h1 {
@@ -93,7 +93,7 @@
 
 @media(max-width: 767px) {
     .header {
-        padding: 5vw;
+        padding: var(--gap);
     }
 
     .header h1 {
