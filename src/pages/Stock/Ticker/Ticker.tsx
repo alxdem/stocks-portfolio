@@ -1,6 +1,6 @@
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import styles from '@pages/Stock/Ticker/Ticker.module.css';
-import useFetchStockInfo from '@hooks/useFetchStockInfo';
+// import useFetchStockInfo from '@hooks/useFetchStockInfo';
 import CloudSection from '@molecules/CloudSection/CloudSection';
 import { formatHugeNumber, formatPrice, actionSectionPositionSet } from '@utils/utils';
 import TickerHeader from '@organisms/TickerHeader/TickerHeader';
