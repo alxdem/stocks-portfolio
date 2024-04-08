@@ -1,5 +1,5 @@
 .cloud {
-    padding: 28px 30px;
+    padding: var(--gap);
     border-radius: 20px;
     background-color: var(--gray-50);
     position: relative;
@@ -15,14 +15,14 @@
 
 @media(max-width: 1279px) {
     .cloud {
-        padding: 18px 20px;
+        padding: var(--gap);
         border-radius: 16px;
     }
 }
 
 @media(max-width: 767px) {
     .cloud {
-        padding: 5vw;
+        padding: var(--gap);
         border-radius: 3vw;
     }
 }

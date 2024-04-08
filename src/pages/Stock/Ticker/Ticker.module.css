@@ -1,5 +1,6 @@
 .main {
-    margin-top: 30px;
+    margin-top: var(--gap);
+    padding-bottom: 80px;
 }
 
 .main > *:first-child {
@@ -34,9 +35,34 @@
     margin: -30px -30px 0 -30px;
 }
 
+.actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    padding-left: calc(var(--sidebar-width) + var(--gap));
+    padding-right: var(--gap);
+    box-sizing: border-box;
+}
+
+.actionsInner {
+    background-color: var(--gray-50);
+    padding: 20px var(--gap);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--gap);
+    border-top: 1px solid var(--gray-200);
+}
+
+.button {
+    flex-grow: 1;
+}
+
 @media(max-width: 1279px) {
     .main {
-        margin-top: 20px;
+        margin-top: var(--gap);
     }
 
     .main h2 {
@@ -54,6 +80,10 @@
 }
 
 @media(max-width: 991px) {
+    .main {
+        padding-bottom: 11.5vw;
+    }
+
     .main h2 {
         margin: 2.2vw 0 1.1vw;
         font-size: 3.4vw;
@@ -69,11 +99,21 @@
     }
 
     .header {
-        margin: -2.1vw -2.1vw 0;
+        margin: calc(var(--gap) * -1) calc(var(--gap) * -1) 0;
+    }
+
+    .actions {
+        padding-left: var(--gap);
+        padding-right: var(--gap);
     }
 }
 
 @media(max-width: 767px) {
+    .main {
+        margin-top: 0;
+        padding-bottom: 28vw;
+    }
+
     .main h2 {
         margin: 5vw 0 3.5vw;
         font-size: 5.9vw;
@@ -91,5 +131,13 @@
 
     .header {
         margin: 0;
+    }
+
+    .actions {
+        padding: 0;
+    }
+
+    .actionsInner {
+        padding: 5vw var(--gap);
     }
 }

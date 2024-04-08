@@ -1,7 +1,7 @@
 .inner {
     display: flex;
     flex-grow: 1;
-    gap: 30px;
+    gap: var(--gap);
     position: relative;
     overflow: hidden;
 }
@@ -9,33 +9,29 @@
 .main {
     flex-grow: 1;
     flex-shrink: 1;
-    padding-right: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding: var(--gap) var(--gap) var(--gap) 0;
     max-width: 100%;
 }
 
 @media(max-width: 1279px) {
     .inner {
-        gap: 20px;
+        gap: var(--gap);
     }
 
     .main {
-        padding-right: 20px;
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding: var(--gap) var(--gap) var(--gap) 0;
     }
 }
 
 @media(max-width: 991px) {
     .inner {
-        padding: 0 2.1vw;
+        padding: 0 var(--gap);
         width: 100%;
         box-sizing: border-box;
     }
 
     .main {
-       padding: 2.1vw 0;
+       padding: var(--gap) 0;
     }
 }
 

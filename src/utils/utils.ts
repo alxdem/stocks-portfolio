@@ -18,6 +18,7 @@ import {
 import {
     COMPANY_INFO,
     FMP_API_KEY,
+    MODAL_ANIMATION_DELAY,
 } from '@utils/variables';
 
 const isStringNumber = (value: string | number | undefined) => {
@@ -196,6 +197,34 @@ const gainClass: IGainClass = (value = 0, plusClass, minusClass) => {
     return value > 0 ? plusClass : minusClass;
 };
 
+const scrollWidthGet = (): number => {
+    const div = document.createElement('div');
+
+    div.style.overflowY = 'scroll';
+    div.style.width = '50px';
+    div.style.height = '50px';
+
+    document.body.append(div);
+    const scrollWidth = div.offsetWidth - div.clientWidth;
+
+    div.remove();
+
+    return scrollWidth;
+}
+
+const actionSectionPositionSet = (element: HTMLDivElement | null, isActive: boolean): void => {
+    if (!element) return;
+
+    if (isActive) {
+        element.style.right = `${scrollWidthGet()}px`;
+    } else {
+        setTimeout(() => {
+            if (!element) return;
+            element.style.right = '0';
+        }, MODAL_ANIMATION_DELAY);
+    }
+}
+
 export {
     formatPrice,
     chartPieCount,
@@ -207,4 +236,6 @@ export {
     createStocksObject,
     getPercent,
     gainClass,
+    scrollWidthGet,
+    actionSectionPositionSet,
 };
