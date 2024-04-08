@@ -2,10 +2,12 @@ import { useParams } from 'react-router-dom';
 import styles from '@pages/Stock/Ticker/Ticker.module.css';
 import useFetchStockInfo from '@hooks/useFetchStockInfo';
 import CloudSection from '@molecules/CloudSection/CloudSection';
-import { formatHugeNumber, formatPrice } from '@utils/utils';
+import { formatHugeNumber, formatPrice, actionSectionPositionSet } from '@utils/utils';
 import TickerHeader from '@organisms/TickerHeader/TickerHeader';
 import Button from '@src/components/atoms/Button/Button';
 import { ButtonSize } from '@src/components/atoms/Button/Button.props';
+import { useRef, useState } from 'react';
+import AppModal from '@src/components/organisms/AppModal/AppModal';
 
 const TickerPage = () => {
 
@@ -71,6 +73,11 @@ const TickerPage = () => {
         ceo,
     } = temp || {};
 
+    const [modalOpened, setModalOpened] = useState<boolean>(false);
+    const actionRef = useRef<HTMLDivElement>(null);
+
+    actionSectionPositionSet(actionRef.current, modalOpened);
+
     if (!companyName) {
         return <CloudSection>Information not found</CloudSection>
     }
@@ -110,14 +117,31 @@ const TickerPage = () => {
                     </div>
                 </>
 
-                <div className={styles.actions}>
+                <div ref={actionRef} className={styles.actions}>
                     <div className={styles.actionsInner}>
-                        <Button className={styles.button} size={ButtonSize.L} text='Buy' />
+                        <Button
+                            className={styles.button}
+                            size={ButtonSize.L}
+                            text='Buy'
+                            onClick={() => setModalOpened(true)}
+                        />
                         <Button className={styles.button} size={ButtonSize.L} text='Sell' />
                     </div>
                 </div>
             </CloudSection>
-
+            <AppModal
+                isOpened={modalOpened}
+                onClose={() => setModalOpened(false)}
+            >
+                <h1>title 2</h1>
+                <p>124</p>
+                <ul>
+                    <li>list item 1</li>
+                    <li>list item 2</li>
+                    <li>list 33</li>
+                    <li>list my nane is</li>
+                </ul>
+            </AppModal>
         </>
     );
 };

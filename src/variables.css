@@ -15,6 +15,7 @@
     /* animation */
     --ease: ease-out;
     --timing: 0.3s;
+    --timing-sm: 0.15s;
 
     /* colors */
     --azure: #0062FF;
@@ -78,6 +79,8 @@
     --btn-border-color-hover-tetriary: var(--gray-500);
     --btn-color-disabled-tetriary: var(--gray-700);
     --btn-border-color-disabled-tetriary: var(--gray-700);
+
+    --modal-bg: #0F0F1399;
 
     --ticker-header-bg: linear-gradient(120deg, rgba(244, 200, 180, 0.8), rgba(177, 90, 200, 0.5));
     

@@ -39,7 +39,8 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
+    right: 0;
+    max-width: 100%;
     padding-left: calc(var(--sidebar-width) + var(--gap));
     padding-right: var(--gap);
     box-sizing: border-box;

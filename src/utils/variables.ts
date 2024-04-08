@@ -8,3 +8,5 @@ export const LOGO_API_URL = 'https://api.api-ninjas.com/v1/logo?ticker=';
 export const RESOLUTION_MOB = 767;
 
 export const QUERY_MOBILE = { query: `(max-width: ${RESOLUTION_MOB}px)` };
+
+export const MODAL_ANIMATION_DELAY = 300;
