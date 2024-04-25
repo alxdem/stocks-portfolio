@@ -7,8 +7,9 @@ import { ReactComponent as CloseIcon } from '@svg/close.svg';
 import { IAppHeader } from '@organisms/AppHeader/AppHeader.props';
 import cn from 'classnames';
 import AppUser from '@atoms/AppUser/AppUser';
+import { forwardRef } from 'react';
 
-const AppHeader = ({ user, isNavOpen, navBtnClick }: IAppHeader) => {
+const AppHeader = forwardRef<HTMLButtonElement, IAppHeader>(({ user, isNavOpen, navBtnClick, refNavBtn }: IAppHeader) => {
     const root = document.querySelector(':root') as HTMLElement;
 
     const themeChange = () => {
@@ -34,13 +35,13 @@ const AppHeader = ({ user, isNavOpen, navBtnClick }: IAppHeader) => {
 
                 <AppUser className={styles.user} name={user.name} photo={user.photo} />
 
-                <button onClick={navBtnClick} className={navBtnClasses}>
+                <button ref={refNavBtn} onClick={navBtnClick} className={navBtnClasses}>
                     <MenuIcon className={styles.navIcon} />
                     <CloseIcon className={styles.navIconClose} />
                 </button>
             </div>
         </header>
     );
-};
+});
 
 export default AppHeader;

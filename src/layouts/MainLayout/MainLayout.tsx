@@ -1,5 +1,5 @@
 import styles from '@layouts/MainLayout/MainLayout.module.css';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { operations } from '../../assets/fixtures/dataUser1';
 import useFetchStocks from '@hooks/useFetchStocks';
@@ -10,6 +10,7 @@ import { setStocks } from '@reducers/stocksSlice';
 import { setOperations } from '@reducers/userSlice';
 import { createStocksObject } from '@utils/utils';
 import { STOCKS_DATA_URL, STOCKS_EXTENDED_DATA_URL } from '@utils/variables';
+import useClickOutside from '@src/hooks/useClickOutside';
 
 const MainLayout = ({ children }: ILayout) => {
     const dispatch = useDispatch();
@@ -22,6 +23,9 @@ const MainLayout = ({ children }: ILayout) => {
         { id: 'stock', text: 'Stock', link: '/stock' },
         { id: 'about', text: 'About', link: '/about' },
     ];
+
+    const asideRef = useRef(null);
+    const refNavBtn = useRef<HTMLButtonElement>(null);
 
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
 
@@ -40,6 +44,7 @@ const MainLayout = ({ children }: ILayout) => {
         });
 
     dispatch(setOperations(operations));
+    useClickOutside([asideRef, refNavBtn], () => setIsNavOpen(false));
 
     return (
         <>
@@ -47,9 +52,10 @@ const MainLayout = ({ children }: ILayout) => {
                 user={user}
                 isNavOpen={isNavOpen}
                 navBtnClick={() => setIsNavOpen(!isNavOpen)}
+                refNavBtn={refNavBtn}
             />
             <div className={styles.inner}>
-                <AppSidebar nav={asideNav} isOpen={isNavOpen} />
+                <AppSidebar ref={asideRef} nav={asideNav} isOpen={isNavOpen} />
                 <main className={styles.main}>
                     {children}
                 </main>
