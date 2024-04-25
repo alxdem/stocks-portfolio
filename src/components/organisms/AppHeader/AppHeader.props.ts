@@ -4,4 +4,5 @@ export interface IAppHeader {
     user: IUser;
     isNavOpen: boolean;
     navBtnClick: () => void;
+    refNavBtn: React.RefObject<HTMLButtonElement>;
 }
