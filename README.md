@@ -1,2 +1,8 @@
-# stocks-portfolio
-Stocks portfolio site
+# Stocks portfolio
+
+node 20
+
+## Stack
+- Vite
+- React
+- TypeScript
