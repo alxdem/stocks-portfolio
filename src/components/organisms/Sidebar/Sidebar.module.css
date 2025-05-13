@@ -1,0 +1,15 @@
+.link {
+    text-decoration: none;
+    padding: 0.4vw 24px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 1.3vw;
+    line-height: 1.1;
+    letter-spacing: -0.1px;
+}
+
+.active,
+.link:hover {
+    color: #9e3;
+}

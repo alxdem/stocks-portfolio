@@ -1,0 +1,7 @@
+.inner {
+    display: flex;
+    flex-grow: 1;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
+}

@@ -10,6 +10,8 @@ export default defineConfig({
       '@atoms': '/src/components/atoms',
       '@molecules': '/src/components/molecules',
       '@organisms': '/src/components/organisms',
+      '@pages': '/src/pages',
+      '@layouts': '/src/layouts',
     },
   }
 });
