@@ -26,9 +26,10 @@ const Sidebar = () => {
     ));
 
     return (
-        <aside>
-            Sidebar
-            <nav>
+        <aside
+            className={styles.aside}
+        >
+            <nav className={styles.nav}>
                 {namElements}
             </nav>
         </aside>
