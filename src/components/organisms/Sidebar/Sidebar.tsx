@@ -1,8 +1,9 @@
 import cn from 'classnames';
 import {NavLink} from 'react-router';
 import styles from '@organisms/Sidebar/Sidebar.module.css';
+import type {SidebarProps} from '@organisms/Sidebar/Sidebar.props';
 
-const Sidebar = () => {
+const Sidebar = ({isOpen}: SidebarProps) => {
     const links = [
         { id: 'dashboard', text: 'Dashboard', link: '/dashboard' },
         { id: 'portfolio', text: 'Portfolio', link: '/portfolio' },
@@ -11,6 +12,11 @@ const Sidebar = () => {
         { id: 'stock', text: 'Stock', link: '/stock' },
         { id: 'about', text: 'About', link: '/about' },
     ];
+
+    const classes = cn(
+        styles.aside,
+        isOpen ? styles.active : null
+    );
 
     const namElements = links.map(item => (
         <NavLink
@@ -27,7 +33,7 @@ const Sidebar = () => {
 
     return (
         <aside
-            className={styles.aside}
+            className={classes}
         >
             <nav className={styles.nav}>
                 {namElements}
