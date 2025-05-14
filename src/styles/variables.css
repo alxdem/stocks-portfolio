@@ -1,0 +1,48 @@
+:root {
+    --ff-primary: 'Inter';
+
+    --h1: 700 40px/1.5 var(--ff-primary);
+    --h2: 800 32px/1.4 var(--ff-primary);
+    --h3: 700 28px/1.4 var(--ff-primary);
+    --h4: 600 28px/1.4 var(--ff-primary);
+    --h5: 700 24px/1.4 var(--ff-primary);
+    --h6: 600 20px/1 var(--ff-primary);
+
+    /* animation */
+    --ease: ease-out;
+    --timing-md: 0.3s;
+    --timing-sm: 0.15s;
+
+    --gap: 1.56vw;
+
+    --sidebar-width: 15vw;
+
+    --sidebar-shadow: 0 100px 80px rgba(174, 174, 190, 0.07),
+    0 42px 33px rgba(174, 174, 190, 0.05),
+    0 22px 18px rgba(174, 174, 190, 0.04),
+    0 12px 10px rgba(174, 174, 190, 0.04),
+    0 7px 5px rgba(174, 174, 190, 0.03),
+    0 3px 2px rgba(174, 174, 190, 0.02);
+    --header-shadow: 0 100px 80px rgba(182, 187, 245, 0.07),
+    0 42px 33px rgba(182, 187, 245, 0.05),
+    0 22px 18px rgba(182, 187, 245, 0.04),
+    0 13px 10px rgba(182, 187, 245, 0.04),
+    0 7px 5px rgba(182, 187, 245, 0.03),
+    0 3px 2px rgba(182, 187, 245, 0.02);
+
+
+    @media(max-width: 1279px) {
+        --sidebar-width: 20.5vw;
+        --gap: 1.56vw;
+    }
+
+    @media(max-width: 991px) {
+        --sidebar-width: 39vw;
+        --gap: 2vw;
+    }
+
+    @media(max-width: 767px) {
+        --sidebar-width: 100%;
+        --gap: 5vw;
+    }
+}

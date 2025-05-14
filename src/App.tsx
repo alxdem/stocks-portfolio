@@ -13,22 +13,24 @@ import {
 function App() {
     return (
         <BrowserRouter>
-            <Routes>
-                <Route element={<MainLayout />}>
-                    <Route index element={<DashboardPage/>}/>
-                    <Route path='dashboard' element={<DashboardPage/>}/>
-                    <Route path='about' element={<AboutPage/>}/>
-                    <Route path='stock'>
-                        <Route index element={<StockPage />} />
-                        <Route path=':ticker' element={<TickerPage />} />
+            <div className='app'>
+                <Routes>
+                    <Route element={<MainLayout/>}>
+                        <Route index element={<DashboardPage/>}/>
+                        <Route path='dashboard' element={<DashboardPage/>}/>
+                        <Route path='about' element={<AboutPage/>}/>
+                        <Route path='stock'>
+                            <Route index element={<StockPage/>}/>
+                            <Route path=':ticker' element={<TickerPage/>}/>
+                        </Route>
+                        <Route path='portfolio' element={<PortfolioPage/>}/>
+                        <Route path='operations' element={<OperationsPage/>}/>
+                        <Route path='/*' element={<Page404/>}/>
                     </Route>
-                    <Route path='portfolio' element={<PortfolioPage />} />
-                    <Route path='operations' element={<OperationsPage />} />
-                    <Route path='/*' element={<Page404 />} />
-                </Route>
-            </Routes>
+                </Routes>
+            </div>
         </BrowserRouter>
-    )
+)
 }
 
 export default App;

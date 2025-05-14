@@ -1,0 +1,53 @@
+.user {
+    display: flex;
+    align-items: center;
+    gap: 0.6vw;
+    color: var(--color-text);
+    font-weight: 600;
+    font-size: 1vw;
+    line-height: 1;
+    letter-spacing: -0.01vw;
+}
+
+.photo {
+    display: block;
+    overflow: hidden;
+    flex-shrink: 0;
+    border-radius: 50%;
+    width: 2.4vw;
+    height: 2.4vw;
+}
+
+@media(max-width: 1279px) {
+    .user {
+        gap: 0.62vw;
+        font-size: 1.1vw;
+    }
+
+    .photo {
+        width: 2.5vw;
+        height: 2.5vw;
+    }
+}
+
+@media(max-width: 991px) {
+    .user {
+        font-size: 1.6vw;
+    }
+
+    .photo {
+        width: 3vw;
+        height: 3vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .name {
+        display: none;
+    }
+
+    .photo {
+        width: 9vw;
+        height: 9vw;
+    }
+}

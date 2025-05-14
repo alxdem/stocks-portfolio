@@ -32,6 +32,8 @@
       "@organisms/*": ["src/components/organisms/*"],
       "@pages/*": ["src/pages/*"],
       "@layouts/*": ["src/layouts/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@images/*": ["src/assets/images/*"],
     }
   },
   "include": ["src"]

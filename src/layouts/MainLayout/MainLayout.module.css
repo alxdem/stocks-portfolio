@@ -1,7 +1,37 @@
 .inner {
     display: flex;
     flex-grow: 1;
-    gap: 20px;
+    gap: var(--gap);
     position: relative;
     overflow: hidden;
+    box-sizing: border-box;
+}
+
+.main {
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: var(--gap) var(--gap) var(--gap) 0;
+    max-width: 100%;
+}
+
+@media(max-width: 991px) {
+    .inner {
+        padding: 0 var(--gap);
+        width: 100%;
+    }
+
+    .main {
+        padding: var(--gap) 0;
+    }
+}
+
+@media(max-width: 767px) {
+    .inner {
+        padding: 0;
+        width: 100%;
+    }
+
+    .main {
+        padding: 0;
+    }
 }

@@ -1,0 +1,77 @@
+@import './colors.css';
+@import './variables.css';
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/fonts/inter-variable-font.ttf');
+}
+
+:root {
+  font-family: var(--ff-primary), system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 16px;
+
+  color-scheme: light dark;
+  color: var(--color-text);
+  background-color: var(--bg-main);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  h1 {
+    font: var(--h1);
+  }
+
+  h2 {
+    font: var(--h2);
+  }
+
+  h3 {
+    font: var(--h3);
+  }
+
+  h4 {
+    font: var(--h4);
+  }
+
+  h5 {
+    font: var(--h5);
+  }
+
+  h6 {
+    font: var(--h6);
+  }
+}
+
+a {
+  color: var(--color-primary-700);
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--gray-100);
+}
+
+#root {
+  width: 100%;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
