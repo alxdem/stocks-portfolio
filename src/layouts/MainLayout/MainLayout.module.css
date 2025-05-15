@@ -5,6 +5,8 @@
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
+    color: var(--color-text);
+    background-color: var(--bg-main);
 }
 
 .main {

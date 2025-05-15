@@ -17,6 +17,8 @@ export default defineConfig({
             '@pages': '/src/pages',
             '@layouts': '/src/layouts',
             '@hooks': '/src/hooks',
+            '@models': '/src/models',
+            '@utils': '/src/utils',
             '@images': '/src/assets/images',
         },
     }

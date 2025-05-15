@@ -25,10 +25,4 @@
     --gray-900: #262631;
     --gray-1000: #0F0F13;
     --gray-1100: #000000;
-
-    --bg-main: var(--gray-50);
-
-    --color-text: var(--gray-900);
-
-    --link-hover: var(--color-primary-600);
 }

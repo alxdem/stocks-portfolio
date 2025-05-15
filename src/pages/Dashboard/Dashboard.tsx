@@ -1,7 +1,7 @@
 const DashboardPage = () => {
     return (
       <div>
-          DashboardPage
+          <p>DashboardPage <a href="#">little link</a> more text</p>
       </div>
     );
 };

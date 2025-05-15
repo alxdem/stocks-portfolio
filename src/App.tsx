@@ -11,6 +11,12 @@ import {
 } from '@pages/index';
 
 function App() {
+    const savedTheme = localStorage.getItem('theme');
+    const isThemeDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = savedTheme || (isThemeDark ? 'dark' : 'light');
+
+    document.querySelector('body')?.setAttribute('data-theme', theme);
+
     return (
         <BrowserRouter>
             <div className='app'>
