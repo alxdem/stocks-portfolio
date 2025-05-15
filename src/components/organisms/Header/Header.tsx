@@ -7,6 +7,7 @@ import MenuIcon from '@images/menu.svg?react';
 import CloseIcon from '@images/close.svg?react';
 import type {HeaderProps} from '@organisms/Header/Header.props';
 import UserBadge from '@atoms/UserBadge/UserBadge';
+import {themeSwitch} from '@/utils';
 
 const Header = ({isNavOpen, navBtnRef, navBtnClick}: HeaderProps) => {
     const user = { name: 'Victor Monro', photo: 'uploads/user1.jpg' };
@@ -17,8 +18,7 @@ const Header = ({isNavOpen, navBtnRef, navBtnClick}: HeaderProps) => {
     );
 
     const themeChange = () => {
-        // root?.classList.toggle('dark');
-        console.log('themeChange');
+        themeSwitch();
     };
 
     return (

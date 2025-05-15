@@ -1,4 +1,5 @@
 @import './colors.css';
+@import './themes.css';
 @import './variables.css';
 
 @font-face {
@@ -48,12 +49,12 @@
 }
 
 a {
-  color: var(--color-primary-700);
+  color: var(--link-color);
   text-decoration: inherit;
 }
 
 a:hover {
-  color: var(--link-hover);
+  color: var(--link-color-hover);
 }
 
 body {
@@ -63,7 +64,7 @@ body {
   justify-content: stretch;
   min-width: 320px;
   min-height: 100vh;
-  background-color: var(--gray-100);
+  background-color: var(--bg-main);
 }
 
 #root {

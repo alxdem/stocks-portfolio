@@ -19,7 +19,7 @@
     padding: 0.4vw 1.25vw;
     display: flex;
     align-items: center;
-    color: var(--gray-800);
+    color: var(--sidebar-link-color);
     font-weight: 500;
     font-size: 1.3vw;
     line-height: 1.1;
@@ -27,7 +27,7 @@
 
 .active,
 .link:hover {
-    color: var(--link-hover);
+    color: var(--link-color-hover);
     transition: color var(--timing-md) var(--ease);
 }
 
