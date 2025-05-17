@@ -4,12 +4,17 @@ import Sidebar from '@organisms/Sidebar/Sidebar';
 import Header from '@organisms/Header/Header';
 import styles from '@layouts/MainLayout/MainLayout.module.css';
 import useClickOutside from '@hooks/useClickOutside';
+import useDataInit from '@hooks/useDataInit';
 
 const MainLayout = () => {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const navBtnRef = useRef<HTMLButtonElement>(null);
 
     useClickOutside([navBtnRef], () => setIsNavOpen(false));
+
+    const {isLoaded} = useDataInit();
+
+    console.log('isLoaded', isLoaded);
 
     return (
         <>
