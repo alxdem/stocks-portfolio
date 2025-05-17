@@ -19,6 +19,7 @@ export default defineConfig({
             '@hooks': '/src/hooks',
             '@models': '/src/models',
             '@utils': '/src/utils',
+            '@fixtures': '/src/assets/fixtures',
             '@images': '/src/assets/images',
         },
     }
