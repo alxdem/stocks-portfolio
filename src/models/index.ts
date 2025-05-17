@@ -28,3 +28,7 @@ export interface TickerInfo extends TickerBase {
 export interface TickersObject {
     [key: string]: TickerInfo;
 }
+
+export interface StoreStocksState {
+    stocks: TickersObject;
+}

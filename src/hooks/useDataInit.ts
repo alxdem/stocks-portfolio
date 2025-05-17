@@ -2,8 +2,12 @@ import useFetch from '@hooks/useFetch';
 import {appKey, STOCKS_EXTENDED_DATA_URL} from '@utils/variables';
 import {useEffect, useState} from 'react';
 import {createStocksObject} from '@/utils';
-import type {TickerDataExtended} from "@models/index";
+import type {TickerDataExtended, TickersObject} from "@/models";
+import {useDispatch} from 'react-redux';
+import {setStocks} from '@/store/reducers/stocksSlice';
+
 const useDataInit = () => {
+    const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
 
     const cachedData = localStorage.getItem(appKey.LS_DATA);
@@ -13,8 +17,11 @@ const useDataInit = () => {
     const { data, isLoading } = useFetch<TickerDataExtended[]>(url, null);
 
     useEffect(() => {
-        if (isCached) {
+        if (isCached && cachedData) {
+            const stocksObject: TickersObject = JSON.parse(cachedData);
+            dispatch(setStocks(stocksObject));
             setIsLoaded(true);
+
             return;
         }
 
@@ -24,8 +31,7 @@ const useDataInit = () => {
 
         const stocksObject = createStocksObject(data);
         localStorage.setItem(appKey.LS_DATA, JSON.stringify(stocksObject));
-        console.log('stocksObject', stocksObject);
-
+        dispatch(setStocks(stocksObject));
         setIsLoaded(true);
     }, [isLoading, isCached, data]);
 
