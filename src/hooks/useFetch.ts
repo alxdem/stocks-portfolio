@@ -1,7 +1,8 @@
 import {useEffect, useState} from 'react';
+import type {Nullable} from '@/models';
 
-const useFetch = <T>(url: string, initialState: T | null, options: RequestInit = {}) => {
-    const [data, setData] = useState<T | null>(initialState);
+const useFetch = <T>(url: string, initialState: Nullable<T>, options: RequestInit = {}) => {
+    const [data, setData] = useState<Nullable<T>>(initialState);
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 

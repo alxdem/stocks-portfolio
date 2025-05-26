@@ -17,6 +17,8 @@ export type OperationColor = (typeof OperationColor)[keyof typeof OperationColor
 
 export type Theme = 'light' | 'dark';
 
+export type Nullable<T> = T | null;
+
 interface TickerBase {
     symbol: string;
     beta: number;
@@ -47,7 +49,7 @@ export interface TickersObject {
 }
 
 export interface StoreStocksState {
-    stocks: TickersObject | null;
+    stocks: Nullable<TickersObject>;
 }
 
 export interface OperationBasic {
@@ -62,7 +64,7 @@ export interface Operation extends OperationBasic {
 }
 
 export interface UserState {
-    operations: Operation[] | null; // TODO: Rewrite all '| null' to generic
+    operations: Nullable<Operation[]>;
 }
 
 export type GetOperationName = (

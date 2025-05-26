@@ -7,6 +7,7 @@ import DollarIcon from '@images/dollar-circle.svg?react';
 import DiamondIcon from '@images/diamond-circle.svg?react';
 import type {ReactElement} from 'react';
 import {OperationColor} from '@/models';
+import type {Nullable} from '@/models';
 
 const OperationCardDesktop = ({name, symbol, date, time, logo, value, price, type, total, isTotalPlus, className}: OperationCardDesktopProps) => {
     const classes = cn(
@@ -15,7 +16,7 @@ const OperationCardDesktop = ({name, symbol, date, time, logo, value, price, typ
         isTotalPlus ? styles.plus : styles.minus,
     );
 
-    let icon: ReactElement<SVGElement> | null = null;
+    let icon: Nullable<ReactElement<SVGElement>> = null;
     let badgeColor: OperationColor = OperationColor.Gray;
 
     switch (type) {
