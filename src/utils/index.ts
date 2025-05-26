@@ -1,4 +1,11 @@
-import type {Theme, TickerDataExtended, TickersObject} from '@/models';
+import type {
+    Theme,
+    TickerDataExtended,
+    TickersObject,
+    GetOperationName,
+    IsStringNumber,
+    FormatPrice,
+} from '@/models';
 import {appKey} from '@utils/variables';
 import snp500SymbolList from '@fixtures/snp500list';
 
@@ -55,3 +62,52 @@ export const createStocksObject = (stocks: TickerDataExtended[] | null): Tickers
 
     return stocksObject;
 };
+
+const getRandomNumber = (min: number, max: number): number => {
+    const minLocal = Math.ceil(min);
+    const maxLocal = Math.floor(max);
+
+    return Math.floor(Math.random() * (maxLocal - minLocal)) + minLocal;
+};
+
+export const fakeFetch = <T>(data: T, delay?: number): Promise<T> => {
+    const min = 3;
+    const max = 14;
+    const factor = 100;
+    const delayLocal = delay || getRandomNumber(min, max) * factor;
+
+    return new Promise((resolve) => {
+       setTimeout(() => {
+           resolve(data);
+       }, delayLocal);
+    });
+};
+
+export const getOperationName: GetOperationName = (stocksObj, type, symbol) => {
+    switch (type) {
+        case 'deposit':
+            return 'deposit';
+        case 'withdraw':
+            return 'withdraw';
+        default: {
+            const name = symbol && stocksObj[symbol]?.name;
+            return name || '-';
+        }
+    }
+}
+
+const isStringNumber: IsStringNumber = (value) => {
+    return typeof value === 'string' && !isNaN(Number(value));
+};
+
+export const formatPrice: FormatPrice = (value, isRound = false) => {
+    if (isStringNumber(value)) {
+        return `${(Number(value).toLocaleString())}`;
+    } else if (typeof value === 'number') {
+        const localValue = isRound ? Math.round(value) : Number(value.toFixed(2));
+        return `${(localValue.toLocaleString())}`;
+    } else {
+        return value || '';
+    }
+}
+

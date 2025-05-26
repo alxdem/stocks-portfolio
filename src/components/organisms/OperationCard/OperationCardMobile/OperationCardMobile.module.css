@@ -1,0 +1,102 @@
+.card {
+    display: grid;
+    grid-template-columns: 13vw 21.5vw 1fr auto;
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
+    gap: 0 4vw;
+    line-height: 1;
+    padding: 3.6vw var(--gap);
+    grid-template-areas:
+        'logo name name total total'
+        'logo date time price value';
+}
+
+.card.service {
+    grid-template-areas:
+        'logo name name total'
+        'logo date time total';
+}
+
+.logo {
+    grid-area: logo;
+    width: 13vw;
+    height: 13vw;
+}
+
+.name {
+    grid-area: name;
+    font-size: 4.6vw;
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.date {
+    grid-area: date;
+    position: relative;
+}
+
+.value::after,
+.date::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background-color: var(--gray-400);
+    width: 0.9vw;
+    height: 0.9vw;
+    min-width: 3px;
+    min-height: 3px;
+    top: 1.5vw;
+}
+
+.service .value::after {
+    content: none;
+}
+
+.date::after {
+    right: -1.9vw;
+}
+
+.time {
+    grid-area: time;
+}
+
+.price {
+    grid-area: price;
+    text-align: right;
+}
+
+.value {
+    grid-area: value;
+    position: relative;
+    min-width: 2.8vw;
+    text-align: right;
+}
+
+.value::after {
+    left: -2.2vw;
+}
+
+.total {
+    grid-area: total;
+    font-size: 4.6vw;
+    font-weight: 500;
+    text-align: right;
+}
+
+.plus .total {
+    color: var(--color-success);
+}
+
+.minus .total {
+    color: var(--color-error);
+}
+
+.date,
+.time,
+.value,
+.price {
+    font-size: 3.8vw;
+    color: var(--color-text-secondary);
+}

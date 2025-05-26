@@ -25,4 +25,7 @@
     --gray-900: #262631;
     --gray-1000: #0F0F13;
     --gray-1100: #000000;
+
+    --color-error: #e53935;
+    --color-success: #00c853;
 }
