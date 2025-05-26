@@ -1,7 +1,9 @@
+import type {RefObject} from 'react';
 import useEventListener from '@hooks/useEventListener';
+import type {Nullable} from '@models';
 
 const useClickOutside = (
-    refs: React.RefObject<HTMLElement | null>[],
+    refs: RefObject<Nullable<HTMLElement>>[],
     callback: (e: Event) => void,
 ): void => {
     useEventListener('click', e => {

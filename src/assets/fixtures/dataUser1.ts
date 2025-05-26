@@ -1,5 +1,5 @@
-import {OperationType} from '@/models';
-import type {Operation} from '@/models';
+import {OperationType} from '@models';
+import type {Operation} from '@models';
 
 const operations: Operation[] = [
     { symbol: '', date: 1747917359059, price: 10000, type: OperationType.Deposit, value: 1 },

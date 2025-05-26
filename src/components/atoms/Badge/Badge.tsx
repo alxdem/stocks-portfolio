@@ -1,6 +1,6 @@
 import type {BadgeProps} from '@atoms/Badge/Badge.props';
 import styles from '@atoms/Badge/Badge.module.css';
-import {OperationColor} from '@/models';
+import {OperationColor} from '@models';
 import cn from 'classnames';
 import {cloneElement} from "react";
 

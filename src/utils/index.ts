@@ -5,7 +5,8 @@ import type {
     GetOperationName,
     IsStringNumber,
     FormatPrice,
-} from '@/models';
+    Nullable,
+} from '@models';
 import {appKey} from '@utils/variables';
 import snp500SymbolList from '@fixtures/snp500list';
 
@@ -26,7 +27,7 @@ const isSnP500Include = (symbol: string | undefined): boolean => {
     return Boolean(symbol && snp500SymbolList.includes(symbol));
 }
 
-export const createStocksObject = (stocks: TickerDataExtended[] | null): TickersObject => {
+export const createStocksObject = (stocks: Nullable<TickerDataExtended[]>): TickersObject => {
     if (!stocks || stocks.length < 1) {
         return {};
     }

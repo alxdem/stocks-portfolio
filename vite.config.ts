@@ -17,7 +17,7 @@ export default defineConfig({
             '@pages': '/src/pages',
             '@layouts': '/src/layouts',
             '@hooks': '/src/hooks',
-            '@models': '/src/models',
+            '@models': '/src/models/index.ts',
             '@utils': '/src/utils',
             '@fixtures': '/src/assets/fixtures',
             '@images': '/src/assets/images',

@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import type {TickersObject, StoreStocksState} from '@/models';
+import type {TickersObject, StoreStocksState} from '@models';
 
 const initialState: StoreStocksState = {
     stocks: null,
