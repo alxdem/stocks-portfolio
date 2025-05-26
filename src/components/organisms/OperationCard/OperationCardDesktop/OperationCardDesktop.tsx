@@ -6,8 +6,8 @@ import Badge from '@atoms/Badge/Badge.tsx';
 import DollarIcon from '@images/dollar-circle.svg?react';
 import DiamondIcon from '@images/diamond-circle.svg?react';
 import type {ReactElement} from 'react';
-import {OperationColor} from '@/models';
-import type {Nullable} from '@/models';
+import {OperationColor, type OperationColorCode} from '@models';
+import type {Nullable} from '@models';
 
 const OperationCardDesktop = ({name, symbol, date, time, logo, value, price, type, total, isTotalPlus, className}: OperationCardDesktopProps) => {
     const classes = cn(
@@ -17,7 +17,7 @@ const OperationCardDesktop = ({name, symbol, date, time, logo, value, price, typ
     );
 
     let icon: Nullable<ReactElement<SVGElement>> = null;
-    let badgeColor: OperationColor = OperationColor.Gray;
+    let badgeColor: OperationColorCode = OperationColor.Gray;
 
     switch (type) {
         case 'deposit':

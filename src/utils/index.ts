@@ -6,7 +6,7 @@ import type {
     IsStringNumber,
     FormatPrice,
     Nullable,
-} from '@/models';
+} from '@models';
 import {appKey} from '@utils/variables';
 import snp500SymbolList from '@fixtures/snp500list';
 

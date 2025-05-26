@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import type {Nullable} from '@/models';
+import type {Nullable} from '@models';
 
 const useFetch = <T>(url: string, initialState: Nullable<T>, options: RequestInit = {}) => {
     const [data, setData] = useState<Nullable<T>>(initialState);

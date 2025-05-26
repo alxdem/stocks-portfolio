@@ -1,6 +1,6 @@
 import type {RefObject} from 'react';
 import useEventListener from '@hooks/useEventListener';
-import type {Nullable} from '@/models';
+import type {Nullable} from '@models';
 
 const useClickOutside = (
     refs: RefObject<Nullable<HTMLElement>>[],
