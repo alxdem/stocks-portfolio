@@ -1,0 +1,11 @@
+.items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4vw;
+
+    @media(max-width: 767px) {
+        gap: 0;
+        margin-left: calc(var(--gap) * -1);
+        margin-right: calc(var(--gap) * -1);
+    }
+}

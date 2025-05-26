@@ -5,17 +5,19 @@ import Header from '@organisms/Header/Header';
 import styles from '@layouts/MainLayout/MainLayout.module.css';
 import useClickOutside from '@hooks/useClickOutside';
 import useDataInit from '@hooks/useDataInit';
-import {useSelector} from 'react-redux';
-import type {StoreStocksState} from '@/models';
+import useUserDataInit from '@hooks/useUserDataInit';
+import {useAppSelector} from '@/store/hooks';
 
 const MainLayout = () => {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const navBtnRef = useRef<HTMLButtonElement>(null);
-    const stocks = useSelector((state: StoreStocksState) => state.stocks.stocks);
+
+    const stocks = useAppSelector((state) => state.stocks.stocks);
 
     useClickOutside([navBtnRef], () => setIsNavOpen(false));
 
     useDataInit();
+    useUserDataInit();
 
     console.log('stocks', stocks);
 
@@ -30,8 +32,7 @@ const MainLayout = () => {
                 <Sidebar
                     isOpen={isNavOpen}
                 />
-                <main>
-                    <h1>MainLayout</h1>
+                <main className={styles.main}>
                     <Outlet/>
                 </main>
             </div>

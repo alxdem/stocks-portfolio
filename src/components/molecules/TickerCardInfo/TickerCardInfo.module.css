@@ -1,0 +1,63 @@
+.main {
+    display: grid;
+    grid-template-columns: 3vw 1fr;
+    grid-template-rows: 1fr;
+    gap: 0.2vw 0.7vw;
+    align-items: center;
+    line-height: 1;
+    grid-template-areas:
+        'logo name';
+}
+
+.main.grid {
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+        'logo symbol'
+        'logo name';
+}
+
+.logo {
+    grid-area: logo;
+    width: 3vw;
+    height: 3vw;
+}
+
+.symbol {
+    grid-area: symbol;
+    text-transform: uppercase;
+    font-size: 0.9vw;
+}
+
+.grid .symbol {
+    align-self: end;
+}
+
+.name {
+    grid-area: name;
+    font-size: 1vw;
+    color: var(--color-text-secondary);
+}
+
+.grid .name {
+    align-self: start;
+}
+
+@media(max-width: 991px) {
+    .main {
+        grid-template-columns: 5vw 1fr;
+        gap: 0.5vw 1.2vw;
+    }
+
+    .logo {
+        width: 5vw;
+        height: 5vw;
+    }
+
+    .symbol {
+        font-size: 1.6vw;
+    }
+
+    .name {
+        font-size: 1.5vw;
+    }
+}

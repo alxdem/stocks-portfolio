@@ -3,7 +3,7 @@ import type {PayloadAction} from '@reduxjs/toolkit';
 import type {TickersObject, StoreStocksState} from '@/models';
 
 const initialState: StoreStocksState = {
-    stocks: {},
+    stocks: null,
 };
 
 export const stocksSlice = createSlice({

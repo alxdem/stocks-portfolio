@@ -1,0 +1,30 @@
+.cloud {
+    padding: var(--gap);
+    border-radius: 0.8vw;
+    background-color: var(--bg-main);
+    position: relative;
+    overflow: hidden;
+}
+
+h3.title {
+    margin: 0 0 0.52vw;
+    font: var(--h5);
+}
+
+@media(max-width: 1279px) {
+    .cloud {
+        border-radius: 1.2vw;
+    }
+}
+
+@media(max-width: 991px) {
+    .cloud {
+        border-radius: 1.6vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .cloud {
+        border-radius: 5vw;
+    }
+}
