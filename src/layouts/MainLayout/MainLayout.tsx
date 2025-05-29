@@ -5,7 +5,8 @@ import Header from '@organisms/Header/Header';
 import styles from '@layouts/MainLayout/MainLayout.module.css';
 import useClickOutside from '@hooks/useClickOutside';
 import useDataInit from '@hooks/useDataInit';
-import useUserDataInit from '@hooks/useUserDataInit';
+import useUserDataInit from '@hooks/useUserDataInit'; // TODO: Rewrite hooks, importing from index.ts
+import useCalculatedPortfolio from '@hooks/useCalculatedPortfolio';
 import {useAppSelector} from '@/store/hooks';
 
 const MainLayout = () => {
@@ -18,6 +19,7 @@ const MainLayout = () => {
 
     useDataInit();
     useUserDataInit();
+    useCalculatedPortfolio();
 
     console.log('stocks', stocks);
 

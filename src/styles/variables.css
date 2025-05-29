@@ -17,6 +17,7 @@
 
     --sidebar-width: 15vw;
 
+    --portfolio-grid-template: 1fr 3.4vw 8.2vw 8.2vw 7.4vw 6vw 8.7vw;
 
     @media(max-width: 1279px) {
         --sidebar-width: 20.5vw;
@@ -26,6 +27,7 @@
     @media(max-width: 991px) {
         --sidebar-width: 39vw;
         --gap: 2vw;
+        --portfolio-grid-template: 1fr 4vw 10.2vw 10.2vw 9vw 7.6vw 11.7vw;
     }
 
     @media(max-width: 767px) {

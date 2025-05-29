@@ -1,0 +1,4 @@
+.list {
+    margin-left: calc(var(--gap) * -1);
+    margin-right: calc(var(--gap) * -1);
+}

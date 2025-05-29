@@ -1,4 +1,4 @@
-import type {OperationKind, TickersObject} from "@/models/common";
+import type {Operation, OperationKind, StockPosition, StockPositionFormatted, TickersObject} from "@/models/common";
 
 export type GetOperationName = (
     stocksObj: TickersObject,
@@ -12,3 +12,17 @@ export type FormatPrice = (
     value: string | number,
     isRound?: boolean,
 ) => string;
+
+export type GetCalculatedPortfolio = (
+    operations: Operation[],
+    stockData: TickersObject,
+) => StockPosition[];
+
+export type GetFormattedPortfolio = (
+    portfolio: StockPosition[],
+) => StockPositionFormatted[];
+
+export type GetPercent = (
+    basis: number,
+    current: number,
+) => number;

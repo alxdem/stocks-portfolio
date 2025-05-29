@@ -1,0 +1,23 @@
+.header {
+    display: grid;
+    grid-template-columns: var(--portfolio-grid-template);
+    align-items: center;
+    gap: 2vw;
+    overflow: hidden;
+    font-size: 0.9vw;
+    color: var(--color-text);
+    text-align: right;
+    padding: 0 var(--gap) var(--gap);
+    background-color: var(--bg-main);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.company {
+    text-align: left;
+}
+
+@media(max-width: 991px) {
+    .header {
+        font-size: 1.4vw;
+    }
+}

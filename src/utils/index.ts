@@ -6,6 +6,7 @@ import type {
     IsStringNumber,
     FormatPrice,
     Nullable,
+    GetPercent,
 } from '@models';
 import {appKey} from '@utils/variables';
 import snp500SymbolList from '@fixtures/snp500list';
@@ -111,4 +112,10 @@ export const formatPrice: FormatPrice = (value, isRound = false) => {
         return value || '';
     }
 }
+
+export const getPercent: GetPercent = (basis, current) => {
+    const difference = basis - current;
+
+    return difference === 0 ? 0 : difference * 100 / basis;
+};
 
