@@ -1,0 +1,38 @@
+.card {
+    display: grid;
+    grid-template-columns: var(--portfolio-grid-template);
+    align-items: center;
+    gap: 2vw;
+    overflow: hidden;
+    font-size: 1.1vw;
+    color: var(--color-text);
+    text-align: right;
+    padding: 0.7vw var(--gap);
+    background-color: var(--bg-main);
+    transition: background-color var(--ease) var(--timing-md);
+}
+
+.card:hover {
+    background-color: var(--bg-secondary);
+    color: var(--color-text);
+}
+
+.loss .gain,
+.loss .gainPercent {
+    color: var(--color-error);
+}
+
+.profit .gain,
+.profit .gainPercent {
+    color: var(--color-success);
+}
+
+.totalPrice {
+    font-weight: 500;
+}
+
+@media(max-width: 991px) {
+    .card {
+        font-size: 1.6vw;
+    }
+}

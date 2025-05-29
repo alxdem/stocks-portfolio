@@ -52,6 +52,32 @@ export interface Operation extends OperationBasic {
     date: number;
 }
 
+export interface StockPositionBasic {
+    symbol: string;
+    name: string;
+}
+
+export interface StockPosition extends StockPositionBasic {
+    value: number;
+    price: number;
+    totalPrice: number;
+    averagePrice: number;
+    gain: number;
+    gainPercent?: number;
+}
+
+export interface StockPositionFormatted extends StockPositionBasic {
+    value: string;
+    price: string;
+    totalPrice: string;
+    averagePrice: string;
+    gain: string;
+    gainPercent: string;
+    isLoss: boolean;
+}
+
 export interface UserState {
     operations: Nullable<Operation[]>;
+    portfolio: Nullable<StockPosition[]>;
+    formattedPortfolio: Nullable<StockPositionFormatted[]>;
 }

@@ -3,7 +3,7 @@ import type {Operation} from '@models';
 
 const operations: Operation[] = [
     { symbol: '', date: 1747917359059, price: 10000, type: OperationType.Deposit, value: 1 },
-    { symbol: 'F', date: 1747917358059, price: 12.9, type: OperationType.Purchase, value: 4 },
+    { symbol: 'F', date: 1747917358059, price: 12.9, type: OperationType.Purchase, value: 19 },
     { symbol: 'BA', date: 1747914359059, price: 313.3, type: OperationType.Sale, value: 2 },
     { symbol: 'BAC', date: 1747947359059, price: 24.8, type: OperationType.Purchase, value: 5 },
     { symbol: 'F', date: 1747917359059, price: 12.82, type: OperationType.Purchase, value: 5 },

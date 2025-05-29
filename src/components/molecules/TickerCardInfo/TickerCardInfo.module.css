@@ -5,6 +5,7 @@
     gap: 0.2vw 0.7vw;
     align-items: center;
     line-height: 1;
+    text-align: left;
     grid-template-areas:
         'logo name';
 }
@@ -26,6 +27,7 @@
     grid-area: symbol;
     text-transform: uppercase;
     font-size: 0.9vw;
+    color: var(--color-text);
 }
 
 .grid .symbol {

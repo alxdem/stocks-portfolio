@@ -1,0 +1,89 @@
+.card {
+    display: grid;
+    grid-template-columns: 13vw 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
+    gap: 0 4vw;
+    line-height: 1.2;
+    color: var(--color-text);
+    padding: 3.6vw var(--gap);
+    grid-template-areas:
+        'logo header'
+        'logo footer';
+}
+
+.header {
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    gap: 4vw;
+    overflow: hidden;
+}
+
+.logo {
+    grid-area: logo;
+    width: 13vw;
+    height: 13vw;
+}
+
+.footer {
+    grid-area: footer;
+    display: flex;
+    gap: 6vw;
+}
+
+.name {
+    font-size: 4.6vw;
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.value {
+    position: relative;
+}
+
+.value::after,
+.gain::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background-color: var(--gray-400);
+    width: 0.9vw;
+    height: 0.9vw;
+    min-width: 3px;
+    min-height: 3px;
+    top: 1.5vw;
+    right: -3.5vw;
+}
+
+.totalPrice {
+    font-size: 4.6vw;
+    font-weight: 500;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.gain {
+    margin-left: auto;
+    position: relative;
+}
+
+.gain,
+.gainPercent,
+.value,
+.price {
+    font-size: 3.8vw;
+    color: var(--color-text-secondary);
+}
+
+.profit .gainPercent,
+.profit .gain {
+    color: var(--color-success);
+}
+
+.loss .gainPercent,
+.loss .gain {
+    color: var(--color-error);
+}
