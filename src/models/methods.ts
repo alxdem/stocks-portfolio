@@ -26,3 +26,7 @@ export type GetPercent = (
     basis: number,
     current: number,
 ) => number;
+
+export interface FormatHugeNumber {
+    (value: number | string | undefined): string;
+}

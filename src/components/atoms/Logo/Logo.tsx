@@ -5,9 +5,13 @@ import LogoIcon from '@images/jewelry.svg?react';
 
 const Logo = ({className, src, alt}: LogoProps) => {
     const logoElement = src ? <img src={src} alt={alt} /> : <LogoIcon />
+    const classes = cn(
+        styles.logo,
+        className,
+    );
 
     return (
-        <div className={cn(styles.logo, className)}>
+        <div className={classes}>
             {logoElement}
         </div>
     );
