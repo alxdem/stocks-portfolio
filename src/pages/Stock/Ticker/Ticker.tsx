@@ -2,6 +2,7 @@ import TickerHeader from '@molecules/TickerHeader/TickerHeader';
 import {formatPrice, formatHugeNumber} from '@/utils';
 import CloudSection from '@molecules/CloudSection/CloudSection';
 import styles from '@pages/Stock/Ticker/Ticker.module.css';
+import Button from '@atoms/Button/Button';
 
 const TickerPage = () => {
     // TODO: Change on actually data
@@ -79,6 +80,19 @@ const TickerPage = () => {
             <CloudSection>
                 <>
                     <h2>Indicators</h2>
+                    <Button
+                        theme='primary'
+                        as='button'
+                    >
+                        1234
+                    </Button>
+                    <Button
+                        theme='primary'
+                        to='/'
+                        as='link'
+                    >
+                        1234
+                    </Button>
                     {range && <p>Annual range: {range}</p>}
                     {mktCap && <p>Market Capitalization: {formatHugeNumber(mktCap)}</p>}
                     {volAvg && <p>Average Volume: {formatHugeNumber(volAvg)}</p>}

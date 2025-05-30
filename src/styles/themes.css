@@ -13,6 +13,13 @@
     --sidebar-link-color: var(--gray-800);
     --sidebar-link-color-hover: var(--link-color-hover);
 
+    --button-bg-primary: var(--color-primary-600);
+    --button-bg-primary-hover: var(--color-primary-800);
+    --button-bg-secondary: var(--gray-200);
+    --button-bg-secondary-hover: var(--gray-300);
+    --button-color-primary: var(--gray-50);
+    --button-color-secondary: var(--color-text);
+
     --sidebar-shadow: 0 100px 80px rgba(174, 174, 190, 0.07),
     0 42px 33px rgba(174, 174, 190, 0.05),
     0 22px 18px rgba(174, 174, 190, 0.04),
@@ -42,6 +49,13 @@
         --sidebar-link-color: var(--color-text);
         --sidebar-link-color-hover: var(--link-color-hover);
 
+        --button-bg-primary: var(--color-primary-700);
+        --button-bg-primary-hover: var(--color-primary-600);
+        --button-bg-secondary: var(--gray-800);
+        --button-bg-secondary-hover: var(--gray-700);
+        --button-color-primary: var(--gray-100);
+        --button-color-secondary: var(--gray-100);
+
         --sidebar-shadow: none;
         --header-shadow: none;
     }
@@ -61,6 +75,13 @@
 
     --sidebar-link-color: var(--gray-800);
     --sidebar-link-color-hover: var(--link-color-hover);
+
+    --button-bg-primary: var(--color-primary-600);
+    --button-bg-primary-hover: var(--color-primary-800);
+    --button-bg-secondary: var(--gray-200);
+    --button-bg-secondary-hover: var(--gray-300);
+    --button-color-primary: var(--gray-50);
+    --button-color-secondary: var(--color-text);
 
     --sidebar-shadow: 0 100px 80px rgba(174, 174, 190, 0.07),
     0 42px 33px rgba(174, 174, 190, 0.05),
@@ -89,6 +110,13 @@
 
     --sidebar-link-color: var(--color-text);
     --sidebar-link-color-hover: var(--link-color-hover);
+
+    --button-bg-primary: var(--color-primary-700);
+    --button-bg-primary-hover: var(--color-primary-600);
+    --button-bg-secondary: var(--gray-800);
+    --button-bg-secondary-hover: var(--gray-700);
+    --button-color-primary: var(--gray-100);
+    --button-color-secondary: var(--gray-100);
 
     --sidebar-shadow: none;
     --header-shadow: none;
