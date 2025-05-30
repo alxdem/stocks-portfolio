@@ -10,3 +10,10 @@ export const OperationColor = {
     Red: 'red',
     Gray: 'gray',
 } as const;
+
+export const HugeNumberPower = {
+    Thousand: 'K',
+    Million: 'M',
+    Billion: 'B',
+    Trillion: 'T'
+} as const;

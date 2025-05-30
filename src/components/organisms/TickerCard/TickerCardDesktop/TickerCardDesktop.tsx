@@ -3,6 +3,7 @@ import styles from '@organisms/TickerCard/TickerCardDesktop/TickerCardDesktop.mo
 import {Link} from 'react-router';
 import TickerCardInfo from '@molecules/TickerCardInfo/TickerCardInfo';
 import cn from 'classnames';
+import {getTickerUrl} from '@/utils';
 
 const TickerCardDesktop = ({
          symbol,
@@ -21,7 +22,7 @@ const TickerCardDesktop = ({
     );
 
     return (
-        <Link to='/' className={classes}>
+        <Link to={getTickerUrl(symbol)} className={classes}>
             <TickerCardInfo
                 className={styles.header}
                 symbol={symbol}

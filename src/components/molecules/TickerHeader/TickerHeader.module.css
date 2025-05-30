@@ -1,0 +1,97 @@
+div.header {
+    display: grid;
+    grid-template-columns: 1fr 5vw;
+    align-items: center;
+    gap: 0.8vw 4vw;
+    background-color: var(--bg-accent);
+    grid-template-areas:
+        'title logo'
+        'info info';
+}
+
+h1.title {
+    grid-area: title;
+    font-size: 2.5vw;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.logo {
+    grid-area: logo;
+    width: 5vw;
+    height: 5vw;
+    overflow: hidden;
+}
+
+.info {
+    grid-area: info;
+    width: 100%;
+    display: flex;
+    gap: 1.6vw;
+    align-items: baseline;
+}
+
+.price {
+    font-size: 2vw;
+}
+
+.sector {
+    font-size: 1.4vw;
+}
+
+@media(max-width: 991px) {
+    div.header {
+        grid-template-columns: 1fr 8.8vw;
+        gap: 0.8vw 4.8vw;
+    }
+
+    .logo {
+        width: 8.8vw;
+        height: 8.8vw;
+    }
+
+    h1.title {
+        font-size: 3.3vw;
+    }
+
+    .info {
+        gap: 2.8vw;
+    }
+
+    .price {
+        font-size: 2.9vw;
+    }
+
+    .sector {
+        font-size: 2.1vw;
+    }
+}
+
+@media(max-width: 767px) {
+    div.header {
+        border-radius: 0;
+        grid-template-columns: 1fr 15vw;
+        gap: 2.4vw 10vw;
+    }
+
+    .logo {
+        width: 15vw;
+        height: 15vw;
+    }
+
+    h1.title {
+        font-size: 6vw;
+    }
+
+    .info {
+        gap: 5vw;
+    }
+
+    .price {
+        font-size: 5.7vw;
+    }
+
+    .sector {
+        font-size: 4.6vw;
+    }
+}

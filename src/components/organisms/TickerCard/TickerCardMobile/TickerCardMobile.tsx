@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import cn from 'classnames';
 import type {TickerCardProps} from '@organisms/TickerCard/TickerCard.props';
 import Logo from '@atoms/Logo/Logo';
+import {getTickerUrl} from '@/utils';
 
 const TickerCardMobile = ({
     symbol,
@@ -20,7 +21,7 @@ const TickerCardMobile = ({
     );
 
     return (
-        <Link to={`/${symbol}`} className={classes}>
+        <Link to={getTickerUrl(symbol)} className={classes}>
           <Logo
               src=''
               alt={name}
