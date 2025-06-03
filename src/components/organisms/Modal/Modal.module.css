@@ -1,0 +1,140 @@
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    color: var(--color-text);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    overflow-y: auto;
+    background-color: transparent;
+    padding: var(--gap);
+    box-sizing: border-box;
+    transition: background-color var(--ease) var(--timing-md);
+}
+
+.modal.active {
+    background-color: var(--modal-bg-secondary);
+}
+
+.wrapper {
+    min-width: 20vw;
+    max-width: 60vw;
+    flex-grow: 0;
+    padding: var(--gap);
+    padding-top: 3.6vw;
+    box-sizing: border-box;
+    background-color: var(--modal-bg-primary);
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.8vw;
+
+    transform: translateY(-100vh) scale(0.3);
+    opacity: 0;
+    transition: all var(--ease) var(--timing-md);
+}
+
+.active .wrapper {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.button {
+    position: absolute;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background-color: var(--gray-300);
+    width: 2.9vw;
+    height: 2.9vw;
+    right: 0.7vw;
+    top: 0.7vw;
+    cursor: pointer;
+    border: none;
+    fill: var(--gray-600);
+    opacity: 0.8;
+    transition: opacity var(--timing-md) var(--ease);
+}
+
+.closeIcon {
+    display: block;
+    width: 1.5vw;
+    height: 1.5vw;
+    pointer-events: none;
+    transform: scale(0.85);
+    transition: transform var(--timing-sm) var(--ease);
+}
+
+.button:hover {
+    opacity: 1;
+}
+
+.button:hover .closeIcon {
+    transform: scale(1);
+}
+
+@media(max-width: 991px) {
+    .button {
+        width: 5vw;
+        height: 5vw;
+        right: 1.2vw;
+        top: 1.2vw;
+    }
+
+    .closeIcon {
+        width: 2.5vw;
+        height: 2.5vw;
+    }
+
+    .wrapper {
+        padding-top: 6.2vw;
+        min-width: 40vw;
+        max-width: 90vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .modal {
+        padding: 0;
+        align-items: flex-start;
+        background-color: var(--bg-main);
+        transition: none;
+    }
+
+    .modal.active {
+        background-color: var(--bg-main);
+    }
+
+    .wrapper {
+        width: 100vw;
+        max-width: 100%;
+        padding: var(--gap);
+        padding-top: 18.6vw;
+        margin: 0;
+        position: relative;
+        overflow: hidden;
+        border-radius: 0.8vw;
+
+        transform: translateY(-100vh) scale(0.3);
+        opacity: 0;
+        transition: all var(--ease) var(--timing-md);
+    }
+
+    .button {
+        width: 13.2vw;
+        height: 13.2vw;
+        right: var(--gap);
+        top: var(--gap);
+    }
+
+    .closeIcon {
+        width: 6.5vw;
+        height: 6.5vw;
+    }
+}

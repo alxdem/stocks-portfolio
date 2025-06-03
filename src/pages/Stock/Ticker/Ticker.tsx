@@ -2,7 +2,11 @@ import TickerHeader from '@molecules/TickerHeader/TickerHeader';
 import {formatPrice, formatHugeNumber} from '@/utils';
 import CloudSection from '@molecules/CloudSection/CloudSection';
 import styles from '@pages/Stock/Ticker/Ticker.module.css';
+import typographyStyles from '@/styles/typography.module.css';
 import Button from '@atoms/Button/Button';
+import cn from 'classnames';
+import Modal from '@organisms/Modal/Modal';
+import {useCallback, useState} from 'react';
 
 const TickerPage = () => {
     // TODO: Change on actually data
@@ -66,33 +70,24 @@ const TickerPage = () => {
         ceo,
     } = temp || {};
 
+    const [modalOpened, setModalOpened] = useState(false);
     const title = `${companyName} (${symbol})`;
     const priceLocal = `$${formatPrice(price)}`;
 
+    const handleOpen = useCallback(() => setModalOpened(true), []);
+    const handleClose = useCallback(() => setModalOpened(false), []);
+
     return (
-        <section className={styles.main}>
+        <section className={cn(styles.main, typographyStyles.wrapper)}>
             <TickerHeader
                 logo={image}
                 title={title}
                 price={priceLocal}
                 sector={sector}
             />
-            <CloudSection>
+            <CloudSection className={styles.inner}>
                 <>
                     <h2>Indicators</h2>
-                    <Button
-                        theme='primary'
-                        as='button'
-                    >
-                        1234
-                    </Button>
-                    <Button
-                        theme='primary'
-                        to='/'
-                        as='link'
-                    >
-                        1234
-                    </Button>
                     {range && <p>Annual range: {range}</p>}
                     {mktCap && <p>Market Capitalization: {formatHugeNumber(mktCap)}</p>}
                     {volAvg && <p>Average Volume: {formatHugeNumber(volAvg)}</p>}
@@ -104,16 +99,41 @@ const TickerPage = () => {
                     {fullTimeEmployees && <p>Employees: <b>{formatPrice(fullTimeEmployees)}</b></p>}
                     {ceo && <p>Ceo: <b>{ceo}</b></p>}
 
-                    <div className={styles.description}>
+                    <div className={typographyStyles.smallText}>
                         {description}
-                        {ipoDate && <p>Ipo date: {ipoDate}</p>}
-                        {city && <p>City: {city}</p>}
-                        {country && <p>Country: {country}</p>}
-                        {phone && <p>Phone: <a href={`tel:${phone}`}>{phone}</a></p>}
-                        {website && <p>Website: <a href={`${website}`} target='_blank'>{website}</a></p>}
                     </div>
+
+                    {ipoDate && <p>Ipo date: {ipoDate}</p>}
+                    {city && <p>City: {city}</p>}
+                    {country && <p>Country: {country}</p>}
+                    {phone && <p>Phone: <a href={`tel:${phone}`}>{phone}</a></p>}
+                    {website && <p>Website: <a href={`${website}`} target='_blank'>{website}</a></p>}
                 </>
+
+                <div className={styles.actions}>
+                    <Button
+                        theme='primary'
+                        as='button'
+                        size='large'
+                        onClick={handleOpen}
+                    >
+                        Buy
+                    </Button>
+                    <Button
+                        theme='primary'
+                        as='button'
+                        size='large'
+                    >
+                        Sell
+                    </Button>
+                </div>
             </CloudSection>
+            <Modal
+                isOpened={modalOpened}
+                onClose={handleClose}
+            >
+                <p>3213213</p>
+            </Modal>
         </section>
     );
 };
