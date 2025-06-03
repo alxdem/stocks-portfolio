@@ -66,12 +66,12 @@
 
 @media(max-width: 1279px) {
     .header {
-        padding: 0.46vw 1.8vw;
+        padding: 0.7vw 1.8vw;
     }
 
     .logo {
         gap: 0.62vw;
-        font-size: 1.26vw;
+        font-size: 1.4vw;
     }
 
     .logoIcon {

@@ -3,3 +3,58 @@
     flex-direction: column;
     gap: var(--gap);
 }
+
+.inner {
+    padding-bottom: 6vw;
+}
+
+.actions {
+    position: fixed;
+    right: auto;
+    left: calc(var(--sidebar-width) + var(--gap));
+    bottom: 0;
+    max-width: 100%;
+    z-index: 10;
+    background-color: var(--bg-main);
+    box-sizing: border-box;
+    padding: var(--gap);
+    border-top: 1px solid var(--border-color);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap);
+    width: 81.87vw;
+}
+
+@media(max-width: 1279px) {
+    .actions {
+        width: 76.37vw;
+    }
+}
+
+@media(max-width: 991px) {
+    .actions {
+        left: var(--gap);
+        width: auto;
+        right: var(--gap);
+    }
+
+    .inner {
+        padding-bottom: 9.4vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .main {
+        gap: 0;
+    }
+
+    .inner {
+        border-radius: 0;
+        padding-bottom: 27vw;
+    }
+
+    .actions {
+        left: 0;
+        right: 0;
+    }
+}

@@ -13,3 +13,4 @@ const resolution = {
 };
 
 export const QUERY_MOBILE = `(max-width: ${resolution.mobile}px)`;
+export const MODAL_ANIMATION_DELAY = 300;
