@@ -10,7 +10,7 @@
 
 .actions {
     position: fixed;
-    right: auto;
+    right: var(--gap);
     left: calc(var(--sidebar-width) + var(--gap));
     bottom: 0;
     max-width: 100%;
@@ -22,13 +22,6 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--gap);
-    width: 81.87vw;
-}
-
-@media(max-width: 1279px) {
-    .actions {
-        width: 76.37vw;
-    }
 }
 
 @media(max-width: 991px) {
