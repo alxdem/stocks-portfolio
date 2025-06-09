@@ -1,6 +1,6 @@
-import type {ReactElement, HTMLAttributes} from 'react';
+import type {HTMLAttributes, ReactNode} from 'react';
 
 export interface CloudSectionProps extends HTMLAttributes<HTMLDivElement> {
-    children: string | ReactElement | ReactElement[];
+    children: ReactNode;
     title?: string;
 }

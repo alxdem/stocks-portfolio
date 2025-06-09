@@ -1,4 +1,4 @@
-import type {GetCalculatedPortfolio, StockPosition, GetFormattedPortfolio} from '@models';
+import type {GetCalculatedPortfolio, StockPosition, GetFormattedPortfolio, Operation} from '@models';
 import {formatPrice, getPercent} from '@utils/index';
 
 export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stockData) => {
@@ -66,4 +66,15 @@ export const getFormattedPortfolio: GetFormattedPortfolio = (portfolio) => {
             isLoss,
         };
     });
+};
+
+export const recalculateBalance = (operations: Operation[]) => {
+    const result = operations.reduce((acc, operation) => {
+        const isNegative = operation.type === 'withdraw' || operation.type === 'purchase';
+        const sign = isNegative ? -1 : 1;
+
+        return acc + (operation.value * operation.price * sign);
+    }, 0);
+
+    return Math.floor(result * 100) / 100;
 };

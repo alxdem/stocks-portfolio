@@ -59,6 +59,7 @@ a:hover {
 
 html {
   background-color: var(--bg-secondary);
+  scrollbar-gutter: stable;
 }
 
 body {

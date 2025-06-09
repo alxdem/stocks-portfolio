@@ -13,8 +13,6 @@ import {HugeNumberPower} from '@models';
 import {appKey} from '@utils/variables';
 import snp500SymbolList from '@fixtures/snp500list';
 
-let scrollbarWidth: Nullable<number> = null;
-
 const getBody = () => document.querySelector('body');
 
 const setTheme = (value: Theme) => {
@@ -102,7 +100,7 @@ export const getOperationName: GetOperationName = (stocksObj, type, symbol) => {
     }
 }
 
-const isStringNumber: IsStringNumber = (value) => {
+export const isStringNumber: IsStringNumber = (value) => {
     return typeof value === 'string' && !isNaN(Number(value));
 };
 
@@ -174,22 +172,4 @@ export const formatHugeNumber: FormatHugeNumber = (value) => {
         default:
             return '';
     }
-};
-
-export const scrollWidthGet = () => {
-    const div = document.createElement('div');
-
-    if (scrollbarWidth) {
-        return scrollbarWidth;
-    }
-
-    div.style.overflowY = 'scroll';
-    div.style.width = '50px';
-    div.style.height = '50px';
-
-    document.body.append(div);
-    scrollbarWidth = div.offsetWidth - div.clientWidth;
-    div.remove();
-
-    return scrollbarWidth;
 };
