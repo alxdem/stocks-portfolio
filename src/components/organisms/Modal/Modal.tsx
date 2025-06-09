@@ -33,7 +33,6 @@ const Modal = ({isOpened, children, onClose}: ModalProps) => {
                 >
                     <CloseIcon className={styles.closeIcon}/>
                 </button>
-                Modal
                 {children}
             </div>
         </div>,

@@ -19,9 +19,23 @@
     --button-bg-secondary-hover: var(--gray-300);
     --button-color-primary: var(--gray-50);
     --button-color-secondary: var(--color-text);
+    --button-bg-tertiary: var(--gray-100);
+    --button-bg-tertiary-hover: var(--gray-300);
+    --button-color-tertiary: var(--color-text);
 
-    --modal-bg-primary: var(--bg-main);
+    --modal-bg-primary: var(--gray-200);
     --modal-bg-secondary:rgba(46, 46, 58, 0.55);
+
+    --field-color-secondary: var(--gray-400);
+    --field-border-color: var(--gray-200);
+    --field-border-color-focus: var(--color-primary-700);
+    --field-border-color-outline: rgba(25, 118, 210, 0.2);
+    --field-bg-color: var(--gray-100);
+    --field-bg-color-disabled: var(--gray-100);
+    --field-color-disabled: var(--gray-400);
+
+    --balance-bg-color: var(--gray-900);
+    --balance-color: var(--gray-200);
 
     --sidebar-shadow: 0 100px 80px rgba(174, 174, 190, 0.07),
     0 42px 33px rgba(174, 174, 190, 0.05),
@@ -58,9 +72,23 @@
         --button-bg-secondary-hover: var(--gray-700);
         --button-color-primary: var(--gray-100);
         --button-color-secondary: var(--gray-100);
+        --button-bg-tertiary: var(--gray-900);
+        --button-bg-tertiary-hover: var(--gray-700);
+        --button-color-tertiary: var(--gray-400);
 
         --modal-bg-primary: var(--bg-main);
         --modal-bg-secondary:rgba(144, 202, 249, 0.4);
+
+        --field-color-secondary: var(--gray-400);
+        --field-border-color: var(--gray-1100);
+        --field-border-color-focus: var(--color-primary-300);
+        --field-border-color-outline: rgba(144, 202, 249, 0.2);
+        --field-bg-color: var(--gray-900);
+        --field-bg-color-disabled: var(--gray-1000);
+        --field-color-disabled: var(--gray-700);
+
+        --balance-bg-color: var(--gray-500);
+        --balance-color: var(--gray-1000);
 
         --sidebar-shadow: none;
         --header-shadow: none;
@@ -84,13 +112,27 @@
 
     --button-bg-primary: var(--color-primary-600);
     --button-bg-primary-hover: var(--color-primary-800);
+    --button-color-primary: var(--gray-50);
     --button-bg-secondary: var(--gray-200);
     --button-bg-secondary-hover: var(--gray-300);
-    --button-color-primary: var(--gray-50);
     --button-color-secondary: var(--color-text);
+    --button-bg-tertiary: var(--gray-100);
+    --button-bg-tertiary-hover: var(--gray-300);
+    --button-color-tertiary: var(--color-text);
 
-    --modal-bg-primary: var(--bg-main);
+    --modal-bg-primary: var(--gray-200);
     --modal-bg-secondary:rgba(46, 46, 58, 0.55);
+
+    --field-color-secondary: var(--gray-400);
+    --field-border-color: var(--gray-200);
+    --field-border-color-focus: var(--color-primary-700);
+    --field-border-color-outline: rgba(25, 118, 210, 0.2);
+    --field-bg-color: var(--gray-100);
+    --field-bg-color-disabled: var(--gray-100);
+    --field-color-disabled: var(--gray-400);
+
+    --balance-bg-color: var(--gray-900);
+    --balance-color: var(--gray-200);
 
     --sidebar-shadow: 0 100px 80px rgba(174, 174, 190, 0.07),
     0 42px 33px rgba(174, 174, 190, 0.05),
@@ -126,9 +168,23 @@
     --button-bg-secondary-hover: var(--gray-700);
     --button-color-primary: var(--gray-100);
     --button-color-secondary: var(--gray-100);
+    --button-bg-tertiary: var(--gray-900);
+    --button-bg-tertiary-hover: var(--gray-700);
+    --button-color-tertiary: var(--gray-400);
 
     --modal-bg-primary: var(--bg-main);
     --modal-bg-secondary:rgba(144, 202, 249, 0.4);
+
+    --field-color-secondary: var(--gray-400);
+    --field-border-color: var(--gray-1100);
+    --field-border-color-focus: var(--color-primary-300);
+    --field-border-color-outline: rgba(144, 202, 249, 0.2);
+    --field-bg-color: var(--gray-900);
+    --field-bg-color-disabled: var(--gray-1000);
+    --field-color-disabled: var(--gray-700);
+
+    --balance-bg-color: var(--gray-500);
+    --balance-color: var(--gray-1000);
 
     --sidebar-shadow: none;
     --header-shadow: none;

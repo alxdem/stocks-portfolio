@@ -79,6 +79,7 @@ export interface StockPositionFormatted extends StockPositionBasic {
 }
 
 export interface UserState {
+    balance: number;
     operations: Nullable<Operation[]>;
     portfolio: Nullable<StockPosition[]>;
     formattedPortfolio: Nullable<StockPositionFormatted[]>;

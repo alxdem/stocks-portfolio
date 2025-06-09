@@ -1,0 +1,64 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4vw;
+    opacity: 1;
+    transition: opacity var(--ease) var(--timing-md);
+}
+
+.loading {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.text {
+    margin: 0;
+    font-size: 0.9vw;
+}
+
+.text span {
+    font-size: 1.1vw;
+    font-weight: 600;
+}
+
+@media(max-width: 1279px) {
+    .form {
+        gap: 2vw;
+    }
+
+    .text {
+        font-size: 1.22vw;
+    }
+
+    .text span {
+        font-size: 1.8vw;
+    }
+}
+
+@media(max-width: 991px) {
+    .form {
+        gap: 3vw;
+    }
+
+    .text {
+        font-size: 2vw;
+    }
+
+    .text span {
+        font-size: 2.6vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .form {
+        gap: 5vw;
+    }
+
+    .text {
+        font-size: 5vw;
+    }
+
+    .text span {
+        font-size: 6.8vw;
+    }
+}

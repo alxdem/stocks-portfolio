@@ -4,10 +4,11 @@ import type {Link} from 'react-router';
 type ButtonType = 'button' | 'link';
 
 interface CommonButtonProps {
+    as: ButtonType;
     theme?: 'primary' | 'secondary' | 'tertiary';
     size?: 'large' | 'medium' | 'small';
     children?: string | ReactNode;
-    as: ButtonType;
+    shape?: 'standard' | 'square';
 }
 
 interface ButtonAsButton extends CommonButtonProps, ComponentPropsWithoutRef<'button'> {

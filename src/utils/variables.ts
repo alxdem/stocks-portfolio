@@ -1,6 +1,7 @@
 export const appKey = {
     DATA_THEME: 'data-theme',
-    LS_DATA: 'stocks-data'
+    LS_DATA: 'stocks-data',
+    OPERATIONS: 'user-operations'
 };
 
 const FMP_API_URL = 'https://fmpcloud.io/api/v3';

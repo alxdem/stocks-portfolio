@@ -1,8 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import type {UserState, Operation, StockPosition, StockPositionFormatted} from '@models';
+import {recalculateBalance} from '@/utils/businessLogic';
 
 const initialState: UserState = {
+    balance: 0,
     operations: null,
     portfolio: null,
     formattedPortfolio: null,
@@ -14,10 +16,12 @@ export const userSlice = createSlice({
     reducers: {
         setOperations: (state, action: PayloadAction<Operation[]>) => {
             state.operations = action.payload;
+            state.balance = recalculateBalance(state.operations);
         },
         addOperation: (state, action: PayloadAction<Operation>) => {
             state.operations = state.operations || [];
             state.operations.push(action.payload);
+            state.balance = recalculateBalance(state.operations);
         },
         setPortfolio: (state, action: PayloadAction<StockPosition[]>) => {
             state.portfolio = action.payload;

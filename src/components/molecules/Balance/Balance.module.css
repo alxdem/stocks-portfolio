@@ -1,0 +1,60 @@
+.balance {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vw;
+    line-height: 1;
+    background-color: var(--balance-bg-color);
+    color: var(--balance-color);
+}
+
+.title {
+    opacity: 0.6;
+    font-size: 0.9vw;
+}
+
+.value {
+    font-size: 1.8vw;
+    font-weight: 600;
+}
+
+@media(max-width: 1279px) {
+    .balance {
+        gap: 1.1vw;
+    }
+
+    .title {
+        font-size: 1.22vw;
+    }
+
+    .value {
+        font-size: 2.5vw;
+    }
+}
+
+@media(max-width: 991px) {
+    .balance {
+        gap: 1.4vw;
+    }
+
+    .title {
+        font-size: 2vw;
+    }
+
+    .value {
+        font-size: 3.4vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .balance {
+        gap: 3vw;
+    }
+
+    .title {
+        font-size: 5vw;
+    }
+
+    .value {
+        font-size: 8.2vw;
+    }
+}

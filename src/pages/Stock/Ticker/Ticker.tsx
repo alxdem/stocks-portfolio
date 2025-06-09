@@ -3,10 +3,8 @@ import {formatPrice, formatHugeNumber} from '@/utils';
 import CloudSection from '@molecules/CloudSection/CloudSection';
 import styles from '@pages/Stock/Ticker/Ticker.module.css';
 import typographyStyles from '@/styles/typography.module.css';
-import Button from '@atoms/Button/Button';
 import cn from 'classnames';
-import Modal from '@organisms/Modal/Modal';
-import {useCallback, useState} from 'react';
+import TickerActions from '@organisms/TickerActions/TickerActions';
 
 const TickerPage = () => {
     // TODO: Change on actually data
@@ -70,12 +68,8 @@ const TickerPage = () => {
         ceo,
     } = temp || {};
 
-    const [modalOpened, setModalOpened] = useState(false);
     const title = `${companyName} (${symbol})`;
     const priceLocal = `$${formatPrice(price)}`;
-
-    const handleOpen = useCallback(() => setModalOpened(true), []);
-    const handleClose = useCallback(() => setModalOpened(false), []);
 
     return (
         <section className={cn(styles.main, typographyStyles.wrapper)}>
@@ -109,31 +103,14 @@ const TickerPage = () => {
                     {phone && <p>Phone: <a href={`tel:${phone}`}>{phone}</a></p>}
                     {website && <p>Website: <a href={`${website}`} target='_blank'>{website}</a></p>}
                 </>
-
-                <div className={styles.actions}>
-                    <Button
-                        theme='primary'
-                        as='button'
-                        size='large'
-                        onClick={handleOpen}
-                    >
-                        Buy
-                    </Button>
-                    <Button
-                        theme='primary'
-                        as='button'
-                        size='large'
-                    >
-                        Sell
-                    </Button>
-                </div>
+                <TickerActions
+                    className={styles.actions}
+                    symbol={symbol}
+                    title={title}
+                    image={image}
+                    price={price}
+                />
             </CloudSection>
-            <Modal
-                isOpened={modalOpened}
-                onClose={handleClose}
-            >
-                <p>3213213</p>
-            </Modal>
         </section>
     );
 };

@@ -100,7 +100,7 @@ export const getOperationName: GetOperationName = (stocksObj, type, symbol) => {
     }
 }
 
-const isStringNumber: IsStringNumber = (value) => {
+export const isStringNumber: IsStringNumber = (value) => {
     return typeof value === 'string' && !isNaN(Number(value));
 };
 

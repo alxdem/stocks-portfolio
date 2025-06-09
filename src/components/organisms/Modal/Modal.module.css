@@ -25,14 +25,13 @@
     max-width: 60vw;
     flex-grow: 0;
     padding: var(--gap);
-    padding-top: 3.6vw;
+    padding-top: 4.3vw;
     box-sizing: border-box;
     background-color: var(--modal-bg-primary);
     margin: auto;
     position: relative;
     overflow: hidden;
     border-radius: 0.8vw;
-
     transform: translateY(-100vh) scale(0.3);
     opacity: 0;
     transition: all var(--ease) var(--timing-md);
@@ -93,7 +92,7 @@
     }
 
     .wrapper {
-        padding-top: 6.2vw;
+        padding-top: 7.5vw;
         min-width: 40vw;
         max-width: 90vw;
     }
@@ -103,7 +102,7 @@
     .modal {
         padding: 0;
         align-items: flex-start;
-        background-color: var(--bg-main);
+        background-color: transparent;
         transition: none;
     }
 
@@ -115,15 +114,19 @@
         width: 100vw;
         max-width: 100%;
         padding: var(--gap);
-        padding-top: 18.6vw;
+        padding-top: 23vw;
         margin: 0;
         position: relative;
         overflow: hidden;
         border-radius: 0.8vw;
+        min-height: 100%;
+        transform: translateX(100vh);
+        opacity: 1;
+        transition: transform var(--ease) var(--timing-md);
+    }
 
-        transform: translateY(-100vh) scale(0.3);
-        opacity: 0;
-        transition: all var(--ease) var(--timing-md);
+    .active .wrapper {
+        transform: translateX(0);
     }
 
     .button {

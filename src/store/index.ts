@@ -1,13 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import stocksReducer from '@/store/reducers/stocksSlice';
-import userReducer from '@/store/reducers/userSlice';
+import userMiddleware from '@/store/middlewares/userMiddleware';
+import rootReducer from '@/store/rootReducer';
 
 export const store = configureStore({
-   reducer: {
-      stocks: stocksReducer,
-      user: userReducer,
+   reducer: rootReducer,
+   middleware: (getDefaultMiddleware) => {
+      return getDefaultMiddleware().concat(userMiddleware);
    },
 });
 
-export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

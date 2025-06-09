@@ -4,11 +4,23 @@ import cn from 'classnames';
 import {Link} from 'react-router';
 
 const Button = (props: ButtonProps) => {
-    const { theme = 'primary', size = 'medium', children, className} = props;
+    const {
+        theme,
+        size,
+        children,
+        shape,
+        className
+    } = props;
+
+    const themeLocal = theme ?? 'primary';
+    const sizeLocal = size ?? 'medium';
+    const shapeLocal = shape ?? 'standard';
+
     const classes = cn(
         styles.button,
-        styles[theme],
-        styles[size],
+        styles[themeLocal],
+        styles[sizeLocal],
+        styles[shapeLocal],
         className,
     );
 
