@@ -18,7 +18,7 @@ function App() {
     document.querySelector('body')?.setAttribute('data-theme', theme);
 
     return (
-        <BrowserRouter>
+        <BrowserRouter basename='/'>
             <div className='app'>
                 <Routes>
                     <Route element={<MainLayout/>}>
