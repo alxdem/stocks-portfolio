@@ -10,7 +10,7 @@ import type {
     FormatHugeNumber,
 } from '@models';
 import {HugeNumberPower} from '@models';
-import {appKey} from '@utils/variables';
+import {appKey, CHART_COLORS} from '@utils/variables';
 import snp500SymbolList from '@fixtures/snp500list';
 
 const getBody = () => document.querySelector('body');
@@ -115,7 +115,11 @@ export const formatPrice: FormatPrice = (value, isRound = false) => {
     }
 }
 
-export const getPercent: GetPercent = (basis, current) => {
+export const getPercent: GetPercent = (basic, current) => {
+    return current * 100 / basic;
+};
+
+export const getDifferencePercent: GetPercent = (basis, current) => {
     const difference = basis - current;
 
     return difference === 0 ? 0 : difference * 100 / basis;
@@ -172,4 +176,8 @@ export const formatHugeNumber: FormatHugeNumber = (value) => {
         default:
             return '';
     }
+};
+
+export const getChartColor = (index: number) => {
+    return CHART_COLORS[index % CHART_COLORS.length];
 };

@@ -1,5 +1,5 @@
 import type {GetCalculatedPortfolio, StockPosition, GetFormattedPortfolio, Operation} from '@models';
-import {formatPrice, getPercent} from '@utils/index';
+import {formatPrice, getDifferencePercent} from '@utils/index';
 
 export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stockData) => {
     const portfolioObject: Record<string, StockPosition> = {};
@@ -29,7 +29,7 @@ export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stock
 
             itemObject.totalPrice = price * itemObject.value;
             itemObject.gain = (price - itemObject.averagePrice) * itemObject.value;
-            itemObject.gainPercent = getPercent(price, itemObject.averagePrice);
+            itemObject.gainPercent = getDifferencePercent(price, itemObject.averagePrice);
         } else {
             portfolioObject[symbol] = {
                 symbol,
@@ -37,14 +37,17 @@ export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stock
                 price,
                 value: operation.value,
                 averagePrice: operation.price,
-                totalPrice: operation.value * operation.price,
+                totalPrice: operation.value * price,
                 gain: (price - operation.price) * operation.value,
-                gainPercent: getPercent(price, operation.price),
+                gainPercent: getDifferencePercent(price, operation.price),
             }
         }
     });
 
-    return Object.values(portfolioObject);
+    const array = Object.values(portfolioObject);
+    array.sort((a, b) => b.totalPrice - a.totalPrice);
+
+    return array;
 };
 
 export const getFormattedPortfolio: GetFormattedPortfolio = (portfolio) => {
@@ -74,6 +77,14 @@ export const recalculateBalance = (operations: Operation[]) => {
         const sign = isNegative ? -1 : 1;
 
         return acc + (operation.value * operation.price * sign);
+    }, 0);
+
+    return Math.floor(result * 100) / 100;
+};
+
+export const recalculateWorth = (portfolio: StockPosition[]) => {
+    const result = portfolio.reduce((acc, item) => {
+        return acc + item.price * item.value;
     }, 0);
 
     return Math.floor(result * 100) / 100;
