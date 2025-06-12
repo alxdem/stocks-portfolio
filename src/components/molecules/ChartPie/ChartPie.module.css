@@ -1,0 +1,54 @@
+g {
+    outline: none;
+}
+
+.legendList {
+    padding: 0;
+}
+
+.legendItem {
+    display: flex;
+    gap: 1vw;
+}
+
+.name {
+    font-size: 0.7vw;
+}
+
+.percent,
+.value {
+    font-size: 0.9vw;
+}
+
+@media(max-width: 1279px) {
+    .name {
+        font-size: 0.9vw;
+    }
+
+    .percent,
+    .value {
+        font-size: 1vw;
+    }
+}
+
+@media(max-width: 991px) {
+    .name {
+        font-size: 1.4vw;
+    }
+
+    .percent,
+    .value {
+        font-size: 1.8vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .name {
+        font-size: 3.8vw;
+    }
+
+    .percent,
+    .value {
+        font-size: 5vw;
+    }
+}

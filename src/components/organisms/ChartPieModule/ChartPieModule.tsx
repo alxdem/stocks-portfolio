@@ -1,0 +1,52 @@
+import type {ChartPieModuleProps} from '@organisms/ChartPieModule/ChartPieModule.props';
+import styles from '@organisms/ChartPieModule/ChartPieModule.module.css';
+import CloudSection from '@molecules/CloudSection/CloudSection';
+import ChartPie from '@molecules/ChartPie/ChartPie';
+import cn from 'classnames';
+import {useState, type CSSProperties} from 'react';
+import {formatPrice, getChartColor} from '@/utils';
+
+const ChartPieModule = ({data, className}: ChartPieModuleProps) => {
+    const [activeShape, setActiveShape] = useState<number | undefined>(undefined);
+
+    const legendElement = () => {
+        return (
+            <ul className={styles.legendList}>
+                {
+                    data.map((item, index) => {
+                        const name = item.name;
+                        const formatValue = formatPrice(item.value, true);
+                        const style = {
+                            '--bullet-color': getChartColor(index),
+                        } as CSSProperties & Record<string, string>;
+
+                        return (
+                            <li
+                                className={styles.legendItem}
+                                key={name}
+                                style={style}
+                                onMouseEnter={() => setActiveShape(index)}
+                            >
+                                <span className={styles.legendName}>{name}</span>
+                                <span className={styles.legendValues}>{`$${formatValue} (${item.percent}%)`}</span>
+                            </li>
+                        );
+                    })
+                }
+            </ul>
+        );
+    };
+
+    return (
+        <CloudSection className={cn(styles.cloud, className)}>
+            <ChartPie
+                className={styles.chart}
+                data={data}
+                activeShapeIndex={activeShape}
+            />
+            {legendElement()}
+        </CloudSection>
+    );
+};
+
+export default ChartPieModule;
