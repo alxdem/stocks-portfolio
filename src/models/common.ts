@@ -57,6 +57,7 @@ export interface Operation extends OperationBasic {
 export interface StockPositionBasic {
     symbol: string;
     name: string;
+    sector?: string;
 }
 
 export interface StockPosition extends StockPositionBasic {

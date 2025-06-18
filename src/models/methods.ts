@@ -1,4 +1,13 @@
-import type {Operation, OperationKind, StockPosition, StockPositionFormatted, TickersObject} from "@/models/common";
+import type {
+    Nullable,
+    Operation,
+    OperationKind,
+    StockPosition,
+    StockPositionFormatted,
+    TickersObject,
+} from "@/models/common";
+
+import type {ChartPieData} from '@/models/rechart';
 
 export type GetOperationName = (
     stocksObj: TickersObject,
@@ -27,6 +36,11 @@ export type GetPercent = (
     current: number,
 ) => number;
 
-export interface FormatHugeNumber {
-    (value: number | string | undefined): string;
-}
+export type FormatHugeNumber = (
+    value: number | string | undefined
+) => string;
+
+export type GetChartPie = (
+    items: Nullable<StockPosition[]>,
+    assetsWorth: number
+) =>  ChartPieData[];

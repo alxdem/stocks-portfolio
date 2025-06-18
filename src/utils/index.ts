@@ -8,6 +8,8 @@ import type {
     Nullable,
     GetPercent,
     FormatHugeNumber,
+    ChartPieData,
+    GetChartPie,
 } from '@models';
 import {HugeNumberPower} from '@models';
 import {appKey, CHART_COLORS} from '@utils/variables';
@@ -181,3 +183,49 @@ export const formatHugeNumber: FormatHugeNumber = (value) => {
 export const getChartColor = (index: number) => {
     return CHART_COLORS[index % CHART_COLORS.length];
 };
+
+export const getPortfolioChartPie: GetChartPie = (items, assetsWorth) => {
+    if (!items || items.length < 1) {
+        return [];
+    }
+
+    return items.map(item => {
+        const value = item.value * item.price;
+        const percent = getPercent(assetsWorth, value).toFixed(2);
+
+        return {
+            name: item.name,
+            value,
+            percent,
+        };
+    });
+}
+
+export const getSectorsChartPie: GetChartPie = (items, assetsWorth) => {
+    if (!items || items.length < 1) {
+        return [];
+    }
+
+    const sectors: Record<string, Omit<ChartPieData, 'percent'>> = {};
+
+    items.forEach(item => {
+        const value = item.value * item.price;
+        const sector = item.sector || '';
+
+        if (sectors[sector]) {
+            sectors[sector].value += value;
+        } else {
+            sectors[sector] = {
+                name: sector,
+                value,
+            }
+        }
+    });
+
+    const result: ChartPieData[] = Object.values(sectors).map(sector => ({
+        ...sector,
+        percent: getPercent(assetsWorth, sector.value).toFixed(2),
+    }));
+
+    return result;
+}

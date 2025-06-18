@@ -16,6 +16,7 @@ export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stock
 
         const name = stockData[symbol].name;
         const price = stockData[symbol].price || 0;
+        const sector = stockData[symbol].sector || '';
 
         if (Object.prototype.hasOwnProperty.call(portfolioObject, symbol)) {
             const itemObject = portfolioObject[symbol];
@@ -35,6 +36,7 @@ export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stock
                 symbol,
                 name,
                 price,
+                sector,
                 value: operation.value,
                 averagePrice: operation.price,
                 totalPrice: operation.value * price,

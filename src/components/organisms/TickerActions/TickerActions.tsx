@@ -10,10 +10,11 @@ import FormOperation from '@organisms/FormOperation/FormOperation';
 import Modal from '@organisms/Modal/Modal';
 import {useAppSelector} from '@/store/hooks';
 import type {OperationKind} from '@models';
+import {selectBalance, selectPortfolio} from '@/store/selectors/userSelectors';
 
 const TickerActions = ({image, title, symbol, price, className}: TickerActionsProps) => {
-    const balance = useAppSelector(state => state.user.balance);
-    const portfolio = useAppSelector((state) => state.user.portfolio);
+    const balance = useAppSelector(selectBalance);
+    const portfolio = useAppSelector(selectPortfolio);
 
     const [modalOpened, setModalOpened] = useState(false);
     const [operationType, setOperationType] = useState<OperationKind>('purchase');
