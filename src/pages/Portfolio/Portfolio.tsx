@@ -3,9 +3,10 @@ import {useAppSelector} from '@/store/hooks';
 import TickerCard from '@organisms/TickerCard/TickerCard';
 import TickerList from '@organisms/TickerList/TickerList';
 import styles from '@pages/Portfolio/Portfolio.module.css';
+import {selectFormattedPortfolio} from '@/store/selectors/userSelectors';
 
 const PortfolioPage = () => {
-    const portfolio = useAppSelector(state => state.user.formattedPortfolio);
+    const portfolio = useAppSelector(selectFormattedPortfolio);
 
     let elements;
 

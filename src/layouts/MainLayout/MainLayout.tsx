@@ -8,12 +8,13 @@ import useDataInit from '@hooks/useDataInit';
 import useUserDataInit from '@hooks/useUserDataInit'; // TODO: Rewrite hooks, importing from index.ts
 import useCalculatedPortfolio from '@hooks/useCalculatedPortfolio';
 import {useAppSelector} from '@/store/hooks';
+import {selectStocks} from '@/store/selectors/stocksSelectors';
 
 const MainLayout = () => {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const navBtnRef = useRef<HTMLButtonElement>(null);
 
-    const stocks = useAppSelector((state) => state.stocks.stocks);
+    const stocks = useAppSelector(selectStocks);
 
     useClickOutside([navBtnRef], () => setIsNavOpen(false));
 

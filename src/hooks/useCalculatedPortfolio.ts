@@ -2,11 +2,13 @@ import {useAppDispatch, useAppSelector} from '@/store/hooks';
 import {useEffect} from 'react';
 import {getCalculatedPortfolio, getFormattedPortfolio} from '@utils/businessLogic';
 import {setPortfolio, setFormattedPortfolio} from '@/store/reducers/userSlice';
+import {selectOperations} from '@/store/selectors/userSelectors';
+import {selectStocks} from '@/store/selectors/stocksSelectors';
 
 const useCalculatedPortfolio = () => {
     const dispatch = useAppDispatch();
-    const operations = useAppSelector(state => state.user.operations);
-    const stockData = useAppSelector(state => state.stocks.stocks);
+    const operations = useAppSelector(selectOperations);
+    const stockData = useAppSelector(selectStocks);
 
     useEffect(() => {
         if (!stockData || !operations || operations.length === 0) {

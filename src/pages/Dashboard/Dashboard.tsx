@@ -1,23 +1,11 @@
 import {useAppSelector} from '@/store/hooks';
 import styles from '@pages/Dashboard/Dashboard.module.css';
 import ChartPieModule from '@organisms/ChartPieModule/ChartPieModule';
-import type {ChartPieData} from '@models';
-import {getPercent} from '@/utils';
+import {selectSectors, selectPortfolioChartPie} from '@/store/selectors/userSelectors';
 
 const DashboardPage = () => {
-    const portfolio = useAppSelector(state => state.user.portfolio);
-    const assetsWorth = useAppSelector(state => state.user.assetsWorth);
-
-    const dataPortfolio: ChartPieData[] = portfolio ? portfolio?.map(item => {
-        const value = item.value * item.price;
-        const percent = getPercent(assetsWorth, value).toFixed(2);
-
-        return {
-            name: item.name,
-            value,
-            percent,
-        };
-    }) : [];
+    const dataPortfolio = useAppSelector(selectPortfolioChartPie);
+    const dataSectors = useAppSelector(selectSectors);
 
     return (
         <div className={styles.main}>
@@ -27,7 +15,7 @@ const DashboardPage = () => {
             />
             <ChartPieModule
                 className={styles.column2}
-                data={dataPortfolio}
+                data={dataSectors}
             />
         </div>
     );

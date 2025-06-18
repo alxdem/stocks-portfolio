@@ -3,10 +3,12 @@ import CloudSection from '@molecules/CloudSection/CloudSection';
 import OperationCard from '@organisms/OperationCard/OperationCard';
 import styles from '@pages/Operations/Operations.module.css';
 import {getOperationName} from '@/utils';
+import {selectOperations} from '@/store/selectors/userSelectors';
+import {selectStocks} from '@/store/selectors/stocksSelectors';
 
 const OperationsPage = () => {
-    const operations = useAppSelector((state => state.user.operations));
-    const stocksObj = useAppSelector((state) => state.stocks.stocks);
+    const operations = useAppSelector(selectOperations);
+    const stocksObj = useAppSelector(selectStocks);
 
     let elements;
 
