@@ -1,19 +1,43 @@
 import {createSelector} from '@reduxjs/toolkit';
 import type {RootState} from '@/store/rootReducer.ts';
-import {getSectorsChartPie, getPortfolioChartPie} from '@/utils';
+import {getSectorsChartPie, getPortfolioChartPie, truncateValue, getAssetsTypesChartPie} from '@/utils';
+import {recalculateMarketValue, recalculateCash, getDepositValue} from '@/utils/businessLogic';
 
 export const selectPortfolio = (state: RootState) => state.user.portfolio;
 export const selectFormattedPortfolio = (state: RootState) => state.user.formattedPortfolio;
-export const selectAssetsWorth = (state: RootState) => state.user.assetsWorth;
-export const selectBalance = (state: RootState) => state.user.balance;
 export const selectOperations = (state: RootState) => state.user.operations;
 
+export const selectCash = createSelector(
+    [selectOperations],
+    (operations) => recalculateCash(operations),
+);
+
+export const selectMarketValue = createSelector(
+    [selectPortfolio],
+    (portfolio) => recalculateMarketValue(portfolio),
+);
+
+export const selectNetAssetValue = createSelector(
+    [selectCash, selectMarketValue],
+    (cash, marketValue) => truncateValue(cash + marketValue),
+);
+
+export const selectDeposit = createSelector(
+    [selectOperations],
+    (operations) => getDepositValue(operations),
+);
+
 export const selectPortfolioChartPie = createSelector(
-    [selectPortfolio, selectAssetsWorth],
-    (portfolio, assetsWorth) => getPortfolioChartPie(portfolio, assetsWorth),
+    [selectPortfolio, selectMarketValue],
+    (portfolio, marketValue) => getPortfolioChartPie(portfolio, marketValue),
 );
 
 export const selectSectors = createSelector(
-    [selectPortfolio, selectAssetsWorth],
-    (portfolio, assetsWorth) => getSectorsChartPie(portfolio, assetsWorth),
+    [selectPortfolio, selectMarketValue],
+    (portfolio, marketValue) => getSectorsChartPie(portfolio, marketValue),
+);
+
+export const selectAssetTypesChartPie = createSelector(
+    [selectCash, selectNetAssetValue],
+    (cash, assetsValue) => getAssetsTypesChartPie(cash, assetsValue),
 );

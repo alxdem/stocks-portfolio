@@ -4,7 +4,7 @@ import CloudSection from '@molecules/CloudSection/CloudSection';
 import ChartPie from '@molecules/ChartPie/ChartPie';
 import cn from 'classnames';
 import {useState, type CSSProperties} from 'react';
-import {formatPrice, getChartColor} from '@/utils';
+import {formatNumber, getChartColor} from '@/utils';
 
 const ChartPieModule = ({data, className}: ChartPieModuleProps) => {
     const [activeShape, setActiveShape] = useState<number | undefined>(undefined);
@@ -15,7 +15,7 @@ const ChartPieModule = ({data, className}: ChartPieModuleProps) => {
                 {
                     data.map((item, index) => {
                         const name = item.name;
-                        const formatValue = formatPrice(item.value, true);
+                        const formatValue = formatNumber(item.value, true, true);
                         const style = {
                             '--bullet-color': getChartColor(index),
                         } as CSSProperties & Record<string, string>;
@@ -28,7 +28,7 @@ const ChartPieModule = ({data, className}: ChartPieModuleProps) => {
                                 onMouseEnter={() => setActiveShape(index)}
                             >
                                 <span className={styles.legendName}>{name}</span>
-                                <span className={styles.legendValues}>{`$${formatValue} (${item.percent}%)`}</span>
+                                <span className={styles.legendValues}>{`${formatValue} (${item.percent}%)`}</span>
                             </li>
                         );
                     })

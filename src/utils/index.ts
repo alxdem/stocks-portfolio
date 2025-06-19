@@ -4,12 +4,13 @@ import type {
     TickersObject,
     GetOperationName,
     IsStringNumber,
-    FormatPrice,
+    FormatNumber,
     Nullable,
     GetPercent,
     FormatHugeNumber,
     ChartPieData,
     GetChartPie,
+    GetAssetsTypesChartPie,
 } from '@models';
 import {HugeNumberPower} from '@models';
 import {appKey, CHART_COLORS} from '@utils/variables';
@@ -30,6 +31,10 @@ export const themeSwitch = () => {
 
 const isSnP500Include = (symbol: string | undefined): boolean => {
     return Boolean(symbol && snp500SymbolList.includes(symbol));
+}
+
+export const truncateValue = (value: number) => {
+    return Math.floor((value) * 100) / 100;
 }
 
 export const createStocksObject = (stocks: Nullable<TickerDataExtended[]>): TickersObject => {
@@ -106,12 +111,25 @@ export const isStringNumber: IsStringNumber = (value) => {
     return typeof value === 'string' && !isNaN(Number(value));
 };
 
-export const formatPrice: FormatPrice = (value, isRound = false) => {
+const formatPrice = (value: number): string => {
+    return value < 0
+        ? `-$${(value * -1).toLocaleString()}`
+        : `$${value.toLocaleString()}`;
+};
+
+export const formatNumber: FormatNumber = (value, isRound = false, isPrice = false) => {
     if (isStringNumber(value)) {
-        return `${(Number(value).toLocaleString())}`;
+        const numberValue = Number(value);
+
+        return isPrice
+            ? formatPrice(numberValue)
+            : `${(numberValue.toLocaleString())}`;
     } else if (typeof value === 'number') {
         const localValue = isRound ? Math.round(value) : Number(value.toFixed(2));
-        return `${(localValue.toLocaleString())}`;
+
+        return isPrice
+            ? formatPrice(localValue)
+            : `${(localValue.toLocaleString())}`;
     } else {
         return value || '';
     }
@@ -184,14 +202,14 @@ export const getChartColor = (index: number) => {
     return CHART_COLORS[index % CHART_COLORS.length];
 };
 
-export const getPortfolioChartPie: GetChartPie = (items, assetsWorth) => {
+export const getPortfolioChartPie: GetChartPie = (items, marketValue) => {
     if (!items || items.length < 1) {
         return [];
     }
 
     return items.map(item => {
         const value = item.value * item.price;
-        const percent = getPercent(assetsWorth, value).toFixed(2);
+        const percent = getPercent(marketValue, value).toFixed(2);
 
         return {
             name: item.name,
@@ -201,7 +219,7 @@ export const getPortfolioChartPie: GetChartPie = (items, assetsWorth) => {
     });
 }
 
-export const getSectorsChartPie: GetChartPie = (items, assetsWorth) => {
+export const getSectorsChartPie: GetChartPie = (items, marketValue) => {
     if (!items || items.length < 1) {
         return [];
     }
@@ -224,8 +242,25 @@ export const getSectorsChartPie: GetChartPie = (items, assetsWorth) => {
 
     const result: ChartPieData[] = Object.values(sectors).map(sector => ({
         ...sector,
-        percent: getPercent(assetsWorth, sector.value).toFixed(2),
+        percent: getPercent(marketValue, sector.value).toFixed(2),
     }));
 
     return result;
 }
+
+export const getAssetsTypesChartPie: GetAssetsTypesChartPie = (cash, assetsValue) => {
+    const summ = cash + assetsValue;
+
+    return [
+        {
+            name: 'Cash',
+            value: cash,
+            percent: getPercent(summ, cash).toFixed(2),
+        },
+        {
+            name: 'Assets',
+            value: assetsValue,
+            percent: getPercent(summ, assetsValue).toFixed(2),
+        }
+    ];
+};

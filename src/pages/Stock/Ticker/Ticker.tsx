@@ -1,5 +1,5 @@
 import TickerHeader from '@molecules/TickerHeader/TickerHeader';
-import {formatPrice, formatHugeNumber} from '@/utils';
+import {formatNumber, formatHugeNumber} from '@/utils';
 import CloudSection from '@molecules/CloudSection/CloudSection';
 import styles from '@pages/Stock/Ticker/Ticker.module.css';
 import typographyStyles from '@/styles/typography.module.css';
@@ -69,7 +69,7 @@ const TickerPage = () => {
     } = temp || {};
 
     const title = `${companyName} (${symbol})`;
-    const priceLocal = `$${formatPrice(price)}`;
+    const priceLocal = `${formatNumber(price, false, true)}`;
 
     return (
         <section className={cn(styles.main, typographyStyles.wrapper)}>
@@ -90,7 +90,7 @@ const TickerPage = () => {
                     <h2>Company profile</h2>
                     {sector && <p>Sector: <b>{sector}</b></p>}
                     {industry && <p>Industry: <b>{industry}</b></p>}
-                    {fullTimeEmployees && <p>Employees: <b>{formatPrice(fullTimeEmployees)}</b></p>}
+                    {fullTimeEmployees && <p>Employees: <b>{formatNumber(fullTimeEmployees)}</b></p>}
                     {ceo && <p>Ceo: <b>{ceo}</b></p>}
 
                     <div className={typographyStyles.smallText}>

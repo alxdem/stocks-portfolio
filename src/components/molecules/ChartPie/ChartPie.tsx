@@ -4,7 +4,7 @@ import {Cell, Pie, PieChart, ResponsiveContainer, Sector} from 'recharts';
 import {useState, useRef, useEffect} from 'react';
 import cn from 'classnames';
 import type {ChartPieProps} from '@models';
-import {formatPrice, getChartColor} from '@/utils';
+import {formatNumber, getChartColor} from '@/utils';
 import useAppMediaQuery from '@hooks/useAppMediaQuery';
 import {QUERY_MOBILE, QUERY_TABLET, QUERY_DESKTOP_SM} from '@utils/variables';
 
@@ -51,7 +51,7 @@ const ChartPie = ({data, activeShapeIndex, className}: ChartPieProps) => {
             percent,
             value,
         } = props as ActiveShape;
-        const formatValue = formatPrice(value, true);
+        const formatValue = formatNumber(value, true, true);
 
         return (
             <g>
@@ -59,7 +59,7 @@ const ChartPie = ({data, activeShapeIndex, className}: ChartPieProps) => {
                 <text x={cx} y={cy} textAnchor="middle">
                     <tspan className={styles.name} x={cx} dy='0'>{name}</tspan>
                     <tspan className={styles.percent} x={cx} dy={`${gap}vw`}>{`${percent}%`}</tspan>
-                    <tspan className={styles.value} x={cx} dy={`${gap}vw`}>{`$${formatValue}`}</tspan>
+                    <tspan className={styles.value} x={cx} dy={`${gap}vw`}>{`${formatValue}`}</tspan>
                 </text>
                 <Sector
                     className={styles.sector}
