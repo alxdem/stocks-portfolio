@@ -17,9 +17,10 @@ export type GetOperationName = (
 
 export type IsStringNumber = (value?: string | number) => boolean;
 
-export type FormatPrice = (
+export type FormatNumber = (
     value: string | number,
     isRound?: boolean,
+    isPrice?: boolean,
 ) => string;
 
 export type GetCalculatedPortfolio = (
@@ -42,5 +43,10 @@ export type FormatHugeNumber = (
 
 export type GetChartPie = (
     items: Nullable<StockPosition[]>,
-    assetsWorth: number
+    marketValue: number
 ) =>  ChartPieData[];
+
+export type GetAssetsTypesChartPie = (
+    cash: number,
+    assetsValue: number,
+) => ChartPieData[];

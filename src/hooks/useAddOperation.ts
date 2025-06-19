@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useAppDispatch} from '@/store/hooks';
 import type {Operation} from '@models';
-import {fakeFetch} from '@/utils';
+import {fakeFetch, formatNumber} from '@/utils';
 import {addOperation as addOperationAction} from '@/store/reducers/userSlice';
 
 const useAddOperation = () => {
@@ -15,7 +15,7 @@ const useAddOperation = () => {
 
         setIsLoading(false);
 
-        return `You bought ${operation.value} shares for $${operation.value * operation.price}`;
+        return `You bought ${operation.value} shares for ${formatNumber(operation.value * operation.price, false, true)}`;
     };
 
 

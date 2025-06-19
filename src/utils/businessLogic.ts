@@ -1,5 +1,5 @@
-import type {GetCalculatedPortfolio, StockPosition, GetFormattedPortfolio, Operation} from '@models';
-import {formatPrice, getDifferencePercent} from '@utils/index';
+import type {GetCalculatedPortfolio, StockPosition, GetFormattedPortfolio, Operation, Nullable} from '@models';
+import {formatNumber, getDifferencePercent, truncateValue} from '@utils/index';
 
 export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stockData) => {
     const portfolioObject: Record<string, StockPosition> = {};
@@ -55,17 +55,15 @@ export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stock
 export const getFormattedPortfolio: GetFormattedPortfolio = (portfolio) => {
     return portfolio.map(item => {
         const isLoss = item.gain < 0;
-        const gainLocal = isLoss
-            ? `-$${formatPrice(item.gain * -1, true)}`
-            : `$${formatPrice(item.gain, true)}`;
-        const percent = item.gainPercent ? `${formatPrice(item.gainPercent, true)}%` : '-';
+        const gainLocal= formatNumber(item.gain, true, true);
+        const percent = item.gainPercent ? `${formatNumber(item.gainPercent, true)}%` : '-';
 
         return {
             ...item,
-            value: formatPrice(item.value),
-            price: `$${formatPrice(item.price)}`,
-            averagePrice: `$${formatPrice(item.averagePrice)}`,
-            totalPrice: `$${formatPrice(item.totalPrice)}`,
+            value: formatNumber(item.value),
+            price: formatNumber(item.price, false, true),
+            averagePrice: formatNumber(item.averagePrice,false, true),
+            totalPrice: formatNumber(item.totalPrice, false, true),
             gain: gainLocal,
             gainPercent: percent,
             isLoss,
@@ -73,7 +71,11 @@ export const getFormattedPortfolio: GetFormattedPortfolio = (portfolio) => {
     });
 };
 
-export const recalculateBalance = (operations: Operation[]) => {
+export const recalculateCash = (operations: Nullable<Operation[]>) => {
+    if (!operations || operations.length < 1) {
+        return 0;
+    }
+
     const result = operations.reduce((acc, operation) => {
         const isNegative = operation.type === 'withdraw' || operation.type === 'purchase';
         const sign = isNegative ? -1 : 1;
@@ -81,13 +83,34 @@ export const recalculateBalance = (operations: Operation[]) => {
         return acc + (operation.value * operation.price * sign);
     }, 0);
 
-    return Math.floor(result * 100) / 100;
+    return truncateValue(result);
 };
 
-export const recalculateWorth = (portfolio: StockPosition[]) => {
+export const recalculateMarketValue = (portfolio: Nullable<StockPosition[]>) => {
+    if (!portfolio || portfolio.length < 1) {
+        return 0;
+    }
+
     const result = portfolio.reduce((acc, item) => {
         return acc + item.price * item.value;
     }, 0);
 
-    return Math.floor(result * 100) / 100;
+    return truncateValue(result);
 };
+
+export const getDepositValue = (operations: Nullable<Operation[]>) => {
+    if (!operations || operations.length < 1) {
+        return 0;
+    }
+
+    return operations.reduce((acc, operation) => {
+        const type = operation.type;
+        if (type === 'deposit' || type === 'withdraw') {
+            const sign = type === 'withdraw' ? -1 : 1;
+
+            return acc + operation.price * sign;
+        } else {
+            return acc;
+        }
+    }, 0);
+}

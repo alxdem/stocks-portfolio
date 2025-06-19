@@ -1,5 +1,5 @@
 import type {OperationCardProps} from '@organisms/OperationCard/OperationCard.props.ts';
-import {formatPrice} from '@/utils';
+import {formatNumber} from '@/utils';
 import OperationCardDesktop from '@organisms/OperationCard/OperationCardDesktop/OperationCardDesktop';
 import useAppMediaQuery from '@hooks/useAppMediaQuery';
 import OperationCardMobile from '@organisms/OperationCard/OperationCardMobile/OperationCardMobile';
@@ -11,10 +11,10 @@ const OperationCard = (props: OperationCardProps) => {
 
     const isServiceOperation = type === 'deposit' || type === 'withdraw';
     const isTotalPlus = type === 'sale' || type === 'deposit';
-    const sign = isTotalPlus ? '+' : '-';
-    const total = `${sign}$${formatPrice(price * value)}`;
+    const sign = isTotalPlus ? 1 : -1;
+    const total = formatNumber(price * value * sign, false, true);
     const valueLocal = isServiceOperation ? '': value.toString();
-    const priceLocal = isServiceOperation ? '' : `$${formatPrice(price)}`;
+    const priceLocal = isServiceOperation ? '' : formatNumber(price, false, true);
 
     if (isMobile) {
         return <OperationCardMobile

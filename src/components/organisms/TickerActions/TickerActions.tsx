@@ -4,16 +4,16 @@ import cn from 'classnames';
 import Button from '@atoms/Button/Button';
 import {useCallback, useState} from 'react';
 import Balance from "@molecules/Balance/Balance.tsx";
-import {formatPrice} from "@/utils";
+import {formatNumber} from "@/utils";
 import TickerCardInfo from '@molecules/TickerCardInfo/TickerCardInfo.tsx';
 import FormOperation from '@organisms/FormOperation/FormOperation';
 import Modal from '@organisms/Modal/Modal';
 import {useAppSelector} from '@/store/hooks';
 import type {OperationKind} from '@models';
-import {selectBalance, selectPortfolio} from '@/store/selectors/userSelectors';
+import {selectCash, selectPortfolio} from '@/store/selectors/userSelectors';
 
 const TickerActions = ({image, title, symbol, price, className}: TickerActionsProps) => {
-    const balance = useAppSelector(selectBalance);
+    const balance = useAppSelector(selectCash);
     const portfolio = useAppSelector(selectPortfolio);
 
     const [modalOpened, setModalOpened] = useState(false);
@@ -71,7 +71,7 @@ const TickerActions = ({image, title, symbol, price, className}: TickerActionsPr
                 {isTypePurchase && <Balance
                     className={styles.balance}
                     title='Account balance'
-                    value={`$${formatPrice(balance)}`}
+                    value={`${formatNumber(balance, false, true)}`}
                 />}
                 <TickerCardInfo
                     className={styles.info}
