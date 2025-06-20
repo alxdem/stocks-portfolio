@@ -4,7 +4,7 @@ import CloudSection from '@molecules/CloudSection/CloudSection';
 import ChartPie from '@molecules/ChartPie/ChartPie';
 import cn from 'classnames';
 import {useState, type CSSProperties} from 'react';
-import {formatNumber, getChartColor} from '@/utils';
+import {formatNumber, getChartColor} from '@utils';
 
 const ChartPieModule = ({data, className}: ChartPieModuleProps) => {
     const [activeShape, setActiveShape] = useState<number | undefined>(undefined);

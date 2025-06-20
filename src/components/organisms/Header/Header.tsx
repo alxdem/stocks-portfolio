@@ -7,7 +7,7 @@ import MenuIcon from '@images/menu.svg?react';
 import CloseIcon from '@images/close.svg?react';
 import type {HeaderProps} from '@organisms/Header/Header.props';
 import UserBadge from '@atoms/UserBadge/UserBadge';
-import {themeSwitch} from '@/utils';
+import {themeSwitch} from '@utils';
 
 const Header = ({isNavOpen, navBtnRef, navBtnClick}: HeaderProps) => {
     const user = { name: 'Victor Monro', photo: 'uploads/user1.jpg' };

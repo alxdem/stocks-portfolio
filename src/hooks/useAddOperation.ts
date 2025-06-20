@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useAppDispatch} from '@/store/hooks';
 import type {Operation} from '@models';
-import {fakeFetch, formatNumber} from '@/utils';
+import {fakeFetch, formatNumber} from '@utils';
 import {addOperation as addOperationAction} from '@/store/reducers/userSlice';
 
 const useAddOperation = () => {

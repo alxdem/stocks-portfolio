@@ -4,9 +4,8 @@ import {Cell, Pie, PieChart, ResponsiveContainer, Sector} from 'recharts';
 import {useState, useRef, useEffect} from 'react';
 import cn from 'classnames';
 import type {ChartPieProps} from '@models';
-import {formatNumber, getChartColor} from '@/utils';
 import useAppMediaQuery from '@hooks/useAppMediaQuery';
-import {QUERY_MOBILE, QUERY_TABLET, QUERY_DESKTOP_SM} from '@utils/variables';
+import {QUERY_MOBILE, QUERY_TABLET, QUERY_DESKTOP_SM, formatNumber, getChartColor} from '@utils';
 
 const ChartPie = ({data, activeShapeIndex, className}: ChartPieProps) => {
     const [activeShape, setActiveShape] = useState<number | undefined>(undefined);

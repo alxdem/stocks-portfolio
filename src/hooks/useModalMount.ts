@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {MODAL_ANIMATION_DELAY} from '@utils/variables';
+import {MODAL_ANIMATION_DELAY} from '@utils';
 
 const useModalMount = (isOpened: boolean) => {
     const [mounted, setMounted] = useState(false);

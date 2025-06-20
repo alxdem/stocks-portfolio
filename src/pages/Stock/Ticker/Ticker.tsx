@@ -1,5 +1,5 @@
 import TickerHeader from '@molecules/TickerHeader/TickerHeader';
-import {formatNumber, formatHugeNumber} from '@/utils';
+import {formatNumber, formatHugeNumber} from '@utils';
 import CloudSection from '@molecules/CloudSection/CloudSection';
 import styles from '@pages/Stock/Ticker/Ticker.module.css';
 import typographyStyles from '@/styles/typography.module.css';

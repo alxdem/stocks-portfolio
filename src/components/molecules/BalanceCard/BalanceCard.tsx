@@ -2,7 +2,7 @@ import type {BalanceCardProps} from '@molecules/BalanceCard/BalanceCard.props';
 import styles from '@molecules/BalanceCard/BalanceCard.module.css';
 import cn from 'classnames';
 import CloudSection from '@molecules/CloudSection/CloudSection';
-import {formatNumber, getDifferencePercent} from '@/utils';
+import {formatNumber, getDifferencePercent} from '@utils';
 import ArrowIcon from '@images/arrow-circle.svg?react';
 
 const BalanceCard = ({className, title, value, deposit}: BalanceCardProps) => {
