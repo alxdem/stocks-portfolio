@@ -2,7 +2,7 @@ import type {HTMLAttributes} from 'react';
 import styles from '@organisms/TickerList/TickerList.module.css';
 import cn from 'classnames';
 import useAppMediaQuery from '@hooks/useAppMediaQuery';
-import {QUERY_MOBILE} from '@utils/variables';
+import {QUERY_MOBILE} from '@utils';
 
 const TickerList = ({children, className}: HTMLAttributes<HTMLDivElement>) => {
     const isMobile = useAppMediaQuery(QUERY_MOBILE);

@@ -1,9 +1,8 @@
 import type {OperationCardProps} from '@organisms/OperationCard/OperationCard.props.ts';
-import {formatNumber} from '@/utils';
 import OperationCardDesktop from '@organisms/OperationCard/OperationCardDesktop/OperationCardDesktop';
 import useAppMediaQuery from '@hooks/useAppMediaQuery';
 import OperationCardMobile from '@organisms/OperationCard/OperationCardMobile/OperationCardMobile';
-import {QUERY_MOBILE} from '@utils/variables';
+import {QUERY_MOBILE, formatNumber} from '@utils';
 
 const OperationCard = (props: OperationCardProps) => {
     const {price, value, type} = props;

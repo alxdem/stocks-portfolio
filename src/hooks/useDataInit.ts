@@ -1,8 +1,7 @@
 import useFetch from '@hooks/useFetch';
-import {appKey, STOCKS_EXTENDED_DATA_URL} from '@utils/variables';
+import {appKey, STOCKS_EXTENDED_DATA_URL, createStocksObject} from '@utils';
 import {useEffect, useState} from 'react';
-import {createStocksObject} from '@/utils';
-import type {TickerDataExtended, TickersObject} from "@models";
+import type {TickerDataExtended, TickersObject} from '@models';
 import {useDispatch} from 'react-redux';
 import {setStocks} from '@/store/reducers/stocksSlice';
 

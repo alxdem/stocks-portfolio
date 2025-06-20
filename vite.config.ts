@@ -19,7 +19,7 @@ export default defineConfig({
             '@layouts': '/src/layouts',
             '@hooks': '/src/hooks',
             '@models': '/src/models/index.ts',
-            '@utils': '/src/utils',
+            '@utils': '/src/utils/index.ts',
             '@fixtures': '/src/assets/fixtures',
             '@images': '/src/assets/images',
         },

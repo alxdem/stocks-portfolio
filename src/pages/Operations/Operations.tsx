@@ -2,7 +2,7 @@ import {useAppSelector} from '@/store/hooks';
 import CloudSection from '@molecules/CloudSection/CloudSection';
 import OperationCard from '@organisms/OperationCard/OperationCard';
 import styles from '@pages/Operations/Operations.module.css';
-import {getOperationName} from '@/utils';
+import {getOperationName} from '@utils';
 import {selectOperations} from '@/store/selectors/userSelectors';
 import {selectStocks} from '@/store/selectors/stocksSelectors';
 

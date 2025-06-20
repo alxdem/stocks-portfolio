@@ -1,5 +1,18 @@
-import type {GetCalculatedPortfolio, StockPosition, GetFormattedPortfolio, Operation, Nullable} from '@models';
-import {formatNumber, getDifferencePercent, truncateValue} from '@utils/index';
+import type {
+    GetCalculatedPortfolio,
+    StockPosition,
+    GetFormattedPortfolio,
+    Operation,
+    Nullable,
+    TickerDataExtended, TickersObject, GetOperationName, FormatNumber, GetChartPie, ChartPieData, GetAssetsTypesChartPie
+} from '@models';
+import {isStringNumber, truncateValue, getPercent, getDifferencePercent} from '@/utils/common';
+import snp500SymbolList from '@fixtures/snp500list';
+import {CHART_COLORS} from "@/utils/variables";
+
+const isSnP500Include = (symbol: string | undefined): boolean => {
+    return Boolean(symbol && snp500SymbolList.includes(symbol));
+}
 
 export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stockData) => {
     const portfolioObject: Record<string, StockPosition> = {};
@@ -113,4 +126,149 @@ export const getDepositValue = (operations: Nullable<Operation[]>) => {
             return acc;
         }
     }, 0);
-}
+};
+
+export const createStocksObject = (stocks: Nullable<TickerDataExtended[]>): TickersObject => {
+    if (!stocks || stocks.length < 1) {
+        return {};
+    }
+
+    const stocksObject: TickersObject = {};
+
+    const filteredStocks = stocks.filter((item: TickerDataExtended) => {
+        return isSnP500Include(item.symbol);
+    });
+
+    filteredStocks.forEach((stock: TickerDataExtended) => {
+        const symbol = stock.symbol;
+
+        if (!symbol) {
+            return;
+        }
+
+        stocksObject[symbol] = {
+            symbol,
+            name: stock.companyName,
+            beta: stock.beta,
+            price: stock.price,
+            exchange: stock.exchange,
+            exchangeShortName: stock.exchangeShortName,
+            country: stock.country,
+            industry: stock.industry,
+            sector: stock.sector,
+            marketCap: stock.marketCap,
+            volume: stock.volume,
+            lastAnnualDividend: stock.lastAnnualDividend,
+        };
+    });
+
+    return stocksObject;
+};
+
+export const getOperationName: GetOperationName = (stocksObj, type, symbol) => {
+    switch (type) {
+        case 'deposit':
+            return 'deposit';
+        case 'withdraw':
+            return 'withdraw';
+        default: {
+            const name = symbol && stocksObj[symbol]?.name;
+            return name || '-';
+        }
+    }
+};
+
+const formatPrice = (value: number): string => {
+    return value < 0
+        ? `-$${(value * -1).toLocaleString()}`
+        : `$${value.toLocaleString()}`;
+};
+
+export const formatNumber: FormatNumber = (value, isRound = false, isPrice = false) => {
+    if (isStringNumber(value)) {
+        const numberValue = Number(value);
+
+        return isPrice
+            ? formatPrice(numberValue)
+            : `${(numberValue.toLocaleString())}`;
+    } else if (typeof value === 'number') {
+        const localValue = isRound ? Math.round(value) : Number(value.toFixed(2));
+
+        return isPrice
+            ? formatPrice(localValue)
+            : `${(localValue.toLocaleString())}`;
+    } else {
+        return value || '';
+    }
+};
+
+export const getTickerUrl = (symbol: string) => {
+    return `/stock/${symbol}`;
+};
+
+export const getChartColor = (index: number) => {
+    return CHART_COLORS[index % CHART_COLORS.length];
+};
+
+export const getPortfolioChartPie: GetChartPie = (items, marketValue) => {
+    if (!items || items.length < 1) {
+        return [];
+    }
+
+    return items.map(item => {
+        const value = item.value * item.price;
+        const percent = getPercent(marketValue, value).toFixed(2);
+
+        return {
+            name: item.name,
+            value,
+            percent,
+        };
+    });
+};
+
+export const getSectorsChartPie: GetChartPie = (items, marketValue) => {
+    if (!items || items.length < 1) {
+        return [];
+    }
+
+    const sectors: Record<string, Omit<ChartPieData, 'percent'>> = {};
+
+    items.forEach(item => {
+        const value = item.value * item.price;
+        const sector = item.sector || '';
+
+        if (sectors[sector]) {
+            sectors[sector].value += value;
+        } else {
+            sectors[sector] = {
+                name: sector,
+                value,
+            }
+        }
+    });
+
+    const result: ChartPieData[] = Object.values(sectors).map(sector => ({
+        ...sector,
+        percent: getPercent(marketValue, sector.value).toFixed(2),
+    }));
+
+    return result;
+};
+
+export const getAssetsTypesChartPie: GetAssetsTypesChartPie = (cash, assetsValue) => {
+    const summ = cash + assetsValue;
+
+    return [
+        {
+            name: 'Cash',
+            value: cash,
+            percent: getPercent(summ, cash).toFixed(2),
+        },
+        {
+            name: 'Assets',
+            value: assetsValue,
+            percent: getPercent(summ, assetsValue).toFixed(2),
+        }
+    ];
+};

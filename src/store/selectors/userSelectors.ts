@@ -1,7 +1,14 @@
 import {createSelector} from '@reduxjs/toolkit';
 import type {RootState} from '@/store/rootReducer.ts';
-import {getSectorsChartPie, getPortfolioChartPie, truncateValue, getAssetsTypesChartPie} from '@/utils';
-import {recalculateMarketValue, recalculateCash, getDepositValue} from '@/utils/businessLogic';
+import {
+    getSectorsChartPie,
+    getPortfolioChartPie,
+    truncateValue,
+    getAssetsTypesChartPie,
+    recalculateMarketValue,
+    recalculateCash,
+    getDepositValue
+} from '@utils';
 
 export const selectPortfolio = (state: RootState) => state.user.portfolio;
 export const selectFormattedPortfolio = (state: RootState) => state.user.formattedPortfolio;

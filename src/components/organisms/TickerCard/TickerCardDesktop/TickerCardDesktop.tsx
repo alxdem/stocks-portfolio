@@ -3,7 +3,7 @@ import styles from '@organisms/TickerCard/TickerCardDesktop/TickerCardDesktop.mo
 import {Link} from 'react-router';
 import TickerCardInfo from '@molecules/TickerCardInfo/TickerCardInfo';
 import cn from 'classnames';
-import {getTickerUrl} from '@/utils';
+import {getTickerUrl} from '@utils';
 
 const TickerCardDesktop = ({
          symbol,

@@ -3,7 +3,7 @@ import {Link} from 'react-router';
 import cn from 'classnames';
 import type {TickerCardProps} from '@organisms/TickerCard/TickerCard.props';
 import Logo from '@atoms/Logo/Logo';
-import {getTickerUrl} from '@/utils';
+import {getTickerUrl} from '@utils';
 
 const TickerCardMobile = ({
     symbol,

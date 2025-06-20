@@ -1,6 +1,6 @@
 import {useAppDispatch, useAppSelector} from '@/store/hooks';
 import {useEffect} from 'react';
-import {getCalculatedPortfolio, getFormattedPortfolio} from '@utils/businessLogic';
+import {getCalculatedPortfolio, getFormattedPortfolio} from '@utils';
 import {setPortfolio, setFormattedPortfolio} from '@/store/reducers/userSlice';
 import {selectOperations} from '@/store/selectors/userSelectors';
 import {selectStocks} from '@/store/selectors/stocksSelectors';

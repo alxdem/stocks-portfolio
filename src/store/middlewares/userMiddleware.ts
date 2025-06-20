@@ -1,7 +1,7 @@
 import type { Middleware } from '@reduxjs/toolkit';
 import {setOperations, addOperation} from '@/store/reducers/userSlice';
 import type {RootState} from '@/store/rootReducer';
-import {appKey} from '@utils/variables';
+import {appKey} from '@utils';
 
 const userMiddleware: Middleware<'', RootState> = store => next => action => {
     const result = next(action);
