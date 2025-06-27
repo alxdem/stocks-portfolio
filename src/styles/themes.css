@@ -37,6 +37,10 @@
     --balance-bg-color: var(--gray-900);
     --balance-color: var(--gray-200);
 
+    --credit-card-bg: var(--gray-700);
+    --credit-card-color: var(--gray-200);
+    --credit-card-text-shadow: 2px 2px 2px var(--color-text);
+
     --sidebar-shadow: 0 100px 80px rgba(174, 174, 190, 0.07),
     0 42px 33px rgba(174, 174, 190, 0.05),
     0 22px 18px rgba(174, 174, 190, 0.04),
@@ -90,6 +94,10 @@
         --balance-bg-color: var(--gray-500);
         --balance-color: var(--gray-1000);
 
+        --credit-card-bg: var(--gray-600);
+        --credit-card-color: var(--gray-900);
+        --credit-card-text-shadow: 1px 1px 2px var(--gray-500);
+
         --sidebar-shadow: none;
         --header-shadow: none;
     }
@@ -133,6 +141,10 @@
 
     --balance-bg-color: var(--gray-900);
     --balance-color: var(--gray-200);
+
+    --credit-card-bg: var(--gray-700);
+    --credit-card-color: var(--gray-200);
+    --credit-card-text-shadow: 2px 2px 2px var(--color-text);
 
     --sidebar-shadow: 0 100px 80px rgba(174, 174, 190, 0.07),
     0 42px 33px rgba(174, 174, 190, 0.05),
@@ -185,6 +197,10 @@
 
     --balance-bg-color: var(--gray-500);
     --balance-color: var(--gray-1000);
+
+    --credit-card-bg: var(--gray-600);
+    --credit-card-color: var(--gray-900);
+    --credit-card-text-shadow: 1px 1px 2px var(--gray-500);
 
     --sidebar-shadow: none;
     --header-shadow: none;

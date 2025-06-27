@@ -1,0 +1,47 @@
+.form {
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+    align-items: center;
+    gap: var(--gap);
+}
+
+.inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap);
+}
+
+.number {
+    grid-column: span 2;
+}
+
+.button {
+    grid-column: span 2;
+    margin-top: var(--gap);
+}
+
+.spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+}
+
+.loading .spinner {
+    opacity: 1;
+}
+
+@media(max-width: 991px) {
+    .form {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 767px) {
+    .payment {
+        grid-column: span 2;
+    }
+}

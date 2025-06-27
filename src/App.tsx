@@ -8,6 +8,7 @@ import {
     PortfolioPage,
     OperationsPage,
     Page404,
+    Deposit,
 } from '@pages/index';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                         </Route>
                         <Route path='portfolio' element={<PortfolioPage/>}/>
                         <Route path='operations' element={<OperationsPage/>}/>
+                        <Route path='deposit' element={<Deposit/>}/>
                         <Route path='/*' element={<Page404/>}/>
                     </Route>
                 </Routes>

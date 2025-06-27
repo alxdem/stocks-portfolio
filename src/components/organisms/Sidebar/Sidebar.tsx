@@ -11,6 +11,7 @@ const Sidebar = ({isOpen}: SidebarProps) => {
         { id: 'analytics', text: 'Analytics', link: '/analytics' },
         { id: 'stock', text: 'Stock', link: '/stock' },
         { id: 'about', text: 'About', link: '/about' },
+        { id: 'deposit', text: 'Deposit', link: '/deposit' },
     ];
 
     const classes = cn(

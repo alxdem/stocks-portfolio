@@ -1,0 +1,86 @@
+.card {
+    position: relative;
+    display: inline-flex;
+    background-color: var(--credit-card-bg);
+    overflow: hidden;
+    border-radius: 1.5vw;
+}
+
+.cardImage {
+    display: block;
+    width: 100%;
+}
+
+.card span {
+    position: absolute;
+}
+
+.number {
+    left: 3.2vw;
+    top: 8.6vw;
+    font-size: 2.6vw;
+    color: var(--credit-card-color);
+    text-shadow: var(--credit-card-text-shadow);
+}
+
+.expDate {
+    left: 2.1vw;
+    bottom: 1.6vw;
+    font-size: 1.4vw;
+    color: var(--credit-card-color);
+    text-shadow: var(--credit-card-text-shadow);
+}
+
+.cvv {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--bg-secondary);
+    border-radius: 0.4vw;
+    color: var(--color-text);
+    padding: 0 0.5vw;
+    box-sizing: border-box;
+    width: 3.3vw;
+    height: 2.3vw;
+    right: 2.1vw;
+    bottom: 1.6vw;
+    font-size: 1.2vw;
+    font-style: italic;
+}
+
+.logo {
+    position: absolute;
+    pointer-events: none;
+    width: 20vw;
+    top: -3.2vw;
+    left: 2vw;
+    opacity: 0.3;
+}
+
+@media(max-width: 1279px) {
+    .number {
+        left:2.5vw;
+        top: 8.6vw;
+        font-size: 2.5vw;
+    }
+
+    .expDate {
+        bottom: 1.4vw;
+        left: 1.8vw;
+        font-size: 1.5vw;
+    }
+
+    .cvv {
+        border-radius: 0.4vw;
+        padding: 0 0.8vw;
+        width: 4vw;
+        height: 2.6vw;
+        bottom: 1.2vw;
+        font-size: 1.4vw;
+    }
+
+    .logo {
+        width: 18vw;
+        top: -3.3vw;
+        left: 2vw;
+    }
+}

@@ -1,0 +1,27 @@
+.spinner {
+    display: block;
+    width: 3vw;
+    height: 3vw;
+    color: var(--link-color);
+}
+
+@media(max-width: 1279px) {
+    .spinner {
+        width: 4vw;
+        height: 4vw;
+    }
+}
+
+@media(max-width: 991px) {
+    .spinner {
+        width: 6vw;
+        height: 6vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .spinner {
+        width: 14vw;
+        height: 14vw;
+    }
+}

@@ -1,8 +1,9 @@
-import type {FieldProps} from '@atoms/Field/Field.props';
 import type {MouseEvent} from 'react';
+import type {ComponentPropsWithRef} from 'react';
 
-export interface CounterProps extends FieldProps {
+export interface CounterProps extends ComponentPropsWithRef<'input'> {
     value: number;
+    label?: string;
     min?: number;
     max?: number;
     reduce: (e: MouseEvent<HTMLButtonElement>) => void;
