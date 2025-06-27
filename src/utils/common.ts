@@ -106,3 +106,13 @@ export const formatHugeNumber: FormatHugeNumber = (value) => {
             return '';
     }
 };
+
+export const getCurrentYear = (isShort = false) => {
+    const year = new Date().getFullYear().toString();
+
+    if (isShort) {
+        return year.slice(-2);
+    }
+
+    return year;
+}

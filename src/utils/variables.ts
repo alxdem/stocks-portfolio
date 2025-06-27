@@ -27,3 +27,8 @@ export const CHART_COLORS = [
     'var(--rc-color-4)',
     'var(--rc-color-5)',
 ];
+
+export const message = {
+    REQUIRED: 'Please fill in the field',
+    INCORRECT: 'Please enter correct data',
+};
