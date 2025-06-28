@@ -3,6 +3,7 @@ import type {
     IsStringNumber,
     GetPercent,
     FormatHugeNumber,
+    Operation,
 } from '@models';
 import {HugeNumberPower} from '@models';
 import {appKey} from '@/utils/variables';
@@ -115,4 +116,8 @@ export const getCurrentYear = (isShort = false) => {
     }
 
     return year;
-}
+};
+
+export const sortOperations = (operations: Operation[]) => {
+    return [...operations].sort((a, b) => b.date - a.date);
+};

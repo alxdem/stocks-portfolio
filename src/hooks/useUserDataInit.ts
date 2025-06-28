@@ -1,5 +1,5 @@
 import {useAppDispatch} from '@/store/hooks';
-import {fakeFetch, appKey} from '@utils';
+import {fakeFetch, sortOperations, appKey} from '@utils';
 import {useEffect} from 'react';
 import {setOperations} from '@/store/reducers/userSlice';
 import {operations} from '@fixtures/dataUser1';
@@ -10,15 +10,17 @@ const useUserDataInit = () => {
     useEffect(() => {
         const getFetch = async () => {
             const data = await fakeFetch(operations);
+            const sortedData = sortOperations(data);
 
-            dispatch(setOperations(data));
+            dispatch(setOperations(sortedData));
         }
 
         const cachedData = localStorage.getItem(appKey.OPERATIONS);
-        const formattedData = cachedData ? JSON.parse(cachedData) : null;
 
-        if (formattedData) {
-            dispatch(setOperations(formattedData));
+        if (cachedData) {
+            const sortedData = sortOperations(JSON.parse(cachedData));
+
+            dispatch(setOperations(sortedData));
         } else {
             getFetch();
         }
