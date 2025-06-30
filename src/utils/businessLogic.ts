@@ -8,7 +8,7 @@ import type {
 } from '@models';
 import {isStringNumber, truncateValue, getPercent, getDifferencePercent} from '@/utils/common';
 import snp500SymbolList from '@fixtures/snp500list';
-import {CHART_COLORS} from "@/utils/variables";
+import {CHART_COLORS} from '@/utils/variables';
 
 const isSnP500Include = (symbol: string | undefined): boolean => {
     return Boolean(symbol && snp500SymbolList.includes(symbol));
@@ -272,3 +272,19 @@ export const getAssetsTypesChartPie: GetAssetsTypesChartPie = (cash, assetsValue
         }
     ];
 };
+
+export const operationMessage = (operation: Operation): string => {
+    if (operation.type === 'deposit') {
+        return `You have deposited into the account ${formatNumber(operation.price, false, true)}`;
+    }
+
+    if (operation.type === 'purchase') {
+        return `You bought ${operation.value} shares for ${formatNumber(operation.value * operation.price, false, true)}`;
+    }
+
+    if (operation.type === 'sale') {
+        return `You sold ${operation.value} shares for ${formatNumber(operation.value * operation.price, false, true)}`;
+    }
+
+    return `Operation for the amount of ${operation.value * operation.price} completed`;
+}
