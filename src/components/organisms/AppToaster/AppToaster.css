@@ -1,0 +1,68 @@
+.toaster.toaster-default,
+.toaster.toaster-success,
+.toaster.toaster-error {
+    background-color: var(--bg-main);
+    color: var(--color-text);
+    border-radius: 0.4vw;
+    padding: 0.6vw;
+    font-size: 1vw;
+    line-height: 1;
+}
+
+.toaster-icon {
+    width: 1.7vw;
+    height: 1.7vw;
+}
+
+.toaster-success .toaster-icon {
+    color: var(--color-success);
+}
+
+.toaster-error .toaster-icon {
+    color: var(--color-error);
+}
+
+@media(max-width: 1279px) {
+    .toaster.toaster-default,
+    .toaster.toaster-success,
+    .toaster.toaster-error {
+        padding: 0.5vw;
+        font-size: 1.2vw;
+    }
+
+    .toaster-icon {
+        width: 2.2vw;
+        height: 2.2vw;
+    }
+}
+
+@media(max-width: 991px) {
+    .toaster.toaster-default,
+    .toaster.toaster-success,
+    .toaster.toaster-error {
+        border-radius: 0.6vw;
+        padding: 0.8vw;
+        font-size: 1.8vw;
+    }
+
+    .toaster-icon {
+        width: 2.8vw;
+        height: 2.8vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .toaster.toaster-default,
+    .toaster.toaster-success,
+    .toaster.toaster-error {
+        padding: 1vw;
+        font-size: 5vw;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .toaster-icon {
+        width: 7.6vw;
+        height: 7.6vw;
+    }
+}

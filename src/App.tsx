@@ -10,6 +10,7 @@ import {
     Page404,
     Deposit,
 } from '@pages/index';
+import AppToaster from '@organisms/AppToaster/AppToaster';
 
 function App() {
     const savedTheme = localStorage.getItem('theme');
@@ -21,6 +22,7 @@ function App() {
     return (
         <BrowserRouter basename='/'>
             <div className='app'>
+                <AppToaster />
                 <Routes>
                     <Route element={<MainLayout/>}>
                         <Route index element={<DashboardPage/>}/>
