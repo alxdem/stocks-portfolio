@@ -35,7 +35,13 @@ export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stock
             const itemObject = portfolioObject[symbol];
 
             if (operation.type === 'sale') {
-                itemObject.value = itemObject.value - operation.value;
+                const difference = itemObject.value - operation.value;
+
+                if (difference > 1) {
+                    itemObject.value = difference;
+                } else {
+                    delete portfolioObject[symbol];
+                }
             } else {
                 itemObject.value = itemObject.value + operation.value;
                 itemObject.averagePrice = (itemObject.averagePrice * itemObject.value + operation.price * operation.value) / (itemObject.value + operation.value);
