@@ -1,8 +1,11 @@
 import type {ComponentPropsWithoutRef} from 'react';
 
-export interface ChartPieData {
+export interface ChartPieBasicData {
     name: string;
     value: number;
+}
+
+export interface ChartPieData extends ChartPieBasicData {
     percent: string;
 }
 

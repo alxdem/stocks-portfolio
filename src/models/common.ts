@@ -84,3 +84,41 @@ export interface UserState {
     portfolio: Nullable<StockPosition[]>;
     formattedPortfolio: Nullable<StockPositionFormatted[]>;
 }
+
+export interface CompanyInfoData {
+    symbol: string;
+    price: number;
+    marketCap: number;
+    beta: number;
+    change: number;
+    changePercentage: number;
+    volume: number;
+    averageVolume: number;
+    lastDividend: number;
+    range: string;
+    companyName: string;
+    currency: string;
+    cik: string;
+    isin: string;
+    cusip: string;
+    exchangeFullName: string;
+    exchange: string;
+    industry: string;
+    sector: string;
+    website: string;
+    description: string;
+    ceo: string;
+    country: string;
+    fullTimeEmployees: string;
+    phone: string;
+    address: string;
+    city: string;
+    state: string;
+    zip: string;
+    image: string;
+    ipoDate: string;
+    defaultImage: boolean;
+    isActivelyTrading: boolean;
+    isAdr: boolean;
+    isFund: boolean;
+}

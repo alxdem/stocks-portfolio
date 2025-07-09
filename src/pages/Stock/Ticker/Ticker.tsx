@@ -1,51 +1,22 @@
 import TickerHeader from '@molecules/TickerHeader/TickerHeader';
-import {formatNumber, formatHugeNumber} from '@utils';
+import {formatNumber, formatHugeNumber, getAddressString, BETA_MAX} from '@utils';
 import CloudSection from '@molecules/CloudSection/CloudSection';
 import styles from '@pages/Stock/Ticker/Ticker.module.css';
 import typographyStyles from '@/styles/typography.module.css';
 import cn from 'classnames';
 import TickerActions from '@organisms/TickerActions/TickerActions';
+import useTickerInfo from '@hooks/useTickerInfo';
+import CompanyContacts from '@molecules/CompanyContacts/CompanyContacts';
+import ChartPieNeedle from '@molecules/ChartPieNeedle/ChartPieNeedle';
+
+const data = [
+    {name: 'low', value: 1},
+    {name: 'medium', value: 1},
+    {name: 'high', value: 1},
+];
 
 const TickerPage = () => {
-    // TODO: Change on actually data
-    const temp = {
-        "symbol": "HBAN",
-        "price": 201.5,
-        "beta": 1.405,
-        "volAvg": 9323078,
-        "mktCap": 151932007500,
-        "lastDiv": 0,
-        "range": "128.88-209.66",
-        "changes": 0.47,
-        "companyName": "Huntington Bancshares Incorporated",
-        "currency": "USD",
-        "cik": "0000012927",
-        "isin": "US0970231058",
-        "cusip": "097023105",
-        "exchange": "New York Stock Exchange",
-        "exchangeShortName": "NYSE",
-        "industry": "Aerospace & Defense",
-        "website": "https://www.boeing.com",
-        "description": "The Boeing Company, together with its subsidiaries, designs, develops, manufactures, sales, services, and supports commercial jetliners, military aircraft, satellites, missile defense, human space flight and launch systems, and services worldwide. The company operates through four segments: Commercial Airplanes; Defense, Space & Security; Global Services; and Boeing Capital. The Commercial Airplanes segment provides commercial jet aircraft for passenger and cargo requirements, as well as fleet support services. The Defense, Space & Security segment engages in the research, development, production, and modification of manned and unmanned military aircraft and weapons systems; strategic defense and intelligence systems, which include strategic missile and defense systems, command, control, communications, computers, intelligence, surveillance and reconnaissance, cyber and information solutions, and intelligence systems; and satellite systems, such as government and commercial satellites, and space exploration. The Global Services segment offers products and services, including supply chain and logistics management, engineering, maintenance and modifications, upgrades and conversions, spare parts, pilot and maintenance training systems and services, technical and maintenance documents, and data analytics and digital services to commercial and defense customers. The Boeing Capital segment offers financing services and manages financing exposure for a portfolio of equipment under operating leases, sales-type/finance leases, notes and other receivables, assets held for sale or re-lease, and investments. The company was incorporated in 1916 and is based in Chicago, Illinois.",
-        "ceo": "Mr. Robert K. Ortberg",
-        "sector": "Industrials",
-        "country": "US",
-        "fullTimeEmployees": "172000",
-        "phone": "7034146338",
-        "address": "929 Long Bridge Drive",
-        "city": "Arlington",
-        "state": "VA",
-        "zip": "22202",
-        "dcfDiff": 308.60339,
-        "dcf": -132.37339494704082,
-        "image": "https://financialmodelingprep.com/image-stock/BAC.png",
-        "ipoDate": "1962-01-02",
-        "defaultImage": false,
-        "isEtf": false,
-        "isActivelyTrading": true,
-        "isAdr": false,
-        "isFund": false
-    }
+    const {info, isLoading} = useTickerInfo('BAC');
 
     const {
         companyName,
@@ -54,22 +25,34 @@ const TickerPage = () => {
         sector,
         industry,
         symbol,
+        beta,
         description,
         city,
         country,
         fullTimeEmployees = '',
         ipoDate,
         range = '',
-        mktCap,
-        lastDiv,
+        marketCap,
+        lastDividend,
+        change,
+        changePercentage,
         phone,
-        volAvg,
+        volume,
+        averageVolume,
         website,
         ceo,
-    } = temp || {};
+        cik,
+        isin,
+        cusip,
+        exchangeFullName,
+        exchange,
+        address,
+        state,
+        zip,
+    } = info || {};
 
     const title = `${companyName} (${symbol})`;
-    const priceLocal = `${formatNumber(price, false, true)}`;
+    const priceLocal = price ? `${formatNumber(price, false, true)}` : '';
 
     return (
         <section className={cn(styles.main, typographyStyles.wrapper)}>
@@ -81,34 +64,60 @@ const TickerPage = () => {
             />
             <CloudSection className={styles.inner}>
                 <>
+                    {isLoading && <p>LOADING...</p>}
                     <h2>Indicators</h2>
+
+                    {beta && <div className={styles.beta}>
+                        <ChartPieNeedle
+                            data={data}
+                            value={beta}
+                            max={BETA_MAX}
+                            cx={100}
+                            cy={200}
+                            text='beta'
+                        />
+                    </div>}
+
+
                     {range && <p>Annual range: {range}</p>}
-                    {mktCap && <p>Market Capitalization: {formatHugeNumber(mktCap)}</p>}
-                    {volAvg && <p>Average Volume: {formatHugeNumber(volAvg)}</p>}
-                    {lastDiv !== null && <p>Dividends per Share: {lastDiv}</p>}
+                    {marketCap && <p>Market Capitalization: {formatHugeNumber(marketCap)}</p>}
+                    {volume && <p>Volume: {formatHugeNumber(volume)}</p>}
+                    {averageVolume && <p>Average Volume: {formatHugeNumber(averageVolume)}</p>}
+                    {beta && <p>beta: {beta}</p>}
+                    {lastDividend !== null && <p>Dividends per Share: {lastDividend}</p>}
+                    {change && <p>change: {change}</p>}
+                    {changePercentage && <p>ChangePercentage: {changePercentage}</p>}
 
                     <h2>Company profile</h2>
                     {sector && <p>Sector: <b>{sector}</b></p>}
                     {industry && <p>Industry: <b>{industry}</b></p>}
                     {fullTimeEmployees && <p>Employees: <b>{formatNumber(fullTimeEmployees)}</b></p>}
                     {ceo && <p>Ceo: <b>{ceo}</b></p>}
+                    {cik && <p>cik: <b>{cik}</b></p>}
+                    {isin && <p>isin: <b>{isin}</b></p>}
+                    {cusip && <p>cusip: <b>{cusip}</b></p>}
+                    {exchangeFullName && <p>exchangeFullName: <b>{exchangeFullName}</b></p>}
+                    {exchange && <p>exchange: <b>{exchange}</b></p>}
+                    {ipoDate && <p>Ipo date: {ipoDate}</p>}
 
                     <div className={typographyStyles.smallText}>
                         {description}
                     </div>
 
-                    {ipoDate && <p>Ipo date: {ipoDate}</p>}
-                    {city && <p>City: {city}</p>}
-                    {country && <p>Country: {country}</p>}
-                    {phone && <p>Phone: <a href={`tel:${phone}`}>{phone}</a></p>}
-                    {website && <p>Website: <a href={`${website}`} target='_blank'>{website}</a></p>}
+                    <h2>Contacts</h2>
+                    <CompanyContacts
+                        className={styles.contacts}
+                        address={getAddressString(address, city, state, country, zip)}
+                        phone={phone}
+                        website={website}
+                    />
                 </>
                 <TickerActions
                     className={styles.actions}
-                    symbol={symbol}
+                    symbol={symbol || ''}
                     title={title}
                     image={image}
-                    price={price}
+                    price={price || 0}
                 />
             </CloudSection>
         </section>
