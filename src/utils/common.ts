@@ -4,6 +4,9 @@ import type {
     GetPercent,
     FormatHugeNumber,
     Operation,
+    Nullable,
+    CompanyInfoData,
+    GetNormalizedValue,
 } from '@models';
 import {HugeNumberPower} from '@models';
 import {appKey} from '@/utils/variables';
@@ -118,6 +121,47 @@ export const getCurrentYear = (isShort = false) => {
     return year;
 };
 
-export const sortOperations = (operations: Operation[]) => {
-    return [...operations].sort((a, b) => b.date - a.date);
+export const sortOperations = (operations: Nullable<Operation[]>) => {
+    return operations
+        ? [...operations].sort((a, b) => b.date - a.date)
+        : [];
+};
+
+export const getCompanyFromCache = (name: string): Nullable<CompanyInfoData> => {
+    const cachedData = localStorage.getItem(appKey.LS_COMPANIES);
+
+    if (!cachedData) {
+        return null;
+    }
+
+    const companies: Record<string, CompanyInfoData> = JSON.parse(cachedData);
+    const info: CompanyInfoData | undefined = companies[name];
+
+    return info || null;
+};
+
+export const setCompanyToCache = (name: string, companyInfo: CompanyInfoData) => {
+    const cachedData = localStorage.getItem(appKey.LS_COMPANIES);
+    const companiesObj: Record<string, CompanyInfoData> = cachedData ? JSON.parse(cachedData) : {};
+
+    if (companiesObj[name]) {
+        return;
+    }
+
+    companiesObj[name] = companyInfo;
+    localStorage.setItem(appKey.LS_COMPANIES, JSON.stringify(companiesObj));
+}
+
+export const getNormalizedValue: GetNormalizedValue = (value, min, max) => {
+    let localValue = value;
+
+    if (value < min) {
+        localValue = min;
+    }
+
+    if (value > max) {
+        localValue = max;
+    }
+
+    return localValue;
 };

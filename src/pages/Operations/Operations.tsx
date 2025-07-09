@@ -2,13 +2,15 @@ import {useAppSelector} from '@/store/hooks';
 import CloudSection from '@molecules/CloudSection/CloudSection';
 import OperationCard from '@organisms/OperationCard/OperationCard';
 import styles from '@pages/Operations/Operations.module.css';
-import {getOperationName} from '@utils';
+import {getOperationName, sortOperations} from '@utils';
 import {selectOperations} from '@/store/selectors/userSelectors';
 import {selectStocks} from '@/store/selectors/stocksSelectors';
+import {useMemo} from 'react';
 
 const OperationsPage = () => {
     const operations = useAppSelector(selectOperations);
     const stocksObj = useAppSelector(selectStocks);
+    const sortedOperations = useMemo(() => sortOperations(operations), [operations]);
 
     let elements;
 
@@ -17,7 +19,7 @@ const OperationsPage = () => {
     } else if (operations.length < 1) {
         elements = <p>Operations not found</p>
     } else {
-        elements = operations.map((operation) => {
+        elements = sortedOperations.map((operation) => {
             const name = getOperationName(stocksObj, operation.type, operation.symbol);
             const dateRaw = new Date(operation.date);
             const date = dateRaw.toLocaleDateString();

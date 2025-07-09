@@ -45,6 +45,6 @@ export const selectSectors = createSelector(
 );
 
 export const selectAssetTypesChartPie = createSelector(
-    [selectCash, selectNetAssetValue],
+    [selectCash, selectMarketValue],
     (cash, assetsValue) => getAssetsTypesChartPie(cash, assetsValue),
 );

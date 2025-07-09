@@ -1,7 +1,11 @@
 :root {
-    --rc-color-1: #0088FE;
-    --rc-color-2: #00C49F;
-    --rc-color-3: #FFBB28;
-    --rc-color-4: #FF8042;
-    --rc-color-5: #DD3092;
+    --cc-color-1: #0088FE;
+    --cc-color-2: #00C49F;
+    --cc-color-3: #FFBB28;
+    --cc-color-4: #FF8042;
+    --cc-color-5: #DD3092;
+
+    --cc-indicator-color-1: var(--cc-color-2);
+    --cc-indicator-color-2: var(--cc-color-3);
+    --cc-indicator-color-3: var(--cc-color-5);
 }

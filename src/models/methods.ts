@@ -50,3 +50,17 @@ export type GetAssetsTypesChartPie = (
     cash: number,
     assetsValue: number,
 ) => ChartPieData[];
+
+export type GetAddressString = (
+    address?: string,
+    city?: string,
+    state?: string,
+    country?: string,
+    zip?: string,
+) => string;
+
+export type GetNormalizedValue = (
+    value: number,
+    min: number,
+    max: number,
+) => number;

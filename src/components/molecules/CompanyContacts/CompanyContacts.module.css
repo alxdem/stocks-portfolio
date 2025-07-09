@@ -1,0 +1,58 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+.main .line {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.icon {
+    display: block;
+    width: 1.5vw;
+    height: 1.5vw;
+    flex-shrink: 0;
+}
+
+@media(max-width: 1279px) {
+    .icon {
+        width: 1.7vw;
+        height: 1.7vw;
+    }
+}
+
+@media(max-width: 991px) {
+    .main {
+        gap: 1.56vw;
+    }
+
+    .icon {
+        width: 2.8vw;
+        height: 2.8vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .main {
+        gap: 5vw;
+    }
+
+    .main .line {
+        gap: 2.4vw;
+        padding: 3vw;
+        align-items: center;
+        background-color: var(--color-primary-50);
+        overflow: hidden;
+        border-radius: 1.8vw;
+    }
+
+    .icon {
+        width: 7vw;
+        height: 7vw;
+    }
+}

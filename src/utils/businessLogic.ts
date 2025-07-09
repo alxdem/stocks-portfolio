@@ -4,11 +4,19 @@ import type {
     GetFormattedPortfolio,
     Operation,
     Nullable,
-    TickerDataExtended, TickersObject, GetOperationName, FormatNumber, GetChartPie, ChartPieData, GetAssetsTypesChartPie
+    TickerDataExtended,
+    TickersObject,
+    GetOperationName,
+    FormatNumber,
+    GetChartPie,
+    ChartPieData,
+    ChartPieBasicData,
+    GetAssetsTypesChartPie,
+    GetAddressString
 } from '@models';
 import {isStringNumber, truncateValue, getPercent, getDifferencePercent} from '@/utils/common';
 import snp500SymbolList from '@fixtures/snp500list';
-import {CHART_COLORS} from '@/utils/variables';
+import {CHART_COLORS, CHART_INDICATOR_COLOR} from '@/utils/variables';
 
 const isSnP500Include = (symbol: string | undefined): boolean => {
     return Boolean(symbol && snp500SymbolList.includes(symbol));
@@ -35,7 +43,13 @@ export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stock
             const itemObject = portfolioObject[symbol];
 
             if (operation.type === 'sale') {
-                itemObject.value = itemObject.value - operation.value;
+                const difference = itemObject.value - operation.value;
+
+                if (difference > 1) {
+                    itemObject.value = difference;
+                } else {
+                    delete portfolioObject[symbol];
+                }
             } else {
                 itemObject.value = itemObject.value + operation.value;
                 itemObject.averagePrice = (itemObject.averagePrice * itemObject.value + operation.price * operation.value) / (itemObject.value + operation.value);
@@ -210,6 +224,10 @@ export const getChartColor = (index: number) => {
     return CHART_COLORS[index % CHART_COLORS.length];
 };
 
+export const getChartIndicatorColor = (index: number) => {
+    return CHART_INDICATOR_COLOR[index % CHART_INDICATOR_COLOR.length];
+};
+
 export const getPortfolioChartPie: GetChartPie = (items, marketValue) => {
     if (!items || items.length < 1) {
         return [];
@@ -232,7 +250,7 @@ export const getSectorsChartPie: GetChartPie = (items, marketValue) => {
         return [];
     }
 
-    const sectors: Record<string, Omit<ChartPieData, 'percent'>> = {};
+    const sectors: Record<string, ChartPieBasicData> = {};
 
     items.forEach(item => {
         const value = item.value * item.price;
@@ -287,4 +305,16 @@ export const operationMessage = (operation: Operation): string => {
     }
 
     return `Operation for the amount of ${operation.value * operation.price} completed`;
+}
+
+export const getAddressString: GetAddressString = (
+    address = '',
+    city = '',
+    state = '',
+    country= '',
+    zip = '',
+) => {
+    const stateZip = `${state} ${zip}`;
+
+    return [address, city, stateZip, country].join(', ');
 }

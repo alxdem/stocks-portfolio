@@ -5,7 +5,7 @@
 }
 
 .inner {
-    padding-bottom: 6vw;
+    padding-bottom: 7.5vw;
 }
 
 .actions {
@@ -17,6 +17,10 @@
     z-index: 10;
 }
 
+.beta {
+    width: 30%;
+}
+
 @media(max-width: 991px) {
     .actions {
         left: var(--gap);
@@ -25,7 +29,7 @@
     }
 
     .inner {
-        padding-bottom: 9.4vw;
+        padding-bottom: 11vw;
     }
 }
 
@@ -36,7 +40,7 @@
 
     .inner {
         border-radius: 0;
-        padding-bottom: 27vw;
+        padding-bottom: 29vw;
     }
 
     .actions {

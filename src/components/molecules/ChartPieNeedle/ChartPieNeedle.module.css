@@ -1,0 +1,61 @@
+.container {
+    position: relative;
+    overflow: hidden;
+}
+
+g,
+path {
+    outline: none;
+}
+
+.pie {
+    transform: translateY(3%);
+}
+
+.needle {
+    position: absolute;
+    z-index: 5;
+    stroke-width: 2px;
+    color: var(--color-text);
+    width: 33%;
+    display: block;
+    height: auto;
+    bottom: -67%;
+    left: 17%;
+    stroke: #edd;
+    fill: #3ed;
+    transform-origin: right top;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 32%;
+    gap: 8%;
+    box-sizing: border-box;
+    background-color: var(--bg-secondary);
+    border-radius: 50%;
+    width: 55%;
+    height: 110%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 0%);
+    z-index: 5;
+    line-height: 1;
+    container-type: inline-size;
+
+}
+
+.value {
+    display: block;
+    font-size: 15cqw;
+}
+
+.text {
+    display: block;
+    color: var(--color-text-secondary);
+    font-size: 10cqw;
+}
