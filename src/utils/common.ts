@@ -57,7 +57,7 @@ export const getPercent: GetPercent = (basic, current) => {
 };
 
 export const getDifferencePercent: GetPercent = (basis, current) => {
-    const difference = basis - current;
+    const difference = current - basis;
 
     return difference === 0 ? 0 : difference * 100 / basis;
 };

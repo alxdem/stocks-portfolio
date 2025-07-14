@@ -1,4 +1,4 @@
-import TickerHeader from '@molecules/TickerHeader/TickerHeader';
+import TickerHeader from '@organisms/TickerHeader/TickerHeader';
 import {formatNumber, formatHugeNumber, getAddressString, BETA_MAX} from '@utils';
 import CloudSection from '@molecules/CloudSection/CloudSection';
 import styles from '@pages/Stock/Ticker/Ticker.module.css';
@@ -8,6 +8,7 @@ import TickerActions from '@organisms/TickerActions/TickerActions';
 import useTickerInfo from '@hooks/useTickerInfo';
 import CompanyContacts from '@molecules/CompanyContacts/CompanyContacts';
 import ChartPieNeedle from '@molecules/ChartPieNeedle/ChartPieNeedle';
+import TickerInPortfolio from '@organisms/TickerInPortfolio/TickerInPortfolio';
 
 const data = [
     {name: 'low', value: 1},
@@ -16,7 +17,8 @@ const data = [
 ];
 
 const TickerPage = () => {
-    const {info, isLoading} = useTickerInfo('BAC');
+    const symbol = 'GE';
+    const {info, isLoading} = useTickerInfo(symbol);
 
     const {
         companyName,
@@ -24,7 +26,6 @@ const TickerPage = () => {
         price,
         sector,
         industry,
-        symbol,
         beta,
         description,
         city,
@@ -61,6 +62,13 @@ const TickerPage = () => {
                 title={title}
                 price={priceLocal}
                 sector={sector}
+                change={change}
+                changePercentage={changePercentage}
+            />
+            <TickerInPortfolio
+                className={styles.portfolio}
+                symbol={symbol}
+                price={price}
             />
             <CloudSection className={styles.inner}>
                 <>
@@ -77,7 +85,6 @@ const TickerPage = () => {
                             text='beta'
                         />
                     </div>}
-
 
                     {range && <p>Annual range: {range}</p>}
                     {marketCap && <p>Market Capitalization: {formatHugeNumber(marketCap)}</p>}

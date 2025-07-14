@@ -64,3 +64,8 @@ export type GetNormalizedValue = (
     min: number,
     max: number,
 ) => number;
+
+export type GetSinglePercentChartPie = (
+    value: number,
+    total: number,
+) => ChartPieData[];

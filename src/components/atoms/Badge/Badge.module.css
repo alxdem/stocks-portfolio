@@ -3,54 +3,113 @@
     overflow: hidden;
     display: flex;
     align-items: center;
+    box-sizing: border-box;
+    line-height: 1;
+    background-color: var(--bg-secondary);
+}
+
+.badge.lg {
+    gap: 0.5vw;
+    padding: 0.4vw 0.7vw;
+    border-radius: 0.5vw;
+    font-size: 1.4vw;
+}
+
+.badge.md {
     gap: 0.2vw;
     padding: 0.4vw 0.6vw;
     border-radius: 0.3vw;
-    box-sizing: border-box;
     font-size: 1.1vw;
-    line-height: 1;
 }
 
-.badge::before {
-    content: '';
-    position: absolute;
-    z-index: 0;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.2;
+.gray {
+    background-color: var(--bg-secondary);
 }
 
-.gray::before {
-    background-color: var(--gray-400);
+.red {
+    background-color: var(--color-error-bg);
+    color: var(--color-error);
 }
 
-.red::before {
-    background-color: var(--color-error);
-}
-
-.green::before {
-    background-color: var(--color-success);
+.green {
+    background-color: var(--color-success-bg);
+    color: var(--color-success);
 }
 
 .icon {
-    width: 1.5vw;
-    height: 1.5vw;
-    fill: var(--color-text);
     flex-shrink: 0;
 }
 
+.lg .icon {
+    width: 1.8vw;
+    height: 1.8vw;
+}
+
+.md .icon {
+    width: 1.5vw;
+    height: 1.5vw;
+}
+
+.gray .icon {
+    fill: var(--color-text-secondary);
+}
+
+.red .icon {
+    fill: var(--color-error);
+}
+
+.green .icon {
+    fill: var(--color-success);
+}
+
 @media(max-width: 991px) {
-    .badge {
+    .badge.lg {
+        gap: 0.7vw;
+        padding: 0.9vw 1.2vw;
+        border-radius: 0.7vw;
+        font-size: 2.1vw;
+    }
+
+    .badge.md {
         gap: 0.3vw;
         padding: 0.6vw 0.9vw;
         border-radius: 0.6vw;
         font-size: 1.5vw;
     }
 
-    .icon {
+    .lg .icon {
+        width: 2.5vw;
+        height: 2.5vw;
+    }
+
+    .md .icon {
         width: 2.2vw;
         height: 2.2vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .badge.lg {
+        gap: 1.6vw;
+        padding: 1.8vw 2.6vw;
+        border-radius: 1.2vw;
+        font-size: 4.6vw;
+    }
+
+    .badge.md {
+        gap: 1.2vw;
+        padding: 1.4vw 2vw;
+        border-radius: 1vw;
+        font-size: 4vw;
+    }
+
+    .lg .icon {
+        width: 5.4vw;
+        height: 5.4vw;
+    }
+
+    .md .icon {
+        width: 4.8vw;
+        height: 4.8vw;
     }
 }

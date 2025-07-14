@@ -1,0 +1,7 @@
+.rise {
+    transform: rotate(45deg);
+}
+
+.fall {
+    transform: rotate(135deg);
+}

@@ -2,10 +2,10 @@ import type {OperationCardDesktopProps} from '@organisms/OperationCard/Operation
 import cn from 'classnames';
 import styles from '@organisms/OperationCard/OperationCardDesktop/OperationCardDesktop.module.css';
 import TickerCardInfo from '@molecules/TickerCardInfo/TickerCardInfo.tsx';
-import Badge from '@atoms/Badge/Badge.tsx';
+import Badge from '@atoms/Badge/Badge';
 import DollarIcon from '@images/dollar-circle.svg?react';
 import DiamondIcon from '@images/diamond-circle.svg?react';
-import type {ReactElement} from 'react';
+import type {ReactElement, SVGProps} from 'react';
 import {OperationColor, type OperationColorCode} from '@models';
 import type {Nullable} from '@models';
 
@@ -16,7 +16,7 @@ const OperationCardDesktop = ({name, symbol, date, time, logo, value, price, typ
         isTotalPlus ? styles.plus : styles.minus,
     );
 
-    let icon: Nullable<ReactElement<SVGElement>> = null;
+    let icon: Nullable<ReactElement<SVGProps<SVGElement>>> = null;
     let badgeColor: OperationColorCode = OperationColor.Gray;
 
     switch (type) {

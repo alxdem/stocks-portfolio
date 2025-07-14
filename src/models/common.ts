@@ -1,10 +1,8 @@
-import {OperationType, OperationColor, HugeNumberPower} from '@/models/dictionaries';
+import {OperationType, OperationColor} from '@/models/dictionaries';
 
 export type OperationKind = (typeof OperationType)[keyof typeof OperationType];
 
 export type OperationColorCode = (typeof OperationColor)[keyof typeof OperationColor];
-
-export type HugeNumberName = (typeof HugeNumberPower)[keyof typeof HugeNumberPower];
 
 export type Theme = 'light' | 'dark';
 

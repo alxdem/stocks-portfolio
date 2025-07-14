@@ -43,6 +43,7 @@ const ChartPieModule = ({data, className}: ChartPieModuleProps) => {
                 className={styles.chart}
                 data={data}
                 activeShapeIndex={activeShape}
+                isActiveShape={true}
             />
             {legendElement()}
         </CloudSection>
