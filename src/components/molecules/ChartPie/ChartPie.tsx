@@ -7,7 +7,7 @@ import type {ChartPieProps} from '@models';
 import useAppMediaQuery from '@hooks/useAppMediaQuery';
 import {QUERY_MOBILE, QUERY_TABLET, QUERY_DESKTOP_SM, formatNumber, getChartColor} from '@utils';
 
-const ChartPie = ({data, activeShapeIndex, className}: ChartPieProps) => {
+const ChartPie = ({data, activeShapeIndex, isActiveShape, className}: ChartPieProps) => {
     const [activeShape, setActiveShape] = useState<number | undefined>(undefined);
     const timerId = useRef<number | undefined>(undefined);
     const isMobile = useAppMediaQuery(QUERY_MOBILE);
@@ -37,7 +37,8 @@ const ChartPie = ({data, activeShapeIndex, className}: ChartPieProps) => {
         }
     }, [activeShapeIndex]);
 
-    const renderActiveShape: RenderActiveShape = (props) => {
+    const renderActiveShape: RenderActiveShape | undefined = isActiveShape
+        ? (props) => {
         const {
             cx,
             cy,
@@ -72,7 +73,8 @@ const ChartPie = ({data, activeShapeIndex, className}: ChartPieProps) => {
                 />
             </g>
         );
-    };
+    }
+    : undefined;
 
     return (
         <ResponsiveContainer
@@ -106,7 +108,11 @@ const ChartPie = ({data, activeShapeIndex, className}: ChartPieProps) => {
                     onMouseLeave={onMouseLeave}
                 >
                     {data?.map((item, index) => (
-                        <Cell className={styles.cell} key={`cell-${item.name}`} fill={getChartColor(index)}/>
+                        <Cell
+                            className={styles.cell}
+                            key={`cell-${item.name}`}
+                            fill={item.color || getChartColor(index)}
+                        />
                     ))}
                 </Pie>
             </PieChart>

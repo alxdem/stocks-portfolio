@@ -5,4 +5,6 @@ export interface TickerHeaderProps extends HTMLAttributes<HTMLDivElement> {
     logo?: string;
     price?: string;
     sector?: string;
+    change?: number;
+    changePercentage?: number;
 }

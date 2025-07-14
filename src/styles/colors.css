@@ -28,4 +28,7 @@
 
     --color-error: #e53935;
     --color-success: #00c853;
+
+    --color-error-bg: rgba(229, 57, 53, 0.2);
+    --color-success-bg: rgba(0, 200, 83, 0.2);
 }

@@ -12,6 +12,7 @@ import type {
     ChartPieData,
     ChartPieBasicData,
     GetAssetsTypesChartPie,
+    GetSinglePercentChartPie,
     GetAddressString
 } from '@models';
 import {isStringNumber, truncateValue, getPercent, getDifferencePercent} from '@/utils/common';
@@ -57,7 +58,7 @@ export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stock
 
             itemObject.totalPrice = price * itemObject.value;
             itemObject.gain = (price - itemObject.averagePrice) * itemObject.value;
-            itemObject.gainPercent = getDifferencePercent(price, itemObject.averagePrice);
+            itemObject.gainPercent = getDifferencePercent(itemObject.averagePrice, price);
         } else {
             portfolioObject[symbol] = {
                 symbol,
@@ -68,7 +69,7 @@ export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stock
                 averagePrice: operation.price,
                 totalPrice: operation.value * price,
                 gain: (price - operation.price) * operation.value,
-                gainPercent: getDifferencePercent(price, operation.price),
+                gainPercent: getDifferencePercent(operation.price, price),
             }
         }
     });
@@ -318,3 +319,40 @@ export const getAddressString: GetAddressString = (
 
     return [address, city, stateZip, country].join(', ');
 }
+
+export const getSinglePercentChartPie: GetSinglePercentChartPie = (value, total) => {
+    const remain = total - value;
+
+    return [
+        {
+            name: 'value',
+            value: value,
+            percent: getPercent(total, value).toFixed(2),
+            color: 'var(--color-primary-600)',
+        },
+        {
+            name: 'remain',
+            value: remain,
+            percent: getPercent(total, remain).toFixed(2),
+            color: 'var(--color-primary-200)',
+        }
+    ];
+};
+
+export const getChange = (value: number) => {
+    const isFall = value < 0;
+    const isRise = value > 0;
+    const changeValue = formatNumber(Math.abs(value));
+
+    let sign = '';
+
+    if (isFall) {
+        sign = '-';
+    }
+
+    if (isRise) {
+        sign = '+';
+    }
+
+    return {changeValue, sign};
+};
