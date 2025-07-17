@@ -14,6 +14,7 @@ export const STOCKS_DATA_URL = `${FMP_API_URL}/stock/list?apikey=${FMP_API_KEY}`
 export const STOCKS_EXTENDED_DATA_URL = `${FMP_API_URL}/stock-screener?limit=10000&exchange=NYSE,NASDAQ&apikey=${FMP_API_KEY}`;
 export const TICKER_DATA_URL = `${FMP_API_URL_NEW}/stable/profile?apikey=${FMP_API_NEW_KEY}&symbol=`;
 export const GOOGLE_MAP_SEARCH_URL = 'https://www.google.com/maps/search/';
+export const GOOGLE_SEARCH_URL = 'https://www.google.com/search?q=';
 
 const resolution = {
     mobile: 767,
@@ -46,3 +47,9 @@ export const message = {
 };
 
 export const BETA_MAX = 2; // β - measures a stock's volatility relative to the overall market
+
+export const MIN_AVG_MAX_DEFAULT_VALUE = {
+    min: 0,
+    avg: 0,
+    max: 0,
+}

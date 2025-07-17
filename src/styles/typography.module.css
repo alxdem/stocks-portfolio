@@ -9,7 +9,7 @@
     font-weight: 500;
     font-size: 1.8vw;
     line-height: 1.2;
-    margin: 1.6vw 0 0.8vw;
+    margin: 1.6vw 0 0.9vw;
 }
 
 .wrapper h4 {
@@ -51,6 +51,10 @@
 .wrapper .smallText {
     font-size: 1vw;
     line-height: 1.6;
+}
+
+b {
+    font-weight: 600;
 }
 
 @media(max-width: 991px) {

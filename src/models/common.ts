@@ -8,6 +8,17 @@ export type Theme = 'light' | 'dark';
 
 export type Nullable<T> = T | null;
 
+export type NumbersObject = Record<string, number[]>;
+
+export type SectorsObject = Record<string, Sector>;
+
+export type TickersObject = Record<string, TickerInfo>;
+
+interface Sector {
+    dividends: MinAvgMax;
+    betas: MinAvgMax;
+}
+
 interface TickerBase {
     symbol: string;
     beta: number;
@@ -22,6 +33,15 @@ interface TickerBase {
     lastAnnualDividend: number;
 }
 
+export interface MinMax {
+    min: number;
+    max: number;
+}
+
+export interface MinAvgMax extends MinMax {
+    avg: number;
+}
+
 export interface TickerDataExtended extends TickerBase {
     companyName: string;
     isActivelyTrading: boolean;
@@ -33,12 +53,11 @@ export interface TickerInfo extends TickerBase {
     name: string;
 }
 
-export interface TickersObject {
-    [key: string]: TickerInfo;
-}
-
 export interface StoreStocksState {
     stocks: Nullable<TickersObject>;
+    sectors: Nullable<SectorsObject>;
+    dividends: Nullable<MinAvgMax>;
+    beta: Nullable<MinAvgMax>;
 }
 
 export interface OperationBasic {

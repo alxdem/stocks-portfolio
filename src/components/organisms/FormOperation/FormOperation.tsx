@@ -4,7 +4,7 @@ import Button from '@atoms/Button/Button';
 import Counter from '@molecules/Counter/Counter';
 import useCalculateOperation from '@hooks/useCalculateOperation';
 import type {ChangeEventHandler, FormEvent} from 'react';
-import {isStringNumber} from '@utils';
+import {isStringNumber, formatNumber} from '@utils';
 import useAddOperation from '@hooks/useAddOperation';
 import cn from 'classnames';
 
@@ -56,7 +56,7 @@ const FormOperation = ({price, maxSteps, symbol, type, onSubmit}: FormOperationP
                 increase={increase}
                 onChange={onChange}
             />
-            <p className={styles.text}>Total: <span>${total}</span></p>
+            <p className={styles.text}>Total: <span>${formatNumber(total)}</span></p>
             <Button
                 className={styles.button}
                 as='button'

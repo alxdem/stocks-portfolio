@@ -21,6 +21,18 @@
     width: 30%;
 }
 
+.indicators {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5vw;
+}
+
+@media(max-width: 1279px) {
+    .indicators {
+        gap: 3vw;
+    }
+}
+
 @media(max-width: 991px) {
     .actions {
         left: var(--gap);
@@ -30,6 +42,10 @@
 
     .inner {
         padding-bottom: 11vw;
+    }
+
+    .indicators {
+        gap: 5vw;
     }
 }
 
@@ -42,5 +58,9 @@
     .actions {
         left: 0;
         right: 0;
+    }
+
+    .indicators {
+        gap: 10vw;
     }
 }
