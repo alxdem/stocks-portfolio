@@ -1,5 +1,4 @@
 import TickerHeader from '@organisms/TickerHeader/TickerHeader';
-import {formatNumber, formatHugeNumber, getAddressString, BETA_MAX} from '@utils';
 import CloudSection from '@molecules/CloudSection/CloudSection';
 import styles from '@pages/Stock/Ticker/Ticker.module.css';
 import typographyStyles from '@/styles/typography.module.css';
@@ -7,18 +6,35 @@ import cn from 'classnames';
 import TickerActions from '@organisms/TickerActions/TickerActions';
 import useTickerInfo from '@hooks/useTickerInfo';
 import CompanyContacts from '@molecules/CompanyContacts/CompanyContacts';
-import ChartPieNeedle from '@molecules/ChartPieNeedle/ChartPieNeedle';
 import TickerInPortfolio from '@organisms/TickerInPortfolio/TickerInPortfolio';
-
-const data = [
-    {name: 'low', value: 1},
-    {name: 'medium', value: 1},
-    {name: 'high', value: 1},
-];
+import {useParams, useNavigate} from 'react-router';
+import {useAppSelector} from '@/store/hooks';
+import {selectDividendsInfo, selectSectors, selectBetaInfo} from '@/store/selectors/stocksSelectors';
+import ChartRange from '@molecules/ChartRange/ChartRange';
+import IndicatorSection from '@molecules/IndicatorSection/IndicatorSection';
+import type {MinAvgMax} from '@models';
+import {
+    formatNumber,
+    formatHugeNumber,
+    getAddressString,
+    getAnnualRange,
+    BETA_MAX,
+    MIN_AVG_MAX_DEFAULT_VALUE,
+    GOOGLE_SEARCH_URL,
+} from '@utils';
 
 const TickerPage = () => {
-    const symbol = 'GE';
-    const {info, isLoading} = useTickerInfo(symbol);
+    const navigate = useNavigate();
+    const {ticker} = useParams();
+    const {info, isLoading} = useTickerInfo(ticker || '');
+    const dividends = useAppSelector(selectDividendsInfo);
+    const betas = useAppSelector(selectBetaInfo);
+    const sectors = useAppSelector(selectSectors);
+
+    if (!info) {
+        navigate('/');
+        return null;
+    }
 
     const {
         companyName,
@@ -46,17 +62,22 @@ const TickerPage = () => {
         isin,
         cusip,
         exchangeFullName,
-        exchange,
         address,
         state,
         zip,
     } = info || {};
 
-    const title = `${companyName} (${symbol})`;
+    const title = `${companyName} (${ticker})`;
     const priceLocal = price ? `${formatNumber(price, false, true)}` : '';
+    const isValuesCorrect = typeof lastDividend === 'number' && typeof price === 'number';
+    const dividendsPercent = isValuesCorrect ? lastDividend * 100 / price : null;
+    const dividendsCurrentSector: MinAvgMax = sectors && sector ? sectors[sector].dividends : MIN_AVG_MAX_DEFAULT_VALUE;
+    const betasCurrentSector: MinAvgMax = sectors && sector ? sectors[sector].betas : MIN_AVG_MAX_DEFAULT_VALUE;
+    const annualRange = getAnnualRange(range);
+    const isDividendsPercent = Number.isFinite(dividendsPercent);
 
     return (
-        <section className={cn(styles.main, typographyStyles.wrapper)}>
+        <section className={styles.main}>
             <TickerHeader
                 logo={image}
                 title={title}
@@ -67,64 +88,143 @@ const TickerPage = () => {
             />
             <TickerInPortfolio
                 className={styles.portfolio}
-                symbol={symbol}
+                symbol={ticker}
                 price={price}
             />
-            <CloudSection className={styles.inner}>
+            <CloudSection>
                 <>
                     {isLoading && <p>LOADING...</p>}
-                    <h2>Indicators</h2>
 
-                    {beta && <div className={styles.beta}>
-                        <ChartPieNeedle
-                            data={data}
-                            value={beta}
-                            max={BETA_MAX}
-                            cx={100}
-                            cy={200}
-                            text='beta'
-                        />
-                    </div>}
+                    <div className={styles.indicators}>
+                        {dividends && isDividendsPercent &&
+                            <IndicatorSection
+                                title='Dividend Yield'
+                                info={<>
+                                    <p>Dividend Yield: <b>{dividendsPercent?.toFixed(2)}</b>%.</p>
+                                    <p>The average dividend yield across all stocks is&nbsp;
+                                        <b>{dividends.avg.toFixed(2)}</b>%.</p>
+                                </>}
+                            >
+                                <ChartRange
+                                    min={dividends.min}
+                                    max={dividends.max}
+                                    value={dividendsPercent}
+                                />
+                            </IndicatorSection>
+                        }
 
-                    {range && <p>Annual range: {range}</p>}
-                    {marketCap && <p>Market Capitalization: {formatHugeNumber(marketCap)}</p>}
-                    {volume && <p>Volume: {formatHugeNumber(volume)}</p>}
-                    {averageVolume && <p>Average Volume: {formatHugeNumber(averageVolume)}</p>}
-                    {beta && <p>beta: {beta}</p>}
-                    {lastDividend !== null && <p>Dividends per Share: {lastDividend}</p>}
-                    {change && <p>change: {change}</p>}
-                    {changePercentage && <p>ChangePercentage: {changePercentage}</p>}
+                        {dividendsCurrentSector && isDividendsPercent &&
+                            <IndicatorSection
+                                title='Dividend Yield within the sector'
+                                info={<p>The average dividend yield within the sector is&nbsp;
+                                    <b>{dividendsCurrentSector.avg.toFixed(2)}</b>%.</p>}
+                            >
+                                <ChartRange
+                                    min={dividendsCurrentSector.min}
+                                    max={dividendsCurrentSector.max}
+                                    value={dividendsPercent}
+                                />
+                            </IndicatorSection>
+                        }
 
-                    <h2>Company profile</h2>
-                    {sector && <p>Sector: <b>{sector}</b></p>}
-                    {industry && <p>Industry: <b>{industry}</b></p>}
-                    {fullTimeEmployees && <p>Employees: <b>{formatNumber(fullTimeEmployees)}</b></p>}
-                    {ceo && <p>Ceo: <b>{ceo}</b></p>}
-                    {cik && <p>cik: <b>{cik}</b></p>}
-                    {isin && <p>isin: <b>{isin}</b></p>}
-                    {cusip && <p>cusip: <b>{cusip}</b></p>}
-                    {exchangeFullName && <p>exchangeFullName: <b>{exchangeFullName}</b></p>}
-                    {exchange && <p>exchange: <b>{exchange}</b></p>}
-                    {ipoDate && <p>Ipo date: {ipoDate}</p>}
+                        {beta && betas &&
+                            <IndicatorSection
+                                title='Beta (β)'
+                                info={
+                                    <>
+                                        <p>Beta: <b>{beta.toFixed(2)}</b></p>
+                                        <p>The average β across all stocks is&nbsp;
+                                            <b>{betas.avg.toFixed(2)}</b>.</p>
+                                    </>
+                                }
+                            >
+                                <ChartRange
+                                    max={BETA_MAX}
+                                    value={beta}
+                                />
+                            </IndicatorSection>
+                        }
 
-                    <div className={typographyStyles.smallText}>
-                        {description}
+                        {betasCurrentSector && beta && betas &&
+                            <IndicatorSection
+                                title='Beta (β) within the sector'
+                                info={<p>The average β within the sector is&nbsp;
+                                    <b>{betasCurrentSector.avg.toFixed(2)}</b>.</p>}
+                            >
+                                <ChartRange
+                                    min={betasCurrentSector.min}
+                                    max={betasCurrentSector.max}
+                                    value={beta}
+                                />
+                            </IndicatorSection>
+                        }
+
+                        {annualRange && price &&
+                            <IndicatorSection
+                                title='Annual range'
+                                info={
+                                    <>
+                                        <p>Current price is&nbsp;<b>{formatNumber(price, false, true)}</b>.</p>
+                                        <p>Annual range is&nbsp;<b>{range}</b>.</p>
+                                    </>
+                                }
+                            >
+                                <ChartRange
+                                    min={annualRange.min}
+                                    max={annualRange.max}
+                                    value={price}
+                                />
+                            </IndicatorSection>
+                        }
                     </div>
-
-                    <h2>Contacts</h2>
-                    <CompanyContacts
-                        className={styles.contacts}
-                        address={getAddressString(address, city, state, country, zip)}
-                        phone={phone}
-                        website={website}
-                    />
                 </>
                 <TickerActions
                     className={styles.actions}
-                    symbol={symbol || ''}
+                    symbol={ticker || ''}
                     title={title}
                     image={image}
                     price={price || 0}
+                />
+            </CloudSection>
+            <CloudSection
+                title='Financial'
+                className={typographyStyles.wrapper}
+            >
+                {marketCap && <p>Market Capitalization: <b>{formatHugeNumber(marketCap)}</b></p>}
+                {volume && <p>Volume: <b>{formatHugeNumber(volume)}</b></p>}
+                {averageVolume && <p>Average Volume: <b>{formatHugeNumber(averageVolume)}</b></p>}
+                {lastDividend !== null
+                    && <p>Dividends per Share: <b>{formatNumber(lastDividend, false, true)}</b></p>
+                }
+            </CloudSection>
+            <CloudSection
+                title='Company profile'
+                className={typographyStyles.wrapper}
+            >
+                {sector && <p>Sector: <b>{sector}</b></p>}
+                {industry && <p>Industry: <b>{industry}</b></p>}
+                {fullTimeEmployees && <p>Employees: <b>{formatNumber(fullTimeEmployees)}</b></p>}
+                {ceo && <p>Ceo: <a target='_blank' href={GOOGLE_SEARCH_URL + ceo}><b>{ceo}</b></a></p>}
+                {cik && <p>Cik: <b>{cik}</b></p>}
+                {isin && <p>Isin: <b>{isin}</b></p>}
+                {cusip && <p>Cusip: <b>{cusip}</b></p>}
+                {exchangeFullName && <p>Exchange: <b>{exchangeFullName}</b></p>}
+                {ipoDate && <p>Ipo date: <b>{new Date(ipoDate).toLocaleDateString()}</b></p>}
+
+                <h4>About</h4>
+                <div className={typographyStyles.smallText}>
+                    {description}
+                </div>
+            </CloudSection>
+            <CloudSection
+                title='Contacts'
+                className={cn(styles.inner, typographyStyles.wrapper)}
+            >
+                <CompanyContacts
+                    className={styles.contacts}
+                    address={getAddressString(address, city, state, country, zip)}
+                    phone={phone}
+                    website={website}
                 />
             </CloudSection>
         </section>

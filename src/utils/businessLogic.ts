@@ -13,11 +13,16 @@ import type {
     ChartPieBasicData,
     GetAssetsTypesChartPie,
     GetSinglePercentChartPie,
-    GetAddressString
+    GetAddressString,
+    GetMinAvgMax,
+    NumbersObject,
+    SectorsObject,
+    GetSectorsObject,
+    GetAnnualRange,
 } from '@models';
 import {isStringNumber, truncateValue, getPercent, getDifferencePercent} from '@/utils/common';
 import snp500SymbolList from '@fixtures/snp500list';
-import {CHART_COLORS, CHART_INDICATOR_COLOR} from '@/utils/variables';
+import {CHART_COLORS, CHART_INDICATOR_COLOR, MIN_AVG_MAX_DEFAULT_VALUE} from '@/utils/variables';
 
 const isSnP500Include = (symbol: string | undefined): boolean => {
     return Boolean(symbol && snp500SymbolList.includes(symbol));
@@ -83,14 +88,14 @@ export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stock
 export const getFormattedPortfolio: GetFormattedPortfolio = (portfolio) => {
     return portfolio.map(item => {
         const isLoss = item.gain < 0;
-        const gainLocal= formatNumber(item.gain, true, true);
+        const gainLocal = formatNumber(item.gain, true, true);
         const percent = item.gainPercent ? `${formatNumber(item.gainPercent, true)}%` : '-';
 
         return {
             ...item,
             value: formatNumber(item.value),
             price: formatNumber(item.price, false, true),
-            averagePrice: formatNumber(item.averagePrice,false, true),
+            averagePrice: formatNumber(item.averagePrice, false, true),
             totalPrice: formatNumber(item.totalPrice, false, true),
             gain: gainLocal,
             gainPercent: percent,
@@ -312,7 +317,7 @@ export const getAddressString: GetAddressString = (
     address = '',
     city = '',
     state = '',
-    country= '',
+    country = '',
     zip = '',
 ) => {
     const stateZip = `${state} ${zip}`;
@@ -356,3 +361,86 @@ export const getChange = (value: number) => {
 
     return {changeValue, sign};
 };
+
+const getMinAvgMax: GetMinAvgMax = (items) => {
+    if (!items || items.length < 1) {
+        return MIN_AVG_MAX_DEFAULT_VALUE;
+    }
+
+    const PERCENTILE = 0.9;
+
+    const sortedArray = [...items].sort((a, b) => a - b);
+    const index = Math.floor(sortedArray.length * PERCENTILE);
+    const threshold = sortedArray[index];
+    const filteredArray = sortedArray.filter(item => item <= threshold);
+    const length = filteredArray.length;
+    const min = filteredArray[0];
+    const max = filteredArray[length - 1];
+    const avg = length
+        ? filteredArray.reduce((sum, value) => sum + value, 0) / length
+        : 0;
+
+    return {
+        min,
+        avg,
+        max,
+    }
+}
+
+export const getIndicatorsInfo = (stocksObject: TickersObject) => {
+    const stocksArray = Object.values(stocksObject);
+    const dividendsArray = stocksArray.map(item => item.lastAnnualDividend);
+    const betaArray = stocksArray.map(item => item.beta);
+
+    const dividends = getMinAvgMax(dividendsArray);
+    const betas = getMinAvgMax(betaArray);
+
+    return {dividends, betas};
+};
+
+export const getSectorsObject: GetSectorsObject = (stocksObject) => {
+    const stocksArray = Object.values(stocksObject);
+    const sectorsObject: SectorsObject = {};
+    const dividendsObject: NumbersObject = {};
+    const betasObject: NumbersObject = {};
+
+    stocksArray.forEach((item) => {
+        const sector = item.sector;
+        if (dividendsObject[sector]) {
+            dividendsObject[sector].push(item.lastAnnualDividend);
+            betasObject[sector].push(item.beta);
+        } else {
+            dividendsObject[sector] = [item.lastAnnualDividend];
+            betasObject[sector] = [item.beta];
+        }
+    });
+
+    for (const name in betasObject) {
+        sectorsObject[name] = {
+            dividends: getMinAvgMax(dividendsObject[name]),
+            betas: getMinAvgMax(betasObject[name]),
+        };
+    }
+
+    return sectorsObject;
+};
+
+export const getAnnualRange: GetAnnualRange = (value) => {
+    const array = value.split('-');
+
+    if (array.length < 2) {
+        return null;
+    }
+
+    const min = Number(array[0]);
+    const max = Number(array[1]);
+
+    if (!Number.isFinite(min) || !Number.isFinite(max)) {
+        return null;
+    }
+
+    return {
+        min,
+        max,
+    };
+}

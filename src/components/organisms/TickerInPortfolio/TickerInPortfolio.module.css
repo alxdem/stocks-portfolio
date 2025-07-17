@@ -12,12 +12,23 @@
     gap: 0.2vw 0.5vw;
 }
 
+.inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5vw;
+    line-height: 1;
+    font-size: 1.1vw;
+}
+
+.inner b {
+    font-weight: 600;
+}
+
 .gain {
     display: flex;
     align-items: center;
     gap: 1vw;
-    line-height: 1;
-    font-size: 1.1vw;
 }
 
 .chart {
@@ -56,9 +67,13 @@ p.text {
 }
 
 @media(max-width: 1279px) {
+    .inner {
+        font-size: 1.2vw;
+        gap: 0.6vw;
+    }
+
     .gain {
         gap: 1.2vw;
-        font-size: 1.2vw;
     }
 
     p.text {
@@ -94,8 +109,12 @@ p.text {
         font-size: 1.9vw;
     }
 
-    .gain {
+    .inner {
         font-size: 1.9vw;
+        gap: 1.1vw;
+    }
+
+    .gain {
         gap: 1.8vw;
     }
 
@@ -133,8 +152,12 @@ p.text {
         font-size: 4.6vw;
     }
 
-    .gain {
+    .inner {
         font-size: 4.6vw;
+        gap: 2.6vw;
+    }
+
+    .gain {
         gap: 5.2vw;
     }
 }

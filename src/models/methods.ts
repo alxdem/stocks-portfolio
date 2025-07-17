@@ -5,6 +5,9 @@ import type {
     StockPosition,
     StockPositionFormatted,
     TickersObject,
+    MinAvgMax,
+    SectorsObject,
+    MinMax,
 } from "@/models/common";
 
 import type {ChartPieData} from '@/models/rechart';
@@ -69,3 +72,15 @@ export type GetSinglePercentChartPie = (
     value: number,
     total: number,
 ) => ChartPieData[];
+
+export type GetMinAvgMax = (
+    items?: number[],
+) => MinAvgMax;
+
+export type GetSectorsObject = (
+    stocksObject: TickersObject,
+) => SectorsObject;
+
+export type GetAnnualRange = (
+    value: string,
+) => Nullable<MinMax>;

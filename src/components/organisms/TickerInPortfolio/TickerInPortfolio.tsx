@@ -9,13 +9,13 @@ import cn from 'classnames';
 import CloudSection from '@molecules/CloudSection/CloudSection';
 import BadgeGain from '@molecules/BadgeGain/BadgeGain';
 
-const TickerInPortfolio = ({symbol, price = 0, className}: TickerInPortfolioProps) => {
+const TickerInPortfolio = ({symbol = '', price = 0, className}: TickerInPortfolioProps) => {
     const marketValue = useAppSelector(selectMarketValue);
     const portfolio = useAppSelector(selectPortfolio);
     const tickerPortfolioInfo: Nullable<StockPosition> = portfolio?.find(item => item.symbol === symbol) || null;
-    const {value, gain, gainPercent = 0 } = tickerPortfolioInfo || {};
+    const {value, gain, gainPercent = 0, averagePrice } = tickerPortfolioInfo || {};
 
-    if (price === 0 || !value) {
+    if (price === 0 || !value || !averagePrice) {
         return null;
     }
 
@@ -41,16 +41,19 @@ const TickerInPortfolio = ({symbol, price = 0, className}: TickerInPortfolioProp
                 />
                 <p className={styles.text}><b>{tickerPercent}%</b> of your portfolios</p>
                 <span className={styles.value}>{formatNumber(tickerValue, false, true)}</span>
-                <span className={styles.shares}>4 shares</span>
+                <span className={styles.shares}>{value} shares</span>
             </div>
-            <div className={gainClasses}>
-                <span>Total gain</span>
-                <span className={styles.gainValue}>{sign}${changeValue}</span>
-                <BadgeGain
-                    className={styles.gainPercent}
-                    value={gainPercent}
-                    text={`${gainPercent.toFixed(2)}%`}
-                />
+            <div className={styles.inner}>
+                <span>Average price: <b>{formatNumber(averagePrice, false, true)}</b></span>
+                <div className={gainClasses}>
+                    <span>Total gain</span>
+                    <span className={styles.gainValue}>{sign}${changeValue}</span>
+                    <BadgeGain
+                        className={styles.gainPercent}
+                        value={gainPercent}
+                        text={`${gainPercent.toFixed(2)}%`}
+                    />
+                </div>
             </div>
         </CloudSection>
     );

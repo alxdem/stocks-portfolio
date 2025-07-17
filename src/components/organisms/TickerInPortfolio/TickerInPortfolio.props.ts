@@ -1,6 +1,6 @@
 import type {ComponentPropsWithoutRef} from 'react';
 
 export interface TickerInPortfolioProps extends ComponentPropsWithoutRef<'div'>{
-    symbol: string;
+    symbol?: string;
     price?: number;
 }
