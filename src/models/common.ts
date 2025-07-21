@@ -14,6 +14,8 @@ export type SectorsObject = Record<string, Sector>;
 
 export type TickersObject = Record<string, TickerInfo>;
 
+export type SetTimer = Nullable<ReturnType<typeof setTimeout>>;
+
 interface Sector {
     dividends: MinAvgMax;
     betas: MinAvgMax;

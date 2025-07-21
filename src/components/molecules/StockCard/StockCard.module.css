@@ -1,0 +1,51 @@
+.card {
+    display: grid;
+    grid-template-columns: 1fr 30vw 10vw;
+    align-items: center;
+    gap: 5vw;
+    padding: 0.7vw var(--gap);
+    background-color: var(--bg-main);
+}
+
+.card:hover {
+    background-color: var(--bg-secondary);
+}
+
+.sector {
+    color: var(--color-text-secondary);
+    font-size: 1vw;
+}
+
+.price {
+    text-align: right;
+    font-size: 1.1vw;
+    font-weight: 500;
+    padding-right: 1vw;
+    color: var(--color-text);
+}
+
+@media(max-width: 991px) {
+    .price {
+        font-size: 1.6vw;
+    }
+
+    .sector {
+        font-size: 1.5vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .card {
+        grid-template-columns: 1fr 30vw;
+        gap: 4vw;
+        padding: 3.6vw var(--gap);
+    }
+
+    .sector {
+        display: none;
+    }
+
+    .price {
+        font-size: 4.6vw;
+    }
+}

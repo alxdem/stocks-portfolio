@@ -4,7 +4,7 @@ import type {Nullable} from '@models';
 const useFetch = <T>(url: string, initialState: Nullable<T>, options: RequestInit = {}) => {
     const [data, setData] = useState<Nullable<T>>(initialState);
     const [error, setError] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         if (url === '') {

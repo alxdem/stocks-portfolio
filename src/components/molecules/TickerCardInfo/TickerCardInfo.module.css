@@ -38,6 +38,9 @@
     grid-area: name;
     font-size: 1vw;
     color: var(--color-text-secondary);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .grid .name {

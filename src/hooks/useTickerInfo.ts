@@ -6,13 +6,15 @@ import {useEffect, useState} from 'react';
 const useTickerInfo = (name: string) => {
     const companyInfo = getCompanyFromCache(name);
     const [info, setInfo] = useState<Nullable<CompanyInfoData>>();
+    const [isLoading, setIsLoading] = useState(true);
 
     const url = companyInfo ? '' : TICKER_DATA_URL + name;
-    const {data, isLoading} = useFetch<CompanyInfoData[]>(url, null);
+    const {data} = useFetch<CompanyInfoData[]>(url, null);
 
     useEffect(() => {
         if (companyInfo) {
             setInfo(companyInfo);
+            setIsLoading(false);
 
             return;
         }
@@ -22,6 +24,7 @@ const useTickerInfo = (name: string) => {
         if (tickerInfo) {
             setInfo(tickerInfo);
             setCompanyToCache(name, tickerInfo);
+            setIsLoading(false);
         }
     }, [data]);
 
