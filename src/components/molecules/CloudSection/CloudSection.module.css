@@ -2,6 +2,7 @@
     padding: var(--gap);
     border-radius: 0.8vw;
     background-color: var(--bg-main);
+    box-sizing: border-box;
     position: relative;
     overflow: hidden;
 }

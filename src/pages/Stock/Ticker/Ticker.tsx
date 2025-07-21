@@ -13,6 +13,7 @@ import {selectDividendsInfo, selectSectors, selectBetaInfo} from '@/store/select
 import ChartRange from '@molecules/ChartRange/ChartRange';
 import IndicatorSection from '@molecules/IndicatorSection/IndicatorSection';
 import type {MinAvgMax} from '@models';
+import {useEffect} from 'react';
 import {
     formatNumber,
     formatHugeNumber,
@@ -31,8 +32,13 @@ const TickerPage = () => {
     const betas = useAppSelector(selectBetaInfo);
     const sectors = useAppSelector(selectSectors);
 
+    useEffect(() => {
+        if (!isLoading && !info) {
+            navigate('/');
+        }
+    }, [info, isLoading])
+
     if (!info) {
-        navigate('/');
         return null;
     }
 

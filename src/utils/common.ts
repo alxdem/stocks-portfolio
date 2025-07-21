@@ -7,6 +7,7 @@ import type {
     Nullable,
     CompanyInfoData,
     GetNormalizedValue,
+    ClearTimer,
 } from '@models';
 import {HugeNumberPower} from '@models';
 import {appKey} from '@/utils/variables';
@@ -164,4 +165,11 @@ export const getNormalizedValue: GetNormalizedValue = (value, min, max) => {
     }
 
     return localValue;
+};
+
+export const clearTimer: ClearTimer = (ref) => {
+    if (ref.current !== null) {
+        clearTimeout(ref.current);
+        ref.current = null;
+    }
 };

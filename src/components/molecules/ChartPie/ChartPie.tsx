@@ -3,13 +3,13 @@ import styles from '@molecules/ChartPie/ChartPie.module.css';
 import {Cell, Pie, PieChart, ResponsiveContainer, Sector} from 'recharts';
 import {useState, useRef, useEffect} from 'react';
 import cn from 'classnames';
-import type {ChartPieProps} from '@models';
+import type {ChartPieProps, SetTimer} from '@models';
 import useAppMediaQuery from '@hooks/useAppMediaQuery';
-import {QUERY_MOBILE, QUERY_TABLET, QUERY_DESKTOP_SM, formatNumber, getChartColor} from '@utils';
+import {QUERY_MOBILE, QUERY_TABLET, QUERY_DESKTOP_SM, formatNumber, getChartColor, clearTimer} from '@utils';
 
 const ChartPie = ({data, activeShapeIndex, isActiveShape, className}: ChartPieProps) => {
     const [activeShape, setActiveShape] = useState<number | undefined>(undefined);
-    const timerId = useRef<number | undefined>(undefined);
+    const timerId = useRef<SetTimer>(null);
     const isMobile = useAppMediaQuery(QUERY_MOBILE);
     const isTablet = useAppMediaQuery(QUERY_TABLET);
     const isDesktopSm = useAppMediaQuery(QUERY_DESKTOP_SM);
@@ -19,7 +19,7 @@ const ChartPie = ({data, activeShapeIndex, isActiveShape, className}: ChartPiePr
         : (isDesktopSm ? 1.4 : 1.2);
 
     const onMouseEnter: OnMouseEnter = (_props, index) => {
-        clearTimeout(timerId.current);
+        clearTimer(timerId);
         setActiveShape(index);
     };
 

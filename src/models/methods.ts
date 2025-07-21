@@ -8,6 +8,7 @@ import type {
     MinAvgMax,
     SectorsObject,
     MinMax,
+    SetTimer,
 } from "@/models/common";
 
 import type {ChartPieData} from '@/models/rechart';
@@ -84,3 +85,9 @@ export type GetSectorsObject = (
 export type GetAnnualRange = (
     value: string,
 ) => Nullable<MinMax>;
+
+export type ClearTimer = (
+    ref: {
+        current: SetTimer,
+    }
+) => void;
