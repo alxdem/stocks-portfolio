@@ -8,5 +8,10 @@ export const selectSectors = (state: RootState) => state.stocks.sectors;
 
 export const selectStocksArray = createSelector(
     [selectStocks],
-    (stocks) => Object.values(stocks || {})
+    (stocks) => {
+        const array = Object.values(stocks || {});
+        array.sort((a, b) => a.symbol.localeCompare(b.symbol, 'en'));
+
+        return array;
+    }
 );
