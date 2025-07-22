@@ -173,3 +173,18 @@ export const clearTimer: ClearTimer = (ref) => {
         ref.current = null;
     }
 };
+
+export const getScrollbarWidth = () => {
+    const div = document.createElement('div');
+    div.style.overflowY = 'scroll';
+    div.style.width = '100px';
+    div.style.height = '100px';
+    div.style.position = 'absolute';
+    div.style.top = '-9999px';
+
+    document.body.appendChild(div);
+    const scrollbarWidth = div.offsetWidth - div.clientWidth;
+    document.body.removeChild(div);
+
+    return scrollbarWidth;
+};

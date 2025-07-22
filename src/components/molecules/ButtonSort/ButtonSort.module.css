@@ -1,0 +1,68 @@
+.button {
+    padding: 0.7vw 0;
+    border: 0;
+    background-color: var(--bg-main);
+    text-align: left;
+    font-size: 1vw;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    display: flex;
+    gap: 0.4vw;
+    transition: color var(--ease) var(--timing-md);
+}
+
+.active {
+    color: var(--color-text);
+}
+
+.button:hover {
+    color: var(--color-text);
+}
+
+.right {
+    text-align: right;
+    justify-content: flex-end;
+}
+
+.icon {
+    width: 1.2vw;
+    height: 1.2vw;
+    flex-shrink: 0;
+    fill: var(--color-text-secondary);
+    opacity: 0;
+}
+
+.active .icon {
+    opacity: 1;
+    fill: var(--color-text);
+}
+
+.orderDesc .icon {
+    transform: rotate(180deg);
+}
+
+@media(max-width: 991px) {
+    .button {
+        font-size: 1.5vw;
+        gap: 0.6vw;
+    }
+
+    .icon {
+        width: 1.8vw;
+        height: 1.8vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .button {
+        font-size: 4.2vw;
+        padding-top: 3.4vw;
+        padding-bottom: 3.4vw;
+        gap: 1.6vw;
+    }
+
+    .icon {
+        width: 5vw;
+        height: 5vw;
+    }
+}
