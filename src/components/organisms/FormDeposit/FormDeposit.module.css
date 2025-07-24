@@ -12,6 +12,10 @@
     gap: var(--gap);
 }
 
+.field {
+    overflow: hidden;
+}
+
 .number {
     grid-column: span 2;
 }

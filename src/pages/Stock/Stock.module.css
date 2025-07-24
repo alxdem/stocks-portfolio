@@ -9,6 +9,9 @@
 .header {
     flex-shrink: 0;
     flex-grow: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
     border-bottom: 1px solid var(--border-color);
     padding: 0 var(--gap);
     margin-left: calc(var(--gap) * -1);
@@ -37,6 +40,12 @@
     left: 0;
 }
 
+@media(max-width: 991px) {
+    .header {
+        gap: 2vw;
+    }
+}
+
 @media(max-width: 767px) {
     .names {
         grid-template-columns: 1fr 30vw;
@@ -44,5 +53,9 @@
 
     button.btnSector {
         display: none;
+    }
+
+    .header {
+        gap: 4vw;
     }
 }

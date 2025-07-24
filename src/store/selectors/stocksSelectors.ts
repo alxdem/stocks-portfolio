@@ -15,3 +15,16 @@ export const selectStocksArray = createSelector(
         return array;
     }
 );
+
+export const selectSectorsName = createSelector(
+    [selectSectors],
+    (sectors) => {
+        if (!sectors) {
+            return [];
+        }
+
+        const array = Object.keys(sectors);
+
+        return array.sort((a, b) => a.localeCompare(b));
+    }
+);

@@ -143,3 +143,8 @@ export interface CompanyInfoData {
     isAdr: boolean;
     isFund: boolean;
 }
+
+export interface SelectOption<T extends string = string> {
+    value: T;
+    label: string;
+}

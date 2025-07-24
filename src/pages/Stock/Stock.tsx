@@ -1,6 +1,6 @@
 import StockCard from '@molecules/StockCard/StockCard';
 import {useAppSelector} from '@/store/hooks';
-import {selectStocksArray} from '@/store/selectors/stocksSelectors';
+import {selectStocksArray, selectSectorsName} from '@/store/selectors/stocksSelectors';
 import styles from '@pages/Stock/Stock.module.css';
 import VirtualList from '@organisms/VirtualList/VirtualList';
 import {useEffect, useRef, useState, useMemo} from 'react';
@@ -8,9 +8,11 @@ import CloudSection from '@molecules/CloudSection/CloudSection';
 import {formatNumber, getScrollbarWidth} from '@utils';
 import type {SortOrder} from '@models';
 import ButtonSort from '@molecules/ButtonSort/ButtonSort';
+import AppSelect from '@molecules/AppSelect/AppSelect';
+import type {AppSelectProps} from '@molecules/AppSelect/AppSelect.props';
 
 const sortButtons = [
-    {text: 'Company', value: 'name'},
+    {text: 'Company', value: 'symbol'},
     {text: 'Sector', value: 'sector'},
     {text: 'Price', value: 'price'},
 ] as const;
@@ -19,18 +21,32 @@ type SortType = typeof sortButtons[number]['value'];
 
 const StockPage = () => {
     const stockArray = useAppSelector(selectStocksArray);
+    const sectorsName = useAppSelector(selectSectorsName);
     const hiddenCardRef = useRef<HTMLAnchorElement>(null);
     const innerRef = useRef<HTMLDivElement>(null);
     const innerNames = useRef<HTMLDivElement>(null);
 
+    const filterSectorOptions = sectorsName.map(sector => ({
+        label: sector,
+        value: sector,
+    }));
+
     const [cardHeight, setCardHeight] = useState<number | undefined>(undefined);
     const [virtualListHeight, setVirtualListHeight] = useState<number | undefined>(undefined);
 
-    const [sort, setSort] = useState<SortType>('name');
+    const [sort, setSort] = useState<SortType>('symbol');
     const [order, setOrder] = useState<SortOrder>('asc');
+    const [filterSector, setFilterSector] = useState<string>('all');
 
-    const sortedStockArray = useMemo(() => {
-        return [...stockArray].sort((a, b) => {
+    const formattedStockArray = useMemo(() => {
+        const tickerArray = [...stockArray];
+        const filteredArray = filterSector !== 'all'
+            ? tickerArray.filter(item => item.sector === filterSector)
+            : null;
+
+        const currentArray = filteredArray ? filteredArray : tickerArray;
+
+        return currentArray.sort((a, b) => {
             const keyA = a[sort];
             const keyB = b[sort];
 
@@ -46,7 +62,7 @@ const StockPage = () => {
 
             return 0;
         });
-    }, [stockArray, sort, order]);
+    }, [stockArray, sort, order, filterSector]);
 
     useEffect(() => {
         const inner = innerRef.current;
@@ -95,32 +111,56 @@ const StockPage = () => {
         setSort(value);
     };
 
+    const filterSectorChange = (value: string) => {
+        setFilterSector(value);
+    };
+
+    const filterSectorClear = () => {
+        setFilterSector('all');
+    };
+
+    const filterSectorProps: AppSelectProps<string> = {
+        label: 'Filter by sector',
+        options: [...filterSectorOptions],
+        value: filterSector,
+        placeholder: 'All sectors',
+        isClearable: true,
+        onChange: filterSectorChange,
+        onClear: filterSectorClear,
+    };
+
     return (
         <CloudSection className={styles.main}>
             <div className={styles.header}>
+                <AppSelect {...filterSectorProps} />
                 <div ref={innerNames} className={styles.names}>
-                    {sortButtons.map((button, index) => (
-                        <ButtonSort
-                            key={button.value}
-                            text={button.text}
-                            isAlignRight={index === sortButtons.length - 1}
-                            isActive={button.value === sort}
-                            order={order}
-                            className={index === 1 ? styles.btnSector : undefined}
-                            onClick={() => btnSortClick(button.value)}
-                        />
-                    ))}
+                    {sortButtons.map((button, index) => {
+                        const isDisabled = button.value === 'sector' && filterSector !== 'all';
+
+                        return (
+                            <ButtonSort
+                                key={button.value}
+                                text={button.text}
+                                isAlignRight={index === sortButtons.length - 1}
+                                isActive={button.value === sort}
+                                order={order}
+                                disabled={isDisabled}
+                                className={index === 1 ? styles.btnSector : undefined}
+                                onClick={() => btnSortClick(button.value)}
+                            />
+                        )
+                    })}
                 </div>
             </div>
             <div ref={innerRef} className={styles.inner}>
-            {virtualListHeight &&
+                {virtualListHeight &&
                     <VirtualList
                         className={styles.list}
                         height={virtualListHeight}
                         itemHeight={cardHeight}
                         isEnabled={true}
                     >
-                        {sortedStockArray.map((item) => (
+                        {formattedStockArray.map((item) => (
                             <StockCard
                                 key={item.symbol}
                                 symbol={item.symbol}

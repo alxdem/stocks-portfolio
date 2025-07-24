@@ -1,0 +1,202 @@
+.container {
+    cursor: pointer !important;
+}
+
+.dropdownIndicator {
+    color: var(--color-text-secondary) !important;
+    padding: 0 !important;
+    margin: 0 auto;
+}
+
+.dropdownIndicator svg {
+    width: 1.4vw !important;
+    height: 1.4vw !important;
+}
+
+.dropdownIndicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6vw;
+    height: 100%;
+}
+
+.clearIndicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6vw;
+    height: 100%;
+    padding: 0 !important;
+}
+
+.clearIndicator svg {
+    width: 1.2vw !important;
+    height: 1.2vw !important;
+    color: var(--color-text-secondary) !important;
+}
+
+.indicatorsSeparator {
+    background-color: var(--color-text-secondary) !important;
+}
+
+.input {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.menuPortal,
+.menu {
+    border: 0 !important;
+    border-radius: 0.4vw !important;
+    box-shadow: var(--select-menu-shadow) !important;
+}
+
+.menuList {
+    background-color: var(--bg-main);
+    font-size: 0.9vw;
+    color: var(--color-text);
+    border: 0 !important;
+    border-radius: 0.4vw !important;
+}
+
+.optionSelected {
+    background-color: var(--bg-secondary) !important;
+    color: var(--color-text) !important;
+}
+
+.optionFocused {
+    background-color: var(--select-option-focused-bg) !important;
+    cursor: pointer !important;
+}
+
+.valueContainer {
+    margin: 0 !important;
+    padding: 0 1vw !important;
+    height: 100% !important;
+}
+
+.control {
+    height: 2.6vw;
+    min-height: auto !important;
+    align-items: stretch;
+    border-radius: 0.4vw !important;
+    outline: none !important;
+    width: 100%;
+    border: 1px solid var(--field-border-color) !important;
+    background-color: var(--field-bg-color) !important;
+    cursor: pointer !important;
+}
+
+.control.controlFocused {
+    outline: 4px solid var(--field-border-color-outline) !important;
+    border-color: var(--field-border-color-focus) !important;
+    box-shadow: none !important;
+}
+
+.input,
+.singleValue {
+    font-size: 1vw !important;
+    color: var(--color-text) !important;
+    margin: 0 !important;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border: 0 !important;
+}
+
+@media(max-width: 1279px) {
+    .control {
+        height: 3.1vw;
+        border-radius: 0.4vw !important;
+    }
+
+    .input,
+    .singleValue {
+        font-size: 1.4vw !important;
+    }
+
+    .menuList {
+        font-size: 1.2vw;
+    }
+
+    .clearIndicator svg {
+        width: 1.4vw !important;
+        height: 1.4vw !important;
+    }
+}
+
+@media(max-width: 991px) {
+    .valueContainer {
+        padding: 0 1.6vw !important;
+    }
+
+    .control {
+        height: 5.2vw;
+        border-radius: 0.6vw !important;
+    }
+
+    .input,
+    .singleValue {
+        font-size: 2.2vw !important;
+    }
+
+    .menuList {
+        font-size: 2vw;
+    }
+
+    .clearIndicator,
+    .dropdownIndicator {
+        width: 4.6vw;
+    }
+
+    .dropdownIndicator svg {
+        width: 2.4vw !important;
+        height: 2.4vw !important;
+    }
+
+    .clearIndicator svg {
+        width: 2.4vw !important;
+        height: 2.4vw !important;
+    }
+}
+
+@media(max-width: 767px) {
+    .valueContainer {
+        padding: 0 4vw !important;
+    }
+
+    .control {
+        height: 12.8vw;
+        border-radius: 1.6vw !important;
+    }
+
+    .input,
+    .singleValue {
+        font-size: 5.8vw !important;
+    }
+
+    .menu {
+        border-radius: 1.6vw !important;
+    }
+
+    .menuList {
+        font-size: 5vw;
+        border-radius: 1.6vw !important;
+    }
+
+    .dropdownIndicator svg {
+        width: 7vw !important;
+        height: 7vw !important;
+    }
+
+    .clearIndicator svg {
+        width: 6.4vw !important;
+        height: 6.4vw !important;
+    }
+
+    .clearIndicator,
+    .dropdownIndicator {
+        width: 11.8vw;
+    }
+}
