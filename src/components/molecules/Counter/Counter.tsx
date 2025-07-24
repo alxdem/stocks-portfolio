@@ -1,6 +1,6 @@
 import type {CounterProps} from '@molecules/Counter/Counter.props';
 import styles from '@molecules/Counter/Counter.module.css';
-import Field from '@molecules/Field/Field';
+import Input from '@molecules/Input/Input.tsx';
 import Button from '@atoms/Button/Button';
 import PlusIcon from '@images/plus.svg?react';
 import MinusIcon from '@images/minus.svg?react';
@@ -28,7 +28,7 @@ const Counter = ({
             >
                 <MinusIcon/>
             </Button>
-            <Field
+            <Input
                 label={label}
                 value={value}
                 placeholder={placeholder}

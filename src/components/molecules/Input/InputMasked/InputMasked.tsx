@@ -1,4 +1,4 @@
-import type {InputMaskedProps} from '@molecules/Field/InputMasked/InputMasked.props.ts';
+import type {InputMaskedProps} from '@molecules/Input/InputMasked/InputMasked.props.ts';
 import {IMaskInput} from 'react-imask';
 import {forwardRef} from 'react';
 

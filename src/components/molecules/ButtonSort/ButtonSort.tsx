@@ -3,7 +3,7 @@ import styles from '@molecules/ButtonSort/ButtonSort.module.css';
 import cn from 'classnames';
 import ArrowIcon from '@images/arrow-circle.svg?react';
 
-const ButtonSort = ({text, order = 'asc', isActive, isAlignRight, onClick, className}: ButtonSortProps) => {
+const ButtonSort = ({text, order = 'asc', isActive, isAlignRight, disabled, onClick, className}: ButtonSortProps) => {
     return (
         <button
             type='button'
@@ -14,6 +14,7 @@ const ButtonSort = ({text, order = 'asc', isActive, isAlignRight, onClick, class
                 order === 'desc' && styles.orderDesc,
                 className,
             )}
+            disabled={disabled}
             onClick={onClick}
         >
             {text}

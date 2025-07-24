@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     gap: 0.1vw;
-    overflow: hidden;
     flex-shrink: 1;
     flex-grow: 1;
 }
@@ -11,44 +10,6 @@
     color: var(--color-text-secondary);
     font-size: 0.8vw;
     cursor: pointer;
-}
-
-.input {
-    border-radius: 0.4vw;
-    border: 1px solid var(--field-border-color);
-    height: 2.6vw;
-    padding: 0 1vw;
-    font-size: 1vw;
-    color: var(--color-text);
-    background-color: var(--field-bg-color);
-}
-
-.centred .input {
-    text-align: center;
-}
-
-.input::placeholder {
-    color: var(--field-color-secondary);
-}
-
-.input:disabled {
-    background-color: var(--field-bg-color-disabled);
-    color: var(--field-color-disabled);
-    cursor: default;
-}
-
-.input:disabled::placeholder {
-    color: var(--field-color-disabled);
-}
-
-.input:focus-visible {
-    outline: 4px solid var(--field-border-color-outline);
-    border-color: var(--field-border-color-focus);
-}
-
-.error .input {
-    color: var(--color-error);
-    border-color: var(--color-error);
 }
 
 .errorText {
@@ -65,12 +26,6 @@
         font-size: 1vw;
     }
 
-    .input {
-        border-radius: 0.5vw;
-        height: 3.1vw;
-        font-size: 1.4vw;
-    }
-
     .errorText {
         font-size: 1vw;
     }
@@ -85,13 +40,6 @@
         font-size: 1.6vw;
     }
 
-    .input {
-        border-radius: 0.6vw;
-        height: 5.2vw;
-        font-size: 2.2vw;
-        padding: 0 1.6vw;
-    }
-
     .errorText {
         font-size: 1.6vw;
     }
@@ -104,13 +52,6 @@
 
     .label {
         font-size: 4.2vw;
-    }
-
-    .input {
-        border-radius: 1.6vw;
-        height: 12.8vw;
-        font-size: 5.8vw;
-        padding: 0 4vw;
     }
 
     .errorText {

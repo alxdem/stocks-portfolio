@@ -1,6 +1,6 @@
 import styles from '@organisms/FormDeposit/FormDeposit.module.css';
 import Button from '@atoms/Button/Button';
-import Field from '@molecules/Field/Field';
+import Input from '@molecules/Input/Input.tsx';
 import {cvvOptions, cardNumberOptions, expDateOptions, paymentOptions, message, QUERY_TABLET} from '@utils';
 import {useForm, Controller, type SubmitHandler} from 'react-hook-form';
 import * as z from 'zod/v4';
@@ -82,8 +82,8 @@ const FormDeposit = ({className}: ComponentPropsWithoutRef<'form'>) => {
                     name='number'
                     render={({field: {onChange, ...rest}, fieldState: {error}}) => {
                         return (
-                            <Field
-                                className={styles.number}
+                            <Input
+                                className={cn(styles.number, styles.field)}
                                 label='Card Number (16 numbers)'
                                 {...rest}
                                 maskOptions={cardNumberOptions}
@@ -99,7 +99,8 @@ const FormDeposit = ({className}: ComponentPropsWithoutRef<'form'>) => {
                     control={control}
                     name='expDate'
                     render={({field: {onChange, ...rest}}) => (
-                        <Field
+                        <Input
+                            className={styles.field}
                             label='Exp. date (mm/yy)'
                             {...rest}
                             maskOptions={expDateOptions}
@@ -114,7 +115,8 @@ const FormDeposit = ({className}: ComponentPropsWithoutRef<'form'>) => {
                     control={control}
                     name='cvv'
                     render={({field: {onChange, ...rest}}) => (
-                        <Field
+                        <Input
+                            className={styles.field}
                             label='CVV'
                             {...rest}
                             maskOptions={cvvOptions}
@@ -129,9 +131,9 @@ const FormDeposit = ({className}: ComponentPropsWithoutRef<'form'>) => {
                     control={control}
                     name='payment'
                     render={({field: {onChange, ...rest}}) => (
-                        <Field
+                        <Input
                             label='payment (max: $10 000)'
-                            className={styles.payment}
+                            className={cn(styles.payment, styles.field)}
                             {...rest}
                             maskOptions={paymentOptions}
                             unmask={true}

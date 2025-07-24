@@ -1,23 +1,7 @@
-import type {ChangeEvent, ComponentPropsWithRef} from 'react';
-import type { MaskedPatternOptions, MaskedNumberOptions } from 'imask';
+import type {ComponentPropsWithRef} from 'react';
 
-type BaseFieldProps = Omit<ComponentPropsWithRef<'input'>, 'onChange'> & {
+export interface FieldProps extends ComponentPropsWithRef<'label'> {
     label?: string;
     error?: string;
-    isCentred?: boolean;
-    unmask?: boolean;
+    isErrorActive?: boolean;
 }
-
-type PlainFieldProps = BaseFieldProps & {
-    maskOptions?: never;
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-    onAccept?: never;
-}
-
-type MaskedInputProps = BaseFieldProps & {
-    maskOptions: MaskedPatternOptions | MaskedNumberOptions;
-    onAccept?: (value: string) => void;
-    onChange?: never;
-}
-
-export type FieldProps = PlainFieldProps | MaskedInputProps;

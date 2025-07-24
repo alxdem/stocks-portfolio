@@ -19,6 +19,11 @@
     color: var(--color-text);
 }
 
+.button:disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
 .right {
     text-align: right;
     justify-content: flex-end;
