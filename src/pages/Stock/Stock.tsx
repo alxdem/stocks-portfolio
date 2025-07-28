@@ -1,68 +1,45 @@
 import StockCard from '@molecules/StockCard/StockCard';
-import {useAppSelector} from '@/store/hooks';
-import {selectStocksArray, selectSectorsName} from '@/store/selectors/stocksSelectors';
 import styles from '@pages/Stock/Stock.module.css';
 import VirtualList from '@organisms/VirtualList/VirtualList';
-import {useEffect, useRef, useState, useMemo} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import CloudSection from '@molecules/CloudSection/CloudSection';
-import {formatNumber, getScrollbarWidth} from '@utils';
-import type {SortOrder} from '@models';
+import {sortButtons, formatNumber, getScrollbarWidth, QUERY_MOBILE} from '@utils';
+import type {SortType, NumberTuple} from '@models';
 import ButtonSort from '@molecules/ButtonSort/ButtonSort';
-import AppSelect from '@molecules/AppSelect/AppSelect';
-import type {AppSelectProps} from '@molecules/AppSelect/AppSelect.props';
-
-const sortButtons = [
-    {text: 'Company', value: 'symbol'},
-    {text: 'Sector', value: 'sector'},
-    {text: 'Price', value: 'price'},
-] as const;
-
-type SortType = typeof sortButtons[number]['value'];
+import useFilterStocks from '@hooks/useFilterStocks';
+import FilterStocks from '@organisms/FilterStocks/FilterStocks';
+import useAppMediaQuery from '@hooks/useAppMediaQuery';
+import Button from '@atoms/Button/Button';
+import Modal from '@organisms/Modal/Modal';
+import cn from 'classnames';
 
 const StockPage = () => {
-    const stockArray = useAppSelector(selectStocksArray);
-    const sectorsName = useAppSelector(selectSectorsName);
+    const ALL_SECTORS_KEY = 'all';
+
+    const isMobile = useAppMediaQuery(QUERY_MOBILE);
     const hiddenCardRef = useRef<HTMLAnchorElement>(null);
     const innerRef = useRef<HTMLDivElement>(null);
     const innerNames = useRef<HTMLDivElement>(null);
 
-    const filterSectorOptions = sectorsName.map(sector => ({
-        label: sector,
-        value: sector,
-    }));
-
     const [cardHeight, setCardHeight] = useState<number | undefined>(undefined);
     const [virtualListHeight, setVirtualListHeight] = useState<number | undefined>(undefined);
+    const [isMobFilterActive, setIsMobFilterActive] = useState(false);
 
-    const [sort, setSort] = useState<SortType>('symbol');
-    const [order, setOrder] = useState<SortOrder>('asc');
-    const [filterSector, setFilterSector] = useState<string>('all');
+    const {
+        currentArray,
+        order,
+        sort,
+        filterSector,
+        price,
+        minMax,
+        setSort,
+        setOrder,
+        setFilterSector,
+        setPrice,
+        reset,
+    } = useFilterStocks(ALL_SECTORS_KEY);
 
-    const formattedStockArray = useMemo(() => {
-        const tickerArray = [...stockArray];
-        const filteredArray = filterSector !== 'all'
-            ? tickerArray.filter(item => item.sector === filterSector)
-            : null;
-
-        const currentArray = filteredArray ? filteredArray : tickerArray;
-
-        return currentArray.sort((a, b) => {
-            const keyA = a[sort];
-            const keyB = b[sort];
-
-            if (typeof keyA === 'string' && typeof keyB === 'string') {
-                return order === 'asc'
-                    ? keyA.localeCompare(keyB, 'en')
-                    : keyB.localeCompare(keyA, 'en');
-            }
-
-            if (typeof keyA === 'number' && typeof keyB === 'number') {
-                return order === 'asc' ? keyA - keyB : keyB - keyA;
-            }
-
-            return 0;
-        });
-    }, [stockArray, sort, order, filterSector]);
+    const counter = currentArray.length;
 
     useEffect(() => {
         const inner = innerRef.current;
@@ -116,26 +93,64 @@ const StockPage = () => {
     };
 
     const filterSectorClear = () => {
-        setFilterSector('all');
+        setFilterSector(ALL_SECTORS_KEY);
     };
 
-    const filterSectorProps: AppSelectProps<string> = {
-        label: 'Filter by sector',
-        options: [...filterSectorOptions],
-        value: filterSector,
-        placeholder: 'All sectors',
-        isClearable: true,
-        onChange: filterSectorChange,
-        onClear: filterSectorClear,
+    const priceChange = (value: number[]) => {
+        setPrice([...value] as NumberTuple);
     };
+
+    const isResetBtnDisabled =
+        price !== null
+        && minMax !== null
+        && filterSector === ALL_SECTORS_KEY
+        && price[0] === minMax[0]
+        && price[1] === minMax[1];
 
     return (
         <CloudSection className={styles.main}>
             <div className={styles.header}>
-                <AppSelect {...filterSectorProps} />
+                {isMobile &&
+                    <div className={cn(
+                        styles.mobPanel,
+                        !isResetBtnDisabled && styles.withReset,
+                    )}>
+                        <Button
+                            className={styles.mobBtnFilter}
+                            as='button'
+                            onClick={() => setIsMobFilterActive(true)}
+                        >
+                            Filter
+                        </Button>
+                        {!isResetBtnDisabled &&
+                            <Button
+                                className={styles.reset}
+                                theme='secondary'
+                                as='button'
+                                onClick={reset}
+                            >
+                                Reset
+                            </Button>
+                        }
+                    </div>
+                }
+                {!isMobile &&
+                    <FilterStocks
+                        minMax={minMax}
+                        price={price}
+                        currentSector={filterSector}
+                        isResetDisabled={isResetBtnDisabled}
+                        reset={reset}
+                        sectorChange={filterSectorChange}
+                        sectorClear={filterSectorClear}
+                        priceChange={priceChange}
+                    />
+                }
+                <span className={styles.counter}>Found shares: <b>{counter}</b></span>
+
                 <div ref={innerNames} className={styles.names}>
                     {sortButtons.map((button, index) => {
-                        const isDisabled = button.value === 'sector' && filterSector !== 'all';
+                        const isDisabled = button.value === 'sector' && filterSector !== ALL_SECTORS_KEY;
 
                         return (
                             <ButtonSort
@@ -153,14 +168,14 @@ const StockPage = () => {
                 </div>
             </div>
             <div ref={innerRef} className={styles.inner}>
-                {virtualListHeight &&
+            {virtualListHeight &&
                     <VirtualList
                         className={styles.list}
                         height={virtualListHeight}
                         itemHeight={cardHeight}
                         isEnabled={true}
                     >
-                        {formattedStockArray.map((item) => (
+                        {currentArray.map((item) => (
                             <StockCard
                                 key={item.symbol}
                                 symbol={item.symbol}
@@ -180,6 +195,26 @@ const StockPage = () => {
                 price='1000'
                 sector='Test'
             />
+            {isMobile &&
+                <Modal
+                    isOpened={isMobFilterActive}
+                    onClose={() => setIsMobFilterActive(false)}
+                >
+                    <FilterStocks
+                        minMax={minMax}
+                        price={price}
+                        currentSector={filterSector}
+                        counter={counter}
+                        isResetDisabled={isResetBtnDisabled}
+                        isMobile={true}
+                        reset={reset}
+                        sectorChange={filterSectorChange}
+                        sectorClear={filterSectorClear}
+                        priceChange={priceChange}
+                        btnBackOnClick={() => setIsMobFilterActive(false)}
+                    />
+                </Modal>
+            }
         </CloudSection>
     );
 };

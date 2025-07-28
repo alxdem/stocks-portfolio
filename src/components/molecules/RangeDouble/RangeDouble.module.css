@@ -1,0 +1,49 @@
+.inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.6vw 3vw;
+}
+
+.input {
+    width: 6vw;
+}
+
+.max input {
+    text-align: right;
+}
+
+.range {
+    width: 100%;
+    flex-shrink: 0;
+}
+
+@media(max-width: 1279px) {
+    .inner {
+        gap: 0.8vw 3vw;
+    }
+
+    .input {
+        width: 8vw;
+    }
+}
+
+@media(max-width: 991px) {
+    .inner {
+        gap: 1.6vw 3vw;
+    }
+
+    .input {
+        width: 14vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .inner {
+        gap: 6vw 5vw;
+    }
+
+    .input {
+        width: 40vw;
+    }
+}

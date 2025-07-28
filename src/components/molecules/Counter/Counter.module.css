@@ -7,6 +7,10 @@
     flex-shrink: 0;
 }
 
+.field {
+    overflow: hidden;
+}
+
 @media(max-width: 1279px) {
     .counter {
         gap: 0.5vw;

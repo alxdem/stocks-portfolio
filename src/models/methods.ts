@@ -9,6 +9,8 @@ import type {
     SectorsObject,
     MinMax,
     SetTimer,
+    TickerInfo,
+    DoubleRange,
 } from "@/models/common";
 
 import type {ChartPieData} from '@/models/rechart';
@@ -91,3 +93,7 @@ export type ClearTimer = (
         current: SetTimer,
     }
 ) => void;
+
+export type GetMinMaxPriceFromStocksArray = (
+    array: TickerInfo[],
+) => DoubleRange;

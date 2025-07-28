@@ -1,12 +1,16 @@
 import type {InputMaskedProps} from '@molecules/Input/InputMasked/InputMasked.props.ts';
 import {IMaskInput} from 'react-imask';
-import {forwardRef} from 'react';
+import {forwardRef, type FocusEvent} from 'react';
 
-const InputMasked = forwardRef<HTMLInputElement, InputMaskedProps>(({className, value, placeholder, disabled, name, unmask = false, onAccept, onFocus, onBlur, options}: InputMaskedProps, ref) => {
+const InputMasked = forwardRef<HTMLInputElement, InputMaskedProps>(({className, value, placeholder, disabled, name, unmask = false, onAccept, onFocus, onCustomBlur, options}: InputMaskedProps, ref) => {
     const onInputChange = (value: string) => {
         if (onAccept) {
             onAccept(value);
         }
+    };
+
+    const onBlurLocal = (e: FocusEvent<HTMLInputElement>) => {
+        onCustomBlur?.(e.target.value);
     };
 
     return (
@@ -20,7 +24,7 @@ const InputMasked = forwardRef<HTMLInputElement, InputMaskedProps>(({className, 
             unmask={unmask}
             onAccept={onInputChange}
             onFocus={onFocus}
-            onBlur={onBlur}
+            onBlur={onBlurLocal}
             {...options}
         />
     );

@@ -53,3 +53,9 @@ export const MIN_AVG_MAX_DEFAULT_VALUE = {
     avg: 0,
     max: 0,
 }
+
+export const sortButtons = [
+    {text: 'Company', value: 'symbol'},
+    {text: 'Sector', value: 'sector'},
+    {text: 'Price', value: 'price'},
+] as const;

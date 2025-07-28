@@ -6,5 +6,5 @@ export type InputMaskedProps = IMaskInputProps<HTMLInputElement> & {
     options?: MaskedPatternOptions | MaskedNumberOptions;
     onAccept?: (value: string) => void;
     onFocus?: () => void;
-    onBlur?: () => void;
+    onCustomBlur?: (value: string) => void;
 }

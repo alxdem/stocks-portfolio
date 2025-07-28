@@ -6,6 +6,7 @@ type BaseFieldProps = Omit<ComponentPropsWithRef<'input'>, 'onChange'> & {
     error?: string;
     isCentred?: boolean;
     unmask?: boolean;
+    onCustomBlur?: (value: string) => void;
 }
 
 type PlainFieldProps = BaseFieldProps & {

@@ -8,6 +8,7 @@ import type {
     CompanyInfoData,
     GetNormalizedValue,
     ClearTimer,
+    GetMinMaxPriceFromStocksArray,
 } from '@models';
 import {HugeNumberPower} from '@models';
 import {appKey} from '@/utils/variables';
@@ -187,4 +188,19 @@ export const getScrollbarWidth = () => {
     document.body.removeChild(div);
 
     return scrollbarWidth;
+};
+
+export const getMinMaxPriceFromStocksArray: GetMinMaxPriceFromStocksArray = (array) => {
+    if (array.length < 1) {
+        return null;
+    }
+
+    const sortedArray = [...array].sort((a, b) => {
+        return a.price - b.price;
+    });
+
+    return [
+        Math.floor(sortedArray[0].price),
+        Math.ceil(sortedArray[sortedArray.length - 1].price),
+    ]
 };
