@@ -19,6 +19,7 @@ const Input = ({
                    maskOptions,
                    name,
                    unmask,
+                   onCustomBlur,
                }: InputProps) => {
     const [isFocus, setIsFocus] = useState(false);
 
@@ -31,7 +32,10 @@ const Input = ({
     );
 
     const handleFocus = () => setIsFocus(true);
-    const handleBlur = () => setIsFocus(false);
+    const handleBlur = (value: string) => {
+        setIsFocus(false);
+        onCustomBlur?.(value);
+    }
 
     const inputElement = maskOptions
         ? <InputMasked
@@ -43,7 +47,7 @@ const Input = ({
             name={name}
             onAccept={onAccept}
             onFocus={handleFocus}
-            onBlur={handleBlur}
+            onCustomBlur={handleBlur}
             options={maskOptions}
             unmask={unmask}
         />
@@ -56,7 +60,7 @@ const Input = ({
             placeholder={placeholder}
             disabled={disabled}
             onChange={onChange}
-        />
+        />;
 
     return (
         <Field

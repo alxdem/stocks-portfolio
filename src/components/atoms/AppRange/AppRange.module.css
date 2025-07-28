@@ -1,0 +1,135 @@
+.field {
+    padding-bottom: 1.3vw;
+}
+
+.track {
+    background-color: var(--color-primary-200);
+    height: 0.5vw;
+    width: 100%;
+}
+
+.thumb {
+    height: 2.2vw;
+    width: 2.2vw;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.thumb:focus-visible {
+    outline: 4px solid var(--field-border-color-outline);
+}
+
+.thumb::after {
+    display: block;
+    content: '';
+    position: relative;
+    height: 1.1vw;
+    width: 1.1vw;
+    background-color: var(--color-primary-600);
+    border-radius: 50%;
+}
+
+.thumbValue {
+    position: absolute;
+    bottom: -0.5vw;
+    line-height: 0.9;
+    font-size: 1vw;
+    color: var(--color-text);
+}
+
+.mark {
+    font-size: 0.9vw;
+    line-height: 0.9;
+    color: var(--color-text-secondary);
+    bottom: -1.1vw;
+    margin: 0 !important;
+}
+
+@media(max-width: 1279px) {
+    .field {
+        padding-bottom: 1.7vw;
+    }
+
+    .mark {
+        font-size: 1vw;
+        bottom: -1.2vw;
+    }
+
+    .thumb::after {
+        height: 1.2vw;
+        width: 1.2vw;
+    }
+
+    .thumb:focus-visible {
+        outline: 3px solid var(--field-border-color-outline);
+    }
+
+    .thumbValue {
+        bottom: -1vw;
+        font-size: 1.2vw;
+    }
+}
+
+@media(max-width: 991px) {
+    .field {
+        padding-bottom: 2.9vw;
+        gap: 1vw;
+    }
+
+    .track {
+        height: 0.9vw;
+    }
+
+    .mark {
+        font-size: 1.3vw;
+        bottom: -1.4vw;
+    }
+
+    .thumb {
+        height: 3.8vw;
+        width: 3.8vw;
+    }
+
+    .thumb::after {
+        height: 2.2vw;
+        width: 2.2vw;
+    }
+
+    .thumbValue {
+        bottom: -1.4vw;
+        font-size: 1.8vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .field {
+        padding-bottom: 7vw;
+        gap: 3vw;
+    }
+
+    .track {
+        height: 1.6vw;
+    }
+
+    .mark {
+        font-size: 3.3vw;
+        bottom: -4vw;
+    }
+
+    .thumb {
+        height: 13vw;
+        width: 13vw;
+    }
+
+    .thumb::after {
+        height: 5vw;
+        width: 5vw;
+    }
+
+    .thumbValue {
+        bottom: -1.8vw;
+        font-size: 4.8vw;
+    }
+}

@@ -1,4 +1,5 @@
 import {OperationType, OperationColor} from '@/models/dictionaries';
+import {sortButtons} from '@utils';
 
 export type OperationKind = (typeof OperationType)[keyof typeof OperationType];
 
@@ -17,6 +18,12 @@ export type TickersObject = Record<string, TickerInfo>;
 export type SetTimer = Nullable<ReturnType<typeof setTimeout>>;
 
 export type SortOrder = 'asc' | 'desc';
+
+export type SortType = typeof sortButtons[number]['value'];
+
+export type NumberTuple = [number, number];
+
+export type DoubleRange = Nullable<NumberTuple>;
 
 interface Sector {
     dividends: MinAvgMax;

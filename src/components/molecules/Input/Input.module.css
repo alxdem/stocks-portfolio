@@ -6,6 +6,7 @@
     font-size: 1vw;
     color: var(--color-text);
     background-color: var(--field-bg-color);
+    box-sizing: border-box;
 }
 
 .centred .input {

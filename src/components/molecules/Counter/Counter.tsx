@@ -29,6 +29,7 @@ const Counter = ({
                 <MinusIcon/>
             </Button>
             <Input
+                className={styles.field}
                 label={label}
                 value={value}
                 placeholder={placeholder}
