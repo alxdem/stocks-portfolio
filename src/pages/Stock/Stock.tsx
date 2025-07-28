@@ -19,7 +19,7 @@ const StockPage = () => {
     const isMobile = useAppMediaQuery(QUERY_MOBILE);
     const hiddenCardRef = useRef<HTMLAnchorElement>(null);
     const innerRef = useRef<HTMLDivElement>(null);
-    const innerNames = useRef<HTMLDivElement>(null);
+    const namesRef = useRef<HTMLDivElement>(null);
 
     const [cardHeight, setCardHeight] = useState<number | undefined>(undefined);
     const [virtualListHeight, setVirtualListHeight] = useState<number | undefined>(undefined);
@@ -44,7 +44,7 @@ const StockPage = () => {
     useEffect(() => {
         const inner = innerRef.current;
         const hiddenCard = hiddenCardRef.current;
-        const names = innerNames.current;
+        const names = namesRef.current;
 
         if (!inner || !hiddenCard || !names) {
             return;
@@ -55,8 +55,10 @@ const StockPage = () => {
             names.style.paddingRight = `${scrollbarWidth}px`;
             setVirtualListHeight(undefined);
             requestAnimationFrame(() => {
-                const innerHeight = inner.offsetHeight - 1;
-                setVirtualListHeight(innerHeight);
+                requestAnimationFrame(() => {
+                    const innerHeight = inner.offsetHeight - 1;
+                    setVirtualListHeight(innerHeight);
+                });
             });
         };
 
@@ -148,7 +150,7 @@ const StockPage = () => {
                 }
                 <span className={styles.counter}>Found shares: <b>{counter}</b></span>
 
-                <div ref={innerNames} className={styles.names}>
+                <div ref={namesRef} className={styles.names}>
                     {sortButtons.map((button, index) => {
                         const isDisabled = button.value === 'sector' && filterSector !== ALL_SECTORS_KEY;
 
