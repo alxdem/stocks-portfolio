@@ -44,7 +44,6 @@ const TickerPage = () => {
 
     const {
         companyName,
-        image,
         price,
         sector,
         industry,
@@ -85,7 +84,7 @@ const TickerPage = () => {
     return (
         <section className={styles.main}>
             <TickerHeader
-                logo={image}
+                symbol={ticker}
                 title={title}
                 price={priceLocal}
                 sector={sector}
@@ -188,7 +187,6 @@ const TickerPage = () => {
                     className={styles.actions}
                     symbol={ticker || ''}
                     title={title}
-                    image={image}
                     price={price || 0}
                 />
             </CloudSection>

@@ -6,7 +6,7 @@ import {formatNumber, getChange} from '@utils';
 import cn from 'classnames';
 import BadgeGain from '@molecules/BadgeGain/BadgeGain';
 
-const TickerHeader = ({title, logo, price, change, changePercentage}: TickerHeaderProps) => {
+const TickerHeader = ({symbol = '', title, price, change, changePercentage}: TickerHeaderProps) => {
     const isFall = change && change < 0;
     const isRise = change && change > 0;
     const localChangePercentage = changePercentage ? formatNumber(changePercentage) : '';
@@ -23,7 +23,7 @@ const TickerHeader = ({title, logo, price, change, changePercentage}: TickerHead
         <CloudSection className={classes}>
             <h1 className={styles.title}>{title}</h1>
             <Logo
-                src={logo}
+                symbol={symbol}
                 alt={title || ''}
                 className={styles.logo}
             />

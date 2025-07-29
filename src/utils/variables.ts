@@ -15,6 +15,7 @@ export const STOCKS_EXTENDED_DATA_URL = `${FMP_API_URL}/stock-screener?limit=100
 export const TICKER_DATA_URL = `${FMP_API_URL_NEW}/stable/profile?apikey=${FMP_API_NEW_KEY}&symbol=`;
 export const GOOGLE_MAP_SEARCH_URL = 'https://www.google.com/maps/search/';
 export const GOOGLE_SEARCH_URL = 'https://www.google.com/search?q=';
+export const LOGO_URL = 'https://snp500-logos.netlify.app/logos'
 
 const resolution = {
     mobile: 767,

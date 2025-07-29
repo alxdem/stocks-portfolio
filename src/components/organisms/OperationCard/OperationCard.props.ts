@@ -18,5 +18,4 @@ export interface OperationCardProps extends OperationBasic, HTMLAttributes<HTMLD
     name: string;
     date: string;
     time: string;
-    logo?: string;
 }

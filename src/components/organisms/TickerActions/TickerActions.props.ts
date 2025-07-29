@@ -4,5 +4,4 @@ export interface TickerActionsProps extends ComponentPropsWithoutRef<'div'>{
     symbol: string;
     title: string;
     price: number;
-    image?: string;
 }

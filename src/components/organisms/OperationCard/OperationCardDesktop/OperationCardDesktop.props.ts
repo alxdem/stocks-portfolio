@@ -4,5 +4,4 @@ export interface OperationCardDesktopProps extends OperationCardBasicWithType {
     value: string;
     price: string;
     symbol?: string;
-    logo?: string;
 }
