@@ -26,7 +26,6 @@ const TickerCardDesktop = ({
             <TickerCardInfo
                 className={styles.header}
                 symbol={symbol}
-                logo=''
                 name={name}
             />
             <span className={styles.value}>{value}</span>
