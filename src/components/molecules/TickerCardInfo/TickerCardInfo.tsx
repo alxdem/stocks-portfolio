@@ -3,7 +3,7 @@ import styles from '@molecules/TickerCardInfo/TickerCardInfo.module.css';
 import cn from 'classnames';
 import Logo from '@atoms/Logo/Logo';
 
-const TickerCardInfo = ({logo, symbol, name = '', className}: TickerCardInfoProps) => {
+const TickerCardInfo = ({symbol, name = '', className}: TickerCardInfoProps) => {
     const classes = cn(
         styles.main,
         className,
@@ -13,7 +13,7 @@ const TickerCardInfo = ({logo, symbol, name = '', className}: TickerCardInfoProp
     return(
         <div className={classes}>
             <Logo
-                src={logo}
+                symbol={symbol}
                 alt={name}
                 className={styles.logo}
             />

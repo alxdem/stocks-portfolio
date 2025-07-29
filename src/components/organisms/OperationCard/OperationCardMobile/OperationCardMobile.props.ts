@@ -3,5 +3,5 @@ import type {OperationCardBasic} from '@organisms/OperationCard/OperationCard.pr
 export interface OperationCardMobileProps extends OperationCardBasic {
     value: string;
     price: string;
-    logo?: string;
+    symbol?: string;
 }

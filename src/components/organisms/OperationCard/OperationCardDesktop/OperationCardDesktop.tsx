@@ -9,7 +9,7 @@ import type {ReactElement, SVGProps} from 'react';
 import {OperationColor, type OperationColorCode} from '@models';
 import type {Nullable} from '@models';
 
-const OperationCardDesktop = ({name, symbol, date, time, logo, value, price, type, total, isTotalPlus, className}: OperationCardDesktopProps) => {
+const OperationCardDesktop = ({name, symbol = '', date, time, value, price, type, total, isTotalPlus, className}: OperationCardDesktopProps) => {
     const classes = cn(
         styles.card,
         className,
@@ -38,7 +38,6 @@ const OperationCardDesktop = ({name, symbol, date, time, logo, value, price, typ
             <TickerCardInfo
                 className={styles.header}
                 symbol={symbol}
-                logo={logo}
                 name={name}
             />
             <span className={styles.date}>{date}</span>

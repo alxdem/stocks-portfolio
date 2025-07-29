@@ -6,15 +6,15 @@ import Logo from '@atoms/Logo/Logo';
 import {getTickerUrl} from '@utils';
 
 const TickerCardMobile = ({
-    symbol,
-    name,
-    value,
-    price,
-    totalPrice,
-    gain,
-    gainPercent,
-    isLoss
-}: TickerCardProps) => {
+                              symbol,
+                              name,
+                              value,
+                              price,
+                              totalPrice,
+                              gain,
+                              gainPercent,
+                              isLoss
+                          }: TickerCardProps) => {
     const classes = cn(
         styles.card,
         isLoss ? styles.loss : styles.profit,
@@ -22,21 +22,21 @@ const TickerCardMobile = ({
 
     return (
         <Link to={getTickerUrl(symbol)} className={classes}>
-          <Logo
-              src=''
-              alt={name}
-              className={styles.logo}
-          />
-          <div className={styles.header}>
-            <span className={styles.name}>{name}</span>
-            <span className={styles.totalPrice}>{totalPrice}</span>
-          </div>
-          <div className={styles.footer}>
-            <span className={styles.value}>sh: {value}</span>
-            <span className={styles.price}>{price}</span>
-            <span className={styles.gain}>{gain}</span>
-            <span className={styles.gainPercent}>{gainPercent}</span>
-          </div>
+            <Logo
+                symbol={symbol}
+                alt={name}
+                className={styles.logo}
+            />
+            <div className={styles.header}>
+                <span className={styles.name}>{name}</span>
+                <span className={styles.totalPrice}>{totalPrice}</span>
+            </div>
+            <div className={styles.footer}>
+                <span className={styles.value}>sh: {value}</span>
+                <span className={styles.price}>{price}</span>
+                <span className={styles.gain}>{gain}</span>
+                <span className={styles.gainPercent}>{gainPercent}</span>
+            </div>
         </Link>
     );
 };

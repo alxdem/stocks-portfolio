@@ -3,7 +3,7 @@ import Logo from '@atoms/Logo/Logo';
 import styles from '@organisms/OperationCard/OperationCardMobile/OperationCardMobile.module.css';
 import cn from "classnames";
 
-const OperationCardMobile = ({name, logo, date, time, price, value, total, isTotalPlus, className}: OperationCardMobileProps) => {
+const OperationCardMobile = ({name, date, time, price, value, total, isTotalPlus, symbol = '', className}: OperationCardMobileProps) => {
     const classes = cn(
         styles.card,
         className,
@@ -14,7 +14,7 @@ const OperationCardMobile = ({name, logo, date, time, price, value, total, isTot
     return (
         <div className={classes}>
             <Logo
-                src={logo}
+                symbol={symbol}
                 alt={name}
                 className={styles.logo}
             />

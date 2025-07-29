@@ -15,7 +15,6 @@ const StockCard = ({ref, symbol, name, price, sector, className}: StockCardProps
             <TickerCardInfo
                 className={styles.header}
                 symbol={symbol}
-                logo=''
                 name={name}
             />
             <span className={styles.sector}>{sector}</span>

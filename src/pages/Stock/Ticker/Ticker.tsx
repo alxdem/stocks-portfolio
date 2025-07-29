@@ -85,7 +85,7 @@ const TickerPage = () => {
     return (
         <section className={styles.main}>
             <TickerHeader
-                logo={image}
+                symbol={ticker}
                 title={title}
                 price={priceLocal}
                 sector={sector}
