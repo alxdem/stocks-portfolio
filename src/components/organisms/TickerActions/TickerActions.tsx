@@ -12,7 +12,7 @@ import {useAppSelector} from '@/store/hooks';
 import type {OperationKind} from '@models';
 import {selectCash, selectPortfolio} from '@/store/selectors/userSelectors';
 
-const TickerActions = ({image, title, symbol, price, className}: TickerActionsProps) => {
+const TickerActions = ({title, symbol, price, className}: TickerActionsProps) => {
     const balance = useAppSelector(selectCash);
     const portfolio = useAppSelector(selectPortfolio);
 
@@ -76,7 +76,6 @@ const TickerActions = ({image, title, symbol, price, className}: TickerActionsPr
                 <TickerCardInfo
                     className={styles.info}
                     symbol={symbol}
-                    logo={image}
                     name={title}
                 />
                 {amount > 0 && <p className={styles.amount}>You have {amount}&nbsp;lots</p>}
