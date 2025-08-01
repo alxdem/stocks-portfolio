@@ -1,0 +1,104 @@
+.tabs {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+}
+
+.header {
+    display: flex;
+    border-radius: 0.8vw;
+    background-color: var(--bg-main);
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    overflow-x: auto;
+}
+
+.button {
+    background-color: var(--bg-main);
+    border: none;
+    padding: calc(var(--gap) / 1.6) var(--gap);
+    font-size: 1.2vw;
+    line-height: 1;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+}
+
+.button:hover {
+    cursor: pointer;
+    color: var(--color-text);
+}
+
+.button.active {
+    color: var(--gray-800);
+    background-color: var(--color-primary-200);
+    pointer-events: none;
+}
+
+.tab {
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: translateY(2vw);
+}
+
+.gap .tab {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+}
+
+.tab.fadeIn {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+        opacity var(--timing-sm) ease-in,
+        transform var(--timing-sm) ease-in;
+}
+
+.tab.fadeOut {
+    opacity: 0;
+    transform: translateY(2vw);
+    transition:
+        opacity var(--timing-sm) ease-out,
+        transform var(--timing-sm) ease-out;
+}
+
+.tab.hidden {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@media(max-width: 1279px) {
+    .header {
+        border-radius: 1.2vw;
+    }
+
+    .button {
+        padding: calc(var(--gap) / 1.5) var(--gap);
+        font-size: 1.3vw;
+    }
+}
+
+@media(max-width: 991px) {
+    .header {
+        border-radius: 1.6vw;
+    }
+
+    .button {
+        padding: calc(var(--gap) / 1.2) var(--gap);
+        font-size: 2.1vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .header {
+        border-radius: 0;
+    }
+
+    .button {
+        padding: calc(var(--gap) / 1.2) var(--gap);
+        font-size: 5vw;
+    }
+}

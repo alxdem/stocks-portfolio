@@ -2,7 +2,6 @@ import TickerHeader from '@organisms/TickerHeader/TickerHeader';
 import CloudSection from '@molecules/CloudSection/CloudSection';
 import styles from '@pages/Stock/Ticker/Ticker.module.css';
 import typographyStyles from '@/styles/typography.module.css';
-import cn from 'classnames';
 import TickerActions from '@organisms/TickerActions/TickerActions';
 import useTickerInfo from '@hooks/useTickerInfo';
 import CompanyContacts from '@molecules/CompanyContacts/CompanyContacts';
@@ -12,8 +11,10 @@ import {useAppSelector} from '@/store/hooks';
 import {selectDividendsInfo, selectSectors, selectBetaInfo} from '@/store/selectors/stocksSelectors';
 import ChartRange from '@molecules/ChartRange/ChartRange';
 import IndicatorSection from '@molecules/IndicatorSection/IndicatorSection';
-import type {MinAvgMax} from '@models';
+import type {MinAvgMax, TabItem} from '@models';
 import {useEffect} from 'react';
+import TickerOperations from '@organisms/TickerOperations/TickerOperations';
+import Tabs from '@organisms/Tabs/Tabs';
 import {
     formatNumber,
     formatHugeNumber,
@@ -38,7 +39,7 @@ const TickerPage = () => {
         }
     }, [info, isLoading])
 
-    if (!info) {
+    if (!info || !ticker) {
         return null;
     }
 
@@ -81,114 +82,93 @@ const TickerPage = () => {
     const annualRange = getAnnualRange(range);
     const isDividendsPercent = Number.isFinite(dividendsPercent);
 
-    return (
-        <section className={styles.main}>
-            <TickerHeader
-                symbol={ticker}
-                title={title}
-                price={priceLocal}
-                sector={sector}
-                change={change}
-                changePercentage={changePercentage}
-            />
-            <TickerInPortfolio
-                className={styles.portfolio}
-                symbol={ticker}
-                price={price}
-            />
+    const metrics = (
+        <>
             <CloudSection>
-                <>
-                    {isLoading && <p>LOADING...</p>}
-
-                    <div className={styles.indicators}>
-                        {dividends && isDividendsPercent &&
-                            <IndicatorSection
-                                title='Dividend Yield'
-                                info={<>
+                <div className={styles.indicators}>
+                    {dividends && isDividendsPercent &&
+                        <IndicatorSection
+                            title='Dividend Yield'
+                            info={
+                                <>
                                     <p>Dividend Yield: <b>{dividendsPercent?.toFixed(2)}</b>%.</p>
                                     <p>The average dividend yield across all stocks is&nbsp;
                                         <b>{dividends.avg.toFixed(2)}</b>%.</p>
-                                </>}
-                            >
-                                <ChartRange
-                                    min={dividends.min}
-                                    max={dividends.max}
-                                    value={dividendsPercent}
-                                />
-                            </IndicatorSection>
-                        }
+                                </>
+                            }
+                        >
+                            <ChartRange
+                                min={dividends.min}
+                                max={dividends.max}
+                                value={dividendsPercent}
+                            />
+                        </IndicatorSection>
+                    }
 
-                        {dividendsCurrentSector && isDividendsPercent &&
-                            <IndicatorSection
-                                title='Dividend Yield within the sector'
-                                info={<p>The average dividend yield within the sector is&nbsp;
-                                    <b>{dividendsCurrentSector.avg.toFixed(2)}</b>%.</p>}
-                            >
-                                <ChartRange
-                                    min={dividendsCurrentSector.min}
-                                    max={dividendsCurrentSector.max}
-                                    value={dividendsPercent}
-                                />
-                            </IndicatorSection>
-                        }
+                    {dividendsCurrentSector && isDividendsPercent &&
+                        <IndicatorSection
+                            title='Dividend Yield within the sector'
+                            info={<p>The average dividend yield within the sector is&nbsp;
+                                <b>{dividendsCurrentSector.avg.toFixed(2)}</b>%.</p>}
+                        >
+                            <ChartRange
+                                min={dividendsCurrentSector.min}
+                                max={dividendsCurrentSector.max}
+                                value={dividendsPercent}
+                            />
+                        </IndicatorSection>
+                    }
 
-                        {beta && betas &&
-                            <IndicatorSection
-                                title='Beta (β)'
-                                info={
-                                    <>
-                                        <p>Beta: <b>{beta.toFixed(2)}</b></p>
-                                        <p>The average β across all stocks is&nbsp;
-                                            <b>{betas.avg.toFixed(2)}</b>.</p>
-                                    </>
-                                }
-                            >
-                                <ChartRange
-                                    max={BETA_MAX}
-                                    value={beta}
-                                />
-                            </IndicatorSection>
-                        }
+                    {beta && betas &&
+                        <IndicatorSection
+                            title='Beta (β)'
+                            info={
+                                <>
+                                    <p>Beta: <b>{beta.toFixed(2)}</b></p>
+                                    <p>The average β across all stocks is&nbsp;
+                                        <b>{betas.avg.toFixed(2)}</b>.</p>
+                                </>
+                            }
+                        >
+                            <ChartRange
+                                max={BETA_MAX}
+                                value={beta}
+                            />
+                        </IndicatorSection>
+                    }
 
-                        {betasCurrentSector && beta && betas &&
-                            <IndicatorSection
-                                title='Beta (β) within the sector'
-                                info={<p>The average β within the sector is&nbsp;
-                                    <b>{betasCurrentSector.avg.toFixed(2)}</b>.</p>}
-                            >
-                                <ChartRange
-                                    min={betasCurrentSector.min}
-                                    max={betasCurrentSector.max}
-                                    value={beta}
-                                />
-                            </IndicatorSection>
-                        }
+                    {betasCurrentSector && beta && betas &&
+                        <IndicatorSection
+                            title='Beta (β) within the sector'
+                            info={<p>The average β within the sector is&nbsp;
+                                <b>{betasCurrentSector.avg.toFixed(2)}</b>.</p>}
+                        >
+                            <ChartRange
+                                min={betasCurrentSector.min}
+                                max={betasCurrentSector.max}
+                                value={beta}
+                            />
+                        </IndicatorSection>
+                    }
 
-                        {annualRange && price &&
-                            <IndicatorSection
-                                title='Annual range'
-                                info={
-                                    <>
-                                        <p>Current price is&nbsp;<b>{formatNumber(price, false, true)}</b>.</p>
-                                        <p>Annual range is&nbsp;<b>{range}</b>.</p>
-                                    </>
-                                }
-                            >
-                                <ChartRange
-                                    min={annualRange.min}
-                                    max={annualRange.max}
-                                    value={price}
-                                />
-                            </IndicatorSection>
-                        }
-                    </div>
-                </>
-                <TickerActions
-                    className={styles.actions}
-                    symbol={ticker || ''}
-                    title={title}
-                    price={price || 0}
-                />
+                    {annualRange && price &&
+                        <IndicatorSection
+                            title='Annual range'
+                            info={
+                                <>
+                                    <p>Current price is&nbsp;<b>{formatNumber(price, false, true)}</b>.</p>
+                                    <p>Annual range is&nbsp;<b>{range}</b>.</p>
+                                </>
+                            }
+                        >
+                            <ChartRange
+                                min={annualRange.min}
+                                max={annualRange.max}
+                                value={price}
+                            />
+                        </IndicatorSection>
+                    }
+                </div>
             </CloudSection>
             <CloudSection
                 title='Financial'
@@ -201,6 +181,11 @@ const TickerPage = () => {
                     && <p>Dividends per Share: <b>{formatNumber(lastDividend, false, true)}</b></p>
                 }
             </CloudSection>
+        </>
+    )
+
+    const about = (
+        <>
             <CloudSection
                 title='Company profile'
                 className={typographyStyles.wrapper}
@@ -222,7 +207,7 @@ const TickerPage = () => {
             </CloudSection>
             <CloudSection
                 title='Contacts'
-                className={cn(styles.inner, typographyStyles.wrapper)}
+                className={typographyStyles.wrapper}
             >
                 <CompanyContacts
                     className={styles.contacts}
@@ -231,6 +216,37 @@ const TickerPage = () => {
                     website={website}
                 />
             </CloudSection>
+        </>
+    )
+
+    const tabs: TabItem[] = [
+        {label: 'Metrics', content: metrics},
+        {label: 'Operations', content: <TickerOperations symbol={ticker}/>},
+        {label: 'About', content: about},
+    ];
+
+    return (
+        <section className={styles.main}>
+            <TickerHeader
+                symbol={ticker}
+                title={title}
+                price={priceLocal}
+                sector={sector}
+                change={change}
+                changePercentage={changePercentage}
+            />
+            <TickerInPortfolio
+                className={styles.portfolio}
+                symbol={ticker}
+                price={price}
+            />
+            <Tabs tabs={tabs} isGap />
+            <TickerActions
+                className={styles.actions}
+                symbol={ticker || ''}
+                title={title}
+                price={price || 0}
+            />
         </section>
     );
 };
