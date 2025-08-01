@@ -1,5 +1,6 @@
 import {OperationType, OperationColor} from '@/models/dictionaries';
 import {sortButtons} from '@utils';
+import type {ReactNode} from 'react';
 
 export type OperationKind = (typeof OperationType)[keyof typeof OperationType];
 
@@ -154,4 +155,9 @@ export interface CompanyInfoData {
 export interface SelectOption<T extends string = string> {
     value: T;
     label: string;
+}
+
+export interface TabItem {
+    label: string;
+    content: ReactNode;
 }

@@ -2,10 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--gap);
-}
-
-.inner {
-    padding-bottom: 7.5vw;
+    padding-bottom: 4.8vw;
 }
 
 .actions {
@@ -34,14 +31,14 @@
 }
 
 @media(max-width: 991px) {
+    .main {
+        padding-bottom: 7.6vw;
+    }
+
     .actions {
         left: var(--gap);
         width: auto;
         right: var(--gap);
-    }
-
-    .inner {
-        padding-bottom: 11vw;
     }
 
     .indicators {
@@ -50,9 +47,8 @@
 }
 
 @media(max-width: 767px) {
-    .inner {
-        border-radius: 0;
-        padding-bottom: 29vw;
+    .main {
+        padding-bottom: 22vw;
     }
 
     .actions {
