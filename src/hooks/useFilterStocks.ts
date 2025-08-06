@@ -12,6 +12,7 @@ const useFilterStocks = (allSectorsKey: string) => {
     const [price, setPrice] = useState<DoubleRange>(null);
     const [minMax, setMinMax] = useState<DoubleRange>(null);
     const [currentArray, setCurrentArray] = useState<TickerInfo[]>([]);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const sortStockArray = (array: TickerInfo[]) => {
         return [...array].sort((a, b) => {
@@ -61,10 +62,12 @@ const useFilterStocks = (allSectorsKey: string) => {
         });
         const sortedArray = sortStockArray(newArray);
         setCurrentArray(sortedArray);
+        setIsLoaded(true);
     }, [stockArray, filterSector, price, sort, order]);
 
     return {
         currentArray,
+        isLoaded,
         order,
         sort,
         filterSector,

@@ -15,6 +15,7 @@ import type {MinAvgMax, TabItem} from '@models';
 import {useEffect} from 'react';
 import TickerOperations from '@organisms/TickerOperations/TickerOperations';
 import Tabs from '@organisms/Tabs/Tabs';
+import SpinnerSection from '@molecules/SpinnerSection/SpinnerSection';
 import {
     formatNumber,
     formatHugeNumber,
@@ -37,7 +38,11 @@ const TickerPage = () => {
         if (!isLoading && !info) {
             navigate('/');
         }
-    }, [info, isLoading])
+    }, [info, isLoading]);
+
+    if (isLoading) {
+        return <SpinnerSection />;
+    }
 
     if (!info || !ticker) {
         return null;

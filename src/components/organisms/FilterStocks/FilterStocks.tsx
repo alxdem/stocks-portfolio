@@ -38,16 +38,19 @@ const FilterStocks = ({
         onClear: sectorClear,
     };
 
+    const isRangeActive = minMax !== null && price !== null;
+
     return (
         <div className={cn(styles.filter, className)}>
-            {(minMax !== null && price !== null) &&
-                <RangeDouble
+            {isRangeActive
+                ? <RangeDouble
                     label='Price'
                     min={minMax[0]}
                     max={minMax[1]}
                     values={price}
                     onChange={priceChange}
                 />
+                : <span></span>
             }
             <AppSelect {...filterSectorProps} />
             {isMobile &&
