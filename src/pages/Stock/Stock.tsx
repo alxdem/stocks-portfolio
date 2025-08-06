@@ -12,6 +12,7 @@ import useAppMediaQuery from '@hooks/useAppMediaQuery';
 import Button from '@atoms/Button/Button';
 import Modal from '@organisms/Modal/Modal';
 import cn from 'classnames';
+import SpinnerSection from '@molecules/SpinnerSection/SpinnerSection';
 
 const StockPage = () => {
     const ALL_SECTORS_KEY = 'all';
@@ -27,6 +28,7 @@ const StockPage = () => {
 
     const {
         currentArray,
+        isLoaded,
         order,
         sort,
         filterSector,
@@ -170,8 +172,8 @@ const StockPage = () => {
                 </div>
             </div>
             <div ref={innerRef} className={styles.inner}>
-            {virtualListHeight &&
-                    <VirtualList
+            {virtualListHeight && isLoaded
+                ? <VirtualList
                         className={styles.list}
                         height={virtualListHeight}
                         itemHeight={cardHeight}
@@ -187,7 +189,8 @@ const StockPage = () => {
                             />
                         ))}
                     </VirtualList>
-                }
+                : <SpinnerSection />
+            }
             </div>
             <StockCard
                 ref={hiddenCardRef}
