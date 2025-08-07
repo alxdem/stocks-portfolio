@@ -9,6 +9,7 @@ import {
     OperationsPage,
     Page404,
     Deposit,
+    AnalyticsPage,
 } from '@pages/index';
 import AppToaster from '@organisms/AppToaster/AppToaster';
 
@@ -28,6 +29,7 @@ function App() {
                         <Route index element={<DashboardPage/>}/>
                         <Route path='dashboard' element={<DashboardPage/>}/>
                         <Route path='about' element={<AboutPage/>}/>
+                        <Route path='analytics' element={<AnalyticsPage/>}/>
                         <Route path='stock'>
                             <Route index element={<StockPage/>}/>
                             <Route path=':ticker' element={<TickerPage/>}/>

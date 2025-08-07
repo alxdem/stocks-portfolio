@@ -24,9 +24,15 @@ import {isStringNumber, truncateValue, getPercent, getDifferencePercent} from '@
 import snp500SymbolList from '@fixtures/snp500list';
 import {CHART_COLORS, CHART_INDICATOR_COLOR, MIN_AVG_MAX_DEFAULT_VALUE} from '@/utils/variables';
 
+const TRANSACTION_FEE_PERCENT = 0.18;
+
 const isSnP500Include = (symbol: string | undefined): boolean => {
     return Boolean(symbol && snp500SymbolList.includes(symbol));
 }
+
+export const getOperationFee = (value: number) => {
+    return value * TRANSACTION_FEE_PERCENT / 100;
+};
 
 export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stockData) => {
     const portfolioObject: Record<string, StockPosition> = {};
@@ -112,8 +118,10 @@ export const recalculateCash = (operations: Nullable<Operation[]>) => {
     const result = operations.reduce((acc, operation) => {
         const isNegative = operation.type === 'withdraw' || operation.type === 'purchase';
         const sign = isNegative ? -1 : 1;
+        const gross = operation.value * operation.price;
+        const fee = getOperationFee(gross);
 
-        return acc + (operation.value * operation.price * sign);
+        return acc + (gross * sign - fee);
     }, 0);
 
     return truncateValue(result);
@@ -142,6 +150,24 @@ export const getDepositValue = (operations: Nullable<Operation[]>) => {
             const sign = type === 'withdraw' ? -1 : 1;
 
             return acc + operation.price * sign;
+        } else {
+            return acc;
+        }
+    }, 0);
+};
+
+export const getTotalFeeValue = (operations: Nullable<Operation[]>) => {
+    if (!operations || operations.length < 1) {
+        return 0;
+    }
+
+    return operations.reduce((acc, operation) => {
+        const isFee = operation.type === 'sale' || operation.type === 'purchase';
+
+        if (isFee) {
+            const gross = operation.value * operation.price;
+
+            return acc + getOperationFee(gross);
         } else {
             return acc;
         }

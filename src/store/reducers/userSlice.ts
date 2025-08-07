@@ -6,6 +6,7 @@ const initialState: UserState = {
     operations: null,
     portfolio: null,
     formattedPortfolio: null,
+    totalFee: 0,
 };
 
 export const userSlice = createSlice({
@@ -25,6 +26,12 @@ export const userSlice = createSlice({
         setFormattedPortfolio: (state, action: PayloadAction<StockPositionFormatted[]>) => {
             state.formattedPortfolio = action.payload;
         },
+        setTotalFee: (state, action: PayloadAction<number>) => {
+            state.totalFee = action.payload;
+        },
+        addFee: (state, action: PayloadAction<number>) => {
+            state.totalFee = state.totalFee + action.payload;
+        },
     },
 });
 
@@ -33,6 +40,8 @@ export const {
     addOperation,
     setPortfolio,
     setFormattedPortfolio,
+    setTotalFee,
+    addFee,
 } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -4,7 +4,7 @@ import cn from 'classnames';
 import Button from '@atoms/Button/Button';
 import {useCallback, useState} from 'react';
 import Balance from '@molecules/Balance/Balance';
-import {formatNumber} from '@utils';
+import {formatNumber, getOperationFee} from '@utils';
 import TickerCardInfo from '@molecules/TickerCardInfo/TickerCardInfo.tsx';
 import FormOperation from '@organisms/FormOperation/FormOperation';
 import Modal from '@organisms/Modal/Modal';
@@ -22,7 +22,7 @@ const TickerActions = ({title, symbol, price, className}: TickerActionsProps) =>
 
     const info = portfolio?.find(item => item.symbol === symbol);
     const amount = info?.value || 0;
-    const maxSteps = isTypePurchase ? Math.floor(balance / price) : amount;
+    const maxSteps = isTypePurchase ? Math.floor(balance / (price + getOperationFee(price))) : amount;
 
     const classes = cn(
         styles.actions,

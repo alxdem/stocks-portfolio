@@ -10,7 +10,7 @@ import cn from 'classnames';
 
 const FormOperation = ({price, maxSteps, symbol, type, onSubmit}: FormOperationProps) => {
     const {isLoading, addOperation} = useAddOperation();
-    const {value, total, reduce, increase, setValue} = useCalculateOperation(price);
+    const {value, gross, fee, total, reduce, increase, setValue} = useCalculateOperation(price);
 
     const btnText = type === 'sale' ? 'Sell' : 'Buy';
 
@@ -56,7 +56,11 @@ const FormOperation = ({price, maxSteps, symbol, type, onSubmit}: FormOperationP
                 increase={increase}
                 onChange={onChange}
             />
-            <p className={styles.text}>Total: <span>${formatNumber(total)}</span></p>
+            <div>
+                <p className={cn(styles.textSecondary, styles.grid)}>Gross: <span>${formatNumber(gross)}</span></p>
+                <p className={cn(styles.textSecondary, styles.grid)}>Fee: <span>${formatNumber(fee)}</span></p>
+                <p className={cn(styles.text, styles.grid)}>Total: <span>${formatNumber(total)}</span></p>
+            </div>
             <Button
                 className={styles.button}
                 as='button'
