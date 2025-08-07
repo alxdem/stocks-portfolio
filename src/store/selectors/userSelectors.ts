@@ -13,6 +13,7 @@ import {
 export const selectPortfolio = (state: RootState) => state.user.portfolio;
 export const selectFormattedPortfolio = (state: RootState) => state.user.formattedPortfolio;
 export const selectOperations = (state: RootState) => state.user.operations;
+export const selectTotalFee = (state: RootState) => state.user.totalFee;
 
 export const selectCash = createSelector(
     [selectOperations],

@@ -112,6 +112,7 @@ export interface UserState {
     operations: Nullable<Operation[]>;
     portfolio: Nullable<StockPosition[]>;
     formattedPortfolio: Nullable<StockPositionFormatted[]>;
+    totalFee: number;
 }
 
 export interface CompanyInfoData {

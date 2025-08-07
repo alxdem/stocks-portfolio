@@ -6,6 +6,7 @@ import PortfolioPage from '@pages/Portfolio/Portfolio';
 import OperationsPage from '@pages/Operations/Operations';
 import Page404 from '@pages/Page404/Page404';
 import Deposit from '@pages/Deposit/Deposit';
+import AnalyticsPage from '@pages/Analytics/Analytics';
 
 export {
     DashboardPage,
@@ -16,4 +17,5 @@ export {
     OperationsPage,
     Page404,
     Deposit,
+    AnalyticsPage,
 }

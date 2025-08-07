@@ -21,6 +21,18 @@
     font-weight: 600;
 }
 
+.textSecondary {
+    margin: 0;
+    font-size: 0.9vw;
+    color: var(--color-text-secondary);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 3vw 1fr;
+    align-items: baseline;
+}
+
 @media(max-width: 1279px) {
     .form {
         gap: 2vw;
@@ -32,6 +44,14 @@
 
     .text span {
         font-size: 1.8vw;
+    }
+
+    .textSecondary {
+        font-size: 1.22vw;
+    }
+
+    .grid {
+        grid-template-columns: 4.2vw 1fr;
     }
 }
 
@@ -47,6 +67,14 @@
     .text span {
         font-size: 2.6vw;
     }
+
+    .textSecondary {
+        font-size: 2vw;
+    }
+
+    .grid {
+        grid-template-columns: 7vw 1fr;
+    }
 }
 
 @media(max-width: 767px) {
@@ -60,5 +88,13 @@
 
     .text span {
         font-size: 6.8vw;
+    }
+
+    .textSecondary {
+        font-size: 5vw;
+    }
+
+    .grid {
+        grid-template-columns: 17vw 1fr;
     }
 }

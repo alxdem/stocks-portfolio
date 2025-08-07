@@ -1,8 +1,8 @@
 import {useState} from 'react';
 import {useAppDispatch} from '@/store/hooks';
 import type {Operation} from '@models';
-import {fakeFetch, operationMessage} from '@utils';
-import {addOperation as addOperationAction} from '@/store/reducers/userSlice';
+import {fakeFetch, operationMessage, getOperationFee} from '@utils';
+import {addOperation as addOperationAction, addFee} from '@/store/reducers/userSlice';
 import useAppToast from '@hooks/useAppToast';
 
 const useAddOperation = () => {
@@ -14,6 +14,9 @@ const useAddOperation = () => {
         setIsLoading(true);
         await fakeFetch(null);
         dispatch(addOperationAction(operation));
+        if (operation.type === 'sale' || operation.type === 'purchase') {
+            dispatch(addFee(getOperationFee(operation.value * operation.price)));
+        }
         setIsLoading(false);
         successMessage(operationMessage(operation));
     };
