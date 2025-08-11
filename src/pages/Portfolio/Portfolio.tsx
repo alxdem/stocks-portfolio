@@ -1,21 +1,39 @@
 import CloudSection from '@molecules/CloudSection/CloudSection';
-import {useAppSelector} from '@/store/hooks';
 import TickerCard from '@organisms/TickerCard/TickerCard';
-import TickerList from '@organisms/TickerList/TickerList';
+import PortfolioHeader from '@organisms/PortfolioHeader/PortfolioHeader.tsx';
 import styles from '@pages/Portfolio/Portfolio.module.css';
-import {selectFormattedPortfolio} from '@/store/selectors/userSelectors';
+import useSortPortfolio from '@hooks/useSortPortfolio';
+import type {PortfolioSortType} from '@models';
 
 const PortfolioPage = () => {
-    const portfolio = useAppSelector(selectFormattedPortfolio);
+    const {
+        currentArray,
+        order,
+        sort,
+        setSort,
+        setOrder,
+    } = useSortPortfolio();
+
+    const btnSortClick = (value: PortfolioSortType) => {
+        if (value === sort) {
+            const newOrder = order === 'asc' ? 'desc' : 'asc';
+            setOrder(newOrder);
+
+            return;
+        }
+
+        setOrder('asc');
+        setSort(value);
+    };
 
     let elements;
 
-    if (!portfolio) {
+    if (!currentArray) {
         elements = <p>Data is loading</p>;
-    } else if (portfolio.length < 1) {
+    } else if (currentArray.length < 1) {
         elements = <p>Portfolio is empty</p>
     } else {
-        const itemElements = portfolio.map(item => {
+        const itemElements = currentArray.map(item => {
             return (
                 <TickerCard
                     key={item.symbol}
@@ -33,9 +51,14 @@ const PortfolioPage = () => {
             );
         });
 
-        elements = <TickerList className={styles.list}>
+        elements = <div className={styles.inner}>
+            <PortfolioHeader
+                sort={sort}
+                order={order}
+                changeSort={btnSortClick}
+            />
             {itemElements}
-        </TickerList>;
+        </div>;
     }
 
     return (

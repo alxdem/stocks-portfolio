@@ -6,7 +6,6 @@
     overflow: hidden;
     font-size: 1.1vw;
     color: var(--color-text);
-    text-align: right;
     padding: 0.7vw var(--gap);
     background-color: var(--bg-main);
     transition: background-color var(--ease) var(--timing-md);
@@ -29,6 +28,7 @@
 
 .totalPrice {
     font-weight: 500;
+    text-align: right;
 }
 
 @media(max-width: 991px) {

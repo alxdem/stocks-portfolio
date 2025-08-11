@@ -8,12 +8,13 @@ import {formatNumber, getChartColor} from '@utils';
 
 const ChartPieModule = ({data, className}: ChartPieModuleProps) => {
     const [activeShape, setActiveShape] = useState<number | undefined>(undefined);
+    const sortedData = [...data].sort((a, b) => b.value - a.value);
 
     const legendElement = () => {
         return (
             <ul className={styles.legendList}>
                 {
-                    data.map((item, index) => {
+                    sortedData.map((item, index) => {
                         const name = item.name;
                         const formatValue = formatNumber(item.value, true, true);
                         const style = {
@@ -41,7 +42,7 @@ const ChartPieModule = ({data, className}: ChartPieModuleProps) => {
         <CloudSection className={cn(styles.cloud, className)}>
             <ChartPie
                 className={styles.chart}
-                data={data}
+                data={sortedData}
                 activeShapeIndex={activeShape}
                 isActiveShape={true}
             />

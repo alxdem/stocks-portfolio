@@ -1,5 +1,5 @@
 import {OperationType, OperationColor} from '@/models/dictionaries';
-import {sortButtons} from '@utils';
+import {stockSortButtons, portfolioSortButtons} from '@utils';
 import type {ReactNode} from 'react';
 
 export type OperationKind = (typeof OperationType)[keyof typeof OperationType];
@@ -20,7 +20,9 @@ export type SetTimer = Nullable<ReturnType<typeof setTimeout>>;
 
 export type SortOrder = 'asc' | 'desc';
 
-export type SortType = typeof sortButtons[number]['value'];
+export type StockSortType = typeof stockSortButtons[number]['value'];
+
+export type PortfolioSortType = typeof portfolioSortButtons[number]['value'];
 
 export type NumberTuple = [number, number];
 

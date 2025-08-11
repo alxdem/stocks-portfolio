@@ -1,12 +1,12 @@
 import {useAppSelector} from '@/store/hooks';
 import {selectStocksArray} from '@/store/selectors/stocksSelectors';
 import {useEffect, useState} from 'react';
-import type {SortOrder, SortType, TickerInfo, DoubleRange} from '@models';
+import type {SortOrder, StockSortType, TickerInfo, DoubleRange} from '@models';
 import {getMinMaxPriceFromStocksArray} from '@utils';
 
 const useFilterStocks = (allSectorsKey: string) => {
     const stockArray = useAppSelector(selectStocksArray);
-    const [sort, setSort] = useState<SortType>('symbol');
+    const [sort, setSort] = useState<StockSortType>('symbol');
     const [order, setOrder] = useState<SortOrder>('asc');
     const [filterSector, setFilterSector] = useState<string>(allSectorsKey);
     const [price, setPrice] = useState<DoubleRange>(null);
