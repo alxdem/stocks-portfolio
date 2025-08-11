@@ -4,20 +4,19 @@
     align-items: center;
     gap: 2vw;
     overflow: hidden;
-    font-size: 0.9vw;
-    color: var(--color-text);
-    text-align: right;
+    font-size: 1vw;
+    color: var(--color-text-secondary);
     padding: 0 var(--gap) var(--gap);
     background-color: var(--bg-main);
     border-bottom: 1px solid var(--border-color);
 }
 
-.company {
-    text-align: left;
+.total {
+    text-align: right;
 }
 
 @media(max-width: 991px) {
     .header {
-        font-size: 1.4vw;
+        font-size: 1.5vw;
     }
 }

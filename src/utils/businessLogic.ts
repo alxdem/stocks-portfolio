@@ -86,7 +86,7 @@ export const getCalculatedPortfolio: GetCalculatedPortfolio = (operations, stock
     });
 
     const array = Object.values(portfolioObject);
-    array.sort((a, b) => b.totalPrice - a.totalPrice);
+    array.sort((a, b) => a.symbol.localeCompare(b.symbol));
 
     return array;
 };

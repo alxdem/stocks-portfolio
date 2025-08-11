@@ -3,8 +3,8 @@ import styles from '@pages/Stock/Stock.module.css';
 import VirtualList from '@organisms/VirtualList/VirtualList';
 import {useEffect, useRef, useState} from 'react';
 import CloudSection from '@molecules/CloudSection/CloudSection';
-import {sortButtons, formatNumber, getScrollbarWidth, QUERY_MOBILE} from '@utils';
-import type {SortType, NumberTuple} from '@models';
+import {stockSortButtons, formatNumber, getScrollbarWidth, QUERY_MOBILE} from '@utils';
+import type {StockSortType, NumberTuple} from '@models';
 import ButtonSort from '@molecules/ButtonSort/ButtonSort';
 import useFilterStocks from '@hooks/useFilterStocks';
 import FilterStocks from '@organisms/FilterStocks/FilterStocks';
@@ -80,7 +80,7 @@ const StockPage = () => {
         }
     }, []);
 
-    const btnSortClick = (value: SortType) => {
+    const btnSortClick = (value: StockSortType) => {
         if (value === sort) {
             const newOrder = order === 'asc' ? 'desc' : 'asc';
             setOrder(newOrder);
@@ -153,14 +153,14 @@ const StockPage = () => {
                 <span className={styles.counter}>Found shares: <b>{counter}</b></span>
 
                 <div ref={namesRef} className={styles.names}>
-                    {sortButtons.map((button, index) => {
+                    {stockSortButtons.map((button, index) => {
                         const isDisabled = button.value === 'sector' && filterSector !== ALL_SECTORS_KEY;
 
                         return (
                             <ButtonSort
                                 key={button.value}
                                 text={button.text}
-                                isAlignRight={index === sortButtons.length - 1}
+                                isAlignRight={index === stockSortButtons.length - 1}
                                 isActive={button.value === sort}
                                 order={order}
                                 disabled={isDisabled}
