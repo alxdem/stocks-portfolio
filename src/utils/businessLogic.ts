@@ -21,14 +21,9 @@ import type {
     GetAnnualRange,
 } from '@models';
 import {isStringNumber, truncateValue, getPercent, getDifferencePercent} from '@/utils/common';
-import snp500SymbolList from '@fixtures/snp500list';
 import {CHART_COLORS, CHART_INDICATOR_COLOR, MIN_AVG_MAX_DEFAULT_VALUE} from '@/utils/variables';
 
 const TRANSACTION_FEE_PERCENT = 0.18;
-
-const isSnP500Include = (symbol: string | undefined): boolean => {
-    return Boolean(symbol && snp500SymbolList.includes(symbol));
-}
 
 export const getOperationFee = (value: number) => {
     return value * TRANSACTION_FEE_PERCENT / 100;
@@ -181,11 +176,7 @@ export const createStocksObject = (stocks: Nullable<TickerDataExtended[]>): Tick
 
     const stocksObject: TickersObject = {};
 
-    const filteredStocks = stocks.filter((item: TickerDataExtended) => {
-        return isSnP500Include(item.symbol);
-    });
-
-    filteredStocks.forEach((stock: TickerDataExtended) => {
+    stocks.forEach((stock: TickerDataExtended) => {
         const symbol = stock.symbol;
 
         if (!symbol) {
