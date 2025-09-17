@@ -1,6 +1,7 @@
 import {OperationType, OperationColor} from '@/models/dictionaries';
 import {stockSortButtons, portfolioSortButtons} from '@utils';
 import type {ReactNode} from 'react';
+import type {ChartPeriod} from '@/models/rechart';
 
 export type OperationKind = (typeof OperationType)[keyof typeof OperationType];
 
@@ -27,6 +28,8 @@ export type PortfolioSortType = typeof portfolioSortButtons[number]['value'];
 export type NumberTuple = [number, number];
 
 export type DoubleRange = Nullable<NumberTuple>;
+
+export type HistoryObject = Record<string, Partial<Record<ChartPeriod, TickerHistoryItem[]>>>;
 
 interface Sector {
     dividends: MinAvgMax;
@@ -163,4 +166,9 @@ export interface SelectOption<T extends string = string> {
 export interface TabItem {
     label: string;
     content: ReactNode;
+}
+
+export interface TickerHistoryItem {
+    date: string;
+    close: number;
 }

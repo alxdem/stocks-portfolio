@@ -1,0 +1,58 @@
+.option {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3vw;
+}
+
+.input {
+    display: none;
+}
+
+.text {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 1vw;
+    line-height: 1;
+    color: var(--color-text);
+}
+
+.badge .text {
+    border-radius: 0.4vw;
+    background-color: var(--button-bg-tertiary);
+    padding: 0.6vw 1.2vw;
+    font-size: 1vw;
+    color: var(--button-color-tertiary);
+    transition: background-color var(--ease) var(--timing-md);
+}
+
+.badge .text:hover {
+    background-color: var(--button-bg-tertiary-hover);
+}
+
+.input:checked + .text {
+    background-color: var(--button-bg-tertiary-hover);
+}
+
+@media(max-width: 1279px) {
+    .badge .text {
+        font-size: 1.2vw;
+    }
+}
+
+@media(max-width: 991px) {
+    .badge .text {
+        border-radius: 0.5vw;
+        padding: 1vw 1.6vw;
+        font-size: 1.8vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .badge .text {
+        padding: 2vw 2.8vw;
+        border-radius: 1.3vw;
+        font-size: 4.6vw;
+    }
+}

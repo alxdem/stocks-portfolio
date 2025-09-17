@@ -1,6 +1,7 @@
 export const appKey = {
     DATA_THEME: 'data-theme',
     LS_COMPANIES: 'companies-data',
+    LS_HISTORY_PRICE: 'history-price',
     OPERATIONS: 'user-operations'
 };
 
@@ -13,6 +14,7 @@ export const GOOGLE_MAP_SEARCH_URL = 'https://www.google.com/maps/search/';
 export const GOOGLE_SEARCH_URL = 'https://www.google.com/search?q=';
 export const LOGO_URL = 'https://snp500-logos.netlify.app/logos'
 export const CF_STOCK_LIST_URL = 'https://stock-list.gonachill.workers.dev'; // my cloudflare cache
+export const CF_STOCK_HISTORY_URL = 'https://stock-db.gonachill.workers.dev'; // my cloudflare stock history data
 
 const resolution = {
     mobile: 767,
@@ -63,3 +65,5 @@ export const portfolioSortButtons = [
     {text: 'Gain', value: 'gain'},
     {text: 'Total', value: 'total'},
 ] as const;
+
+export const chartPeriods = ['1mo', '6mo', '1y', '3y'] as const;
