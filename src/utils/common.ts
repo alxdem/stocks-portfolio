@@ -9,6 +9,9 @@ import type {
     GetNormalizedValue,
     ClearTimer,
     GetMinMaxPriceFromStocksArray,
+    ChartPeriod,
+    TickerHistoryItem,
+    HistoryObject,
 } from '@models';
 import {HugeNumberPower} from '@models';
 import {appKey} from '@/utils/variables';
@@ -153,6 +156,49 @@ export const setCompanyToCache = (name: string, companyInfo: CompanyInfoData) =>
     companiesObj[name] = companyInfo;
     localStorage.setItem(appKey.LS_COMPANIES, JSON.stringify(companiesObj));
 }
+
+export const setHistoryPriceToCache = (name: string, period: ChartPeriod, data: TickerHistoryItem[]) => {
+    const cachedData = localStorage.getItem(appKey.LS_HISTORY_PRICE);
+    const companiesObj: HistoryObject = cachedData ? JSON.parse(cachedData) : {};
+    const company = companiesObj[name];
+
+    const save = (obj: HistoryObject) => localStorage.setItem(appKey.LS_HISTORY_PRICE, JSON.stringify(obj));
+
+    if (!data || data.length < 1) {
+        return;
+    }
+
+    if (company && company[period]) {
+        return;
+    }
+
+    if (company && !company[period]) {
+        company[period] = data;
+        save(companiesObj);
+        return;
+    }
+
+    companiesObj[name] = {};
+    companiesObj[name][period] = data;
+    save(companiesObj);
+}
+
+export const getHistoryPriceToCache = (name: string, period: ChartPeriod): Nullable<TickerHistoryItem[]> => {
+    const cachedData = localStorage.getItem(appKey.LS_HISTORY_PRICE);
+
+    if (!cachedData) {
+        return null;
+    }
+
+    const companiesObject: HistoryObject = JSON.parse(cachedData);
+    const companyInfo = companiesObject[name];
+
+    if (!companyInfo) {
+        return null;
+    }
+
+    return companyInfo[period] || null;
+};
 
 export const getNormalizedValue: GetNormalizedValue = (value, min, max) => {
     let localValue = value;

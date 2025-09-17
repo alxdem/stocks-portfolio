@@ -1,0 +1,97 @@
+.chart {
+    width: 100%;
+}
+
+.tooltip {
+    background-color: var(--bg-main);
+    padding: 0.5vw;
+    border: none;
+    box-shadow: none;
+    font-size: 0.9vw;
+}
+
+.tooltipText {
+    margin: 0;
+    color: var(--color-text);
+}
+
+.cursor {
+    stroke: var(--chart-bg-secondary);
+    stroke-width: 3vw;
+}
+
+.xAxis {
+    font-size: 0.8vw;
+}
+
+.yAxis {
+    font-size: 0.8vw;
+}
+
+:global(.recharts-cartesian-grid-horizontal line) {
+    stroke: var(--border-color);
+    stroke-width: 1;
+}
+
+.dot {
+    stroke: var(--white);
+    fill: var(--color-primary-700);
+}
+
+@media(max-width: 1279px) {
+    .xAxis {
+        font-size: 1.1vw;
+    }
+
+    .yAxis {
+        font-size: 1.1vw;
+    }
+
+    .tooltip {
+        padding: 0.6vw;
+        font-size: 1.1vw;
+    }
+
+    .cursor {
+        stroke-width: 4vw;
+    }
+}
+
+@media(max-width: 991px) {
+    .xAxis {
+        font-size: 1.6vw;
+    }
+
+    .yAxis {
+        font-size: 1.6vw;
+    }
+
+    .tooltip {
+        padding: 0.8vw;
+        font-size: 1.6vw;
+    }
+
+    .cursor {
+        stroke-width: 5.6vw;
+    }
+}
+
+@media(max-width: 767px) {
+    .xAxis {
+        font-size: 4vw;
+    }
+
+    .yAxis {
+        font-size: 4vw;
+        width: 100px;
+    }
+
+    .tooltip {
+        padding: 2vw;
+        font-size: 4vw;
+    }
+
+    .cursor {
+        stroke-width: 10vw;
+    }
+}

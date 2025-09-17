@@ -24,6 +24,10 @@
     gap: 2.5vw;
 }
 
+.historyChart {
+    min-height: 32vw;
+}
+
 @media(max-width: 1279px) {
     .indicators {
         gap: 3vw;

@@ -1,4 +1,5 @@
 import type {ComponentPropsWithoutRef} from 'react';
+import {chartPeriods} from '@utils';
 
 export interface ChartPieBasicData {
     name: string;
@@ -15,3 +16,5 @@ export interface ChartPieProps extends ComponentPropsWithoutRef<'svg'>{
     activeShapeIndex: number | undefined;
     isActiveShape?: boolean;
 }
+
+export type ChartPeriod = typeof chartPeriods[number];

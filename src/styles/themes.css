@@ -24,7 +24,7 @@
     --button-color-tertiary: var(--color-text);
 
     --modal-bg-primary: var(--gray-200);
-    --modal-bg-secondary:rgba(46, 46, 58, 0.55);
+    --modal-bg-secondary: rgba(46, 46, 58, 0.55);
 
     --field-color-secondary: var(--gray-400);
     --field-border-color: var(--gray-200);
@@ -44,6 +44,8 @@
     --select-option-focused-bg: var(--color-primary-100);
     --select-border-color: var(--gray-200);
     --select-menu-shadow: 0 0 0 1px rgba(174, 174, 190, 0.2), 0 4px 11px rgba(174, 174, 190, 0.2);
+
+    --chart-bg-secondary: rgba(25, 118, 210, 0.3);
 
     --sidebar-shadow: 0 100px 80px rgba(174, 174, 190, 0.07),
     0 42px 33px rgba(174, 174, 190, 0.05),
@@ -106,6 +108,8 @@
 
         --sidebar-shadow: none;
         --header-shadow: none;
+
+        --chart-bg-secondary: rgba(65, 158, 250, 0.3);
     }
 }
 
@@ -156,6 +160,8 @@
     --select-border-color: var(--gray-200);
     --select-menu-shadow: 0 0 0 1px rgba(174, 174, 190, 0.2), 0 4px 11px rgba(174, 174, 190, 0.2);
 
+    --chart-bg-secondary: rgba(25, 118, 210, 0.3);
+
     --sidebar-shadow: 0 100px 80px rgba(174, 174, 190, 0.07),
     0 42px 33px rgba(174, 174, 190, 0.05),
     0 22px 18px rgba(174, 174, 190, 0.04),
@@ -195,7 +201,7 @@
     --button-color-tertiary: var(--gray-400);
 
     --modal-bg-primary: var(--bg-main);
-    --modal-bg-secondary:rgba(144, 202, 249, 0.4);
+    --modal-bg-secondary: rgba(144, 202, 249, 0.4);
 
     --field-color-secondary: var(--gray-400);
     --field-border-color: var(--gray-1100);
@@ -216,4 +222,6 @@
 
     --sidebar-shadow: none;
     --header-shadow: none;
+
+    --chart-bg-secondary: rgba(65, 158, 250, 0.3);
 }

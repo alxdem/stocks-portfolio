@@ -25,6 +25,7 @@ import {
     MIN_AVG_MAX_DEFAULT_VALUE,
     GOOGLE_SEARCH_URL,
 } from '@utils';
+import ChartAreaModule from '@organisms/ChartAreaModule/ChartAreaModule';
 
 const TickerPage = () => {
     const navigate = useNavigate();
@@ -244,6 +245,10 @@ const TickerPage = () => {
                 className={styles.portfolio}
                 symbol={ticker}
                 price={price}
+            />
+            <ChartAreaModule
+                ticker={ticker}
+                xAxisLabel='Date'
             />
             <Tabs tabs={tabs} isGap />
             <TickerActions
