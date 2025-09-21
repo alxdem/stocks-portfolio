@@ -15,6 +15,7 @@ export const GOOGLE_SEARCH_URL = 'https://www.google.com/search?q=';
 export const LOGO_URL = 'https://snp500-logos.netlify.app/logos'
 export const CF_STOCK_LIST_URL = 'https://stock-list.gonachill.workers.dev'; // my cloudflare cache
 export const CF_STOCK_HISTORY_URL = 'https://stock-db.gonachill.workers.dev'; // my cloudflare stock history data
+export const PRICE_WS_URL = 'https://stocks-portfolio-price-ws.onrender.com';
 
 const resolution = {
     mobile: 767,

@@ -32,7 +32,9 @@ h1.title {
 }
 
 .price {
+    display: flex;
     font-size: 2vw;
+    min-width: 11vw;
 }
 
 .change {
@@ -73,6 +75,7 @@ h1.title {
 
     .price {
         font-size: 2.9vw;
+        min-width: 16vw;
     }
 
     .sector {
@@ -106,6 +109,7 @@ h1.title {
 
     .price {
         font-size: 5.7vw;
+        min-width: 29vw;
     }
 
     .sector {

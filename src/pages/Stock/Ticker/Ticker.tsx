@@ -21,11 +21,13 @@ import {
     formatHugeNumber,
     getAddressString,
     getAnnualRange,
+    getDifferencePercent,
     BETA_MAX,
     MIN_AVG_MAX_DEFAULT_VALUE,
     GOOGLE_SEARCH_URL,
 } from '@utils';
 import ChartAreaModule from '@organisms/ChartAreaModule/ChartAreaModule';
+import useTickerPrice from "@hooks/useTickerPrice.ts";
 
 const TickerPage = () => {
     const navigate = useNavigate();
@@ -34,6 +36,8 @@ const TickerPage = () => {
     const dividends = useAppSelector(selectDividendsInfo);
     const betas = useAppSelector(selectBetaInfo);
     const sectors = useAppSelector(selectSectors);
+
+    const {price: dynamicPrice} = useTickerPrice(ticker || null, info?.price || null);
 
     useEffect(() => {
         if (!isLoading && !info) {
@@ -80,13 +84,18 @@ const TickerPage = () => {
     } = info || {};
 
     const title = `${companyName} (${ticker})`;
-    const priceLocal = price ? `${formatNumber(price, false, true)}` : '';
+    const localPrice = dynamicPrice || price;
+    const priceLocal = localPrice ? `${formatNumber(localPrice, false, true)}` : '';
     const isValuesCorrect = typeof lastDividend === 'number' && typeof price === 'number';
     const dividendsPercent = isValuesCorrect ? lastDividend * 100 / price : null;
     const dividendsCurrentSector: MinAvgMax = sectors && sector ? sectors[sector].dividends : MIN_AVG_MAX_DEFAULT_VALUE;
     const betasCurrentSector: MinAvgMax = sectors && sector ? sectors[sector].betas : MIN_AVG_MAX_DEFAULT_VALUE;
     const annualRange = getAnnualRange(range);
     const isDividendsPercent = Number.isFinite(dividendsPercent);
+
+    const isPricesReady = price && dynamicPrice;
+    const dynamicChange = isPricesReady ? dynamicPrice - price : null;
+    const dynamicChangePercentage = isPricesReady ? getDifferencePercent(price, dynamicPrice) : null;
 
     const metrics = (
         <>
@@ -238,8 +247,8 @@ const TickerPage = () => {
                 title={title}
                 price={priceLocal}
                 sector={sector}
-                change={change}
-                changePercentage={changePercentage}
+                change={dynamicChange ?? change}
+                changePercentage={dynamicChangePercentage ?? changePercentage}
             />
             <TickerInPortfolio
                 className={styles.portfolio}
